@@ -1,0 +1,43 @@
+@import "src/styles/sass/abstracts/variables";
+@import "src/styles/sass/abstracts/function";
+
+.header {
+  margin-bottom: toRem(80);
+
+  &Container{
+    display: flex;
+    align-items: center;
+    padding-top: toRem(24);
+    justify-content: space-between;
+  }
+
+  &Items {
+    display: flex;
+  }
+
+  &Link {
+    padding: 0 toRem(16) toRem(32) toRem(16);
+    text-transform: uppercase;
+    line-height: 120%;
+    font-weight: 600;
+    color: $textColorMain;
+    border-bottom: 2px solid transparent;
+  }
+}
+
+.active {
+  color: $colorPrimary;
+  border-bottom: 2px solid $colorPrimary;
+}
+
+.cartButton{
+  margin-left: toRem(22);
+  border: transparent;
+  background-color: transparent;
+}
+
+.selectionMoney{
+  text-transform: uppercase;
+  border: none;
+  appearance: none
+}

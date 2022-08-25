@@ -1,0 +1,6 @@
+@import "src/styles/sass/abstracts/function";
+
+.mainContainer {
+  padding-left: toRem(100);
+  padding-right: toRem(100);
+}

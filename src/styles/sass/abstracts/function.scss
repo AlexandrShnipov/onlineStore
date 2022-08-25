@@ -1,0 +1,6 @@
+@import 'src/styles/sass/abstracts/variables';
+
+@function toRem($value) {
+  $remValue: ($value / 16) + rem;
+  @return $remValue;
+}
