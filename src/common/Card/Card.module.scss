@@ -1,0 +1,23 @@
+@import "src/styles/sass/abstracts/variables";
+@import "src/styles/sass/abstracts/function";
+
+.card{
+  display: flex;
+  flex-direction: column;
+  font-size: toRem(18);
+  line-height: 160%;
+  color: $textColorMain;
+  padding: toRem(16);
+
+  &Img{
+    margin-bottom: toRem(24);
+  }
+
+  &Title{
+    font-weight: 300;
+  }
+
+  &Price{
+    font-weight: 500;
+  }
+}

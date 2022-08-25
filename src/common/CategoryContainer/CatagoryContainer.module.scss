@@ -1,0 +1,17 @@
+@import "src/styles/sass/abstracts/function";
+@import "src/styles/sass/abstracts/variables";
+
+.title{
+  font-size: toRem(42);
+  line-height: 160%;
+  font-weight: 400;
+  color: $textColorMain;
+  margin-bottom: toRem(103);
+}
+
+.cardsContainer{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(386), 1fr));
+  grid-column-gap: toRem(40);
+  grid-row-gap: toRem(103);
+}
