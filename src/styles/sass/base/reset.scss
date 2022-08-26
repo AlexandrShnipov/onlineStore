@@ -39,7 +39,6 @@ li{
 }
 
 img {
-  max-width: 100%;
   display: block;
 }
 
@@ -49,6 +48,7 @@ textarea,
 select {
   font: inherit;
   outline: none;
+  padding: 0;
 }
 
 a{

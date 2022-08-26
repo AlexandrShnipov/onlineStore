@@ -2,7 +2,7 @@ import {Component} from 'react';
 import s from './Header.module.scss';
 import logo from '../../images/logo.png';
 import cart from '../../images/cart.png'
-import MainContainer from "../../common/MainContainer/MainContainer";
+import MainContainer from '../../common/MainContainer/MainContainer';
 
 class Header extends Component {
   render() {

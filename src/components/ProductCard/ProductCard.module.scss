@@ -1,0 +1,149 @@
+@import "src/styles/sass/abstracts/variables";
+@import "src/styles/sass/abstracts/function";
+
+.container {
+  display: flex;
+  //flex-wrap: wrap;
+  gap: toRem(91);
+  margin-right: toRem(100);
+  color: $textColorMain;
+}
+
+.imgBlock {
+  display: flex;
+  gap: toRem(40);
+  max-height: toRem(511);
+
+  &SmallImg {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(40);
+
+    &>button{
+      border: 1px solid transparent;
+
+      &:hover,
+      &:active{
+        border: 1px solid $textColorMain;
+      }
+    }
+  }
+}
+
+.productParametrs {
+  flex-basis: 26%;
+  flex-grow: 1;
+
+  &Title {
+    font-size: toRem(30);
+    line-height: toRem(27);
+    font-weight: 600;
+    margin-bottom: toRem(43);
+
+    & > span {
+      font-weight: 400;
+      display: block;
+      padding-top: toRem(16);
+    }
+  }
+
+  &Item > h3 {
+    font-size: toRem(18);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: toRem(8);
+    text-transform: uppercase;
+  }
+
+  &Size {
+    margin-bottom: toRem(24);
+
+    &Options {
+      display: flex;
+      gap: toRem(12);
+
+      & > span {
+        font-size: toRem(16);
+        line-height: toRem(18);
+        font-weight: 400;
+        text-transform: uppercase;
+        display: grid;
+        place-content: center;
+        min-width: toRem(63);
+        min-height: toRem(45);
+        border: 1px solid $textColorMain;
+
+        &.active {
+          color: $textColorLight;
+          background: $textColorMain;
+
+        }
+      }
+    }
+  }
+
+  &Color {
+    margin-bottom: toRem(36);
+
+    &Options {
+      display: flex;
+      gap: toRem(8);
+
+      & > div {
+        padding: 2px;
+        min-width: toRem(36);
+        min-height: toRem(36);
+
+        &.active {
+          border: 1px solid $textColorMain;
+        }
+      }
+
+      & > div > span {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &Price {
+    margin-bottom: toRem(25);
+
+    & > h3 {
+      margin-bottom: toRem(16);
+    }
+
+    & > span {
+      font-size: toRem(24);
+      line-height: toRem(18);
+      font-weight: 700;
+    }
+  }
+
+  &ButtonToCart {
+    line-height: toRem(52);
+    text-transform: uppercase;
+    color: $textColorLight;
+    background: $colorPrimary;
+    border: 1px solid transparent;
+    width: 100%;
+    margin-bottom: toRem(40);
+
+    &:hover,
+    &:active {
+      background: $textColorLight;
+      color: $colorPrimary;
+      border: 1px solid $colorPrimary;
+    }
+  }
+
+  &Description {
+    font-weight: 400;
+    line-height: 160%;
+  }
+}
+
+button{
+  transition: all .5s linear;
+}
