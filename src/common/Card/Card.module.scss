@@ -8,6 +8,11 @@
   line-height: 160%;
   color: $textColorMain;
   padding: toRem(16);
+  transition: all .5s linear;
+
+  &:hover{
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+  }
 
   &Img{
     margin-bottom: toRem(24);

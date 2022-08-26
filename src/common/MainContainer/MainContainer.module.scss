@@ -1,6 +1,8 @@
 @import "src/styles/sass/abstracts/function";
 
 .mainContainer {
+  max-width: toRem(1440);
+  margin: 0 auto;
   padding-left: toRem(100);
   padding-right: toRem(100);
 }
