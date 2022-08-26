@@ -1,50 +1,48 @@
 @import "src/styles/sass/abstracts/variables";
 @import "src/styles/sass/abstracts/function";
 
+.cartTitle {
+  font-size: toRem(32);
+  line-height: toRem(40);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: toRem(55);
+  border-bottom: 1px solid $colorMedium;
+  margin-bottom: toRem(24);
+}
+
 .container {
   display: flex;
-  //flex-wrap: wrap;
-  gap: toRem(91);
-  margin-right: toRem(100);
+  justify-content: space-between;
+  padding-bottom: toRem(30);
+  border-bottom: 1px solid $colorMedium;
+  margin-bottom: toRem(32);
   color: $textColorMain;
 }
 
-.imgBlock {
-  display: flex;
-  gap: toRem(40);
-  max-height: toRem(511);
-
-  &SmallImg {
-    display: flex;
-    flex-direction: column;
-    gap: toRem(40);
-
-    &>button{
-      border: 1px solid transparent;
-
-      &:hover,
-      &:active{
-        border: 1px solid $textColorMain;
-      }
-    }
-  }
+.price {
+  display: inline-block;
+  font-size: toRem(24);
+  line-height: toRem(18);
+  font-weight: 700;
 }
 
 .productParameters {
-  flex-basis: 26%;
-  flex-grow: 1;
-
   &Title {
     font-size: toRem(30);
     line-height: toRem(27);
     font-weight: 600;
-    margin-bottom: toRem(43);
+    margin-bottom: toRem(20);
 
     & > span {
       font-weight: 400;
       display: block;
       padding-top: toRem(16);
     }
+  }
+
+  &Price {
+    margin-bottom: toRem(20);
   }
 
   &Item > h3 {
@@ -56,7 +54,7 @@
   }
 
   &Size {
-    margin-bottom: toRem(24);
+    margin-bottom: toRem(16);
 
     &Options {
       display: flex;
@@ -76,15 +74,12 @@
         &.active {
           color: $textColorLight;
           background: $textColorMain;
-
         }
       }
     }
   }
 
   &Color {
-    margin-bottom: toRem(36);
-
     &Options {
       display: flex;
       gap: toRem(8);
@@ -106,44 +101,57 @@
       }
     }
   }
+}
 
-  &Price {
-    margin-bottom: toRem(25);
+.counterBlock {
+  display: flex;
+  gap: toRem(24);
 
-    & > h3 {
-      margin-bottom: toRem(16);
+  &Buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    & > button {
+      font-size: toRem(32);
+      min-width: toRem(45);
+      min-height: toRem(45);
+      border: 1px solid $textColorMain;
+      display: flex;
+      place-content: center;
+      line-height: 1;
+      background: transparent;
+      color: $textColorMain;
+
+      &:hover,
+      &:active {
+        background: $colorMedium;
+      }
+    ;
     }
 
     & > span {
       font-size: toRem(24);
-      line-height: toRem(18);
-      font-weight: 700;
+      line-height: 160%;
+      font-weight: 500;
     }
-  }
-
-  &ButtonToCart {
-    line-height: toRem(52);
-    text-transform: uppercase;
-    color: $textColorLight;
-    background: $colorPrimary;
-    border: 1px solid transparent;
-    width: 100%;
-    margin-bottom: toRem(40);
-
-    &:hover,
-    &:active {
-      background: $textColorLight;
-      color: $colorPrimary;
-      border: 1px solid $colorPrimary;
-    }
-  }
-
-  &Description {
-    font-weight: 400;
-    line-height: 160%;
   }
 }
 
-button{
+.cartTotalTable {
+  border-spacing: toRem(8);
+  & > tr > th {
+    text-align: start;
+  }
+
+  & > tr > th {
+    font-size: toRem(24);
+    line-height: toRem(18);
+    font-weight: 400;
+  }
+}
+
+button {
   transition: all .5s linear;
 }

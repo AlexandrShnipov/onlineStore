@@ -1,32 +1,19 @@
 import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
-import s from './ProductCard.module.scss';
-import smallPhoto from '../../images/imageSmallProduct.png';
-import bigPhoto from '../../images/imageBigProduct.png';
+import s from './Cart.module.scss';
+import imageCartProduct from '../../images/imageCartProduct.png'
 
 class ProductCard extends Component {
   render() {
     return (
       <MainContainer>
+        <h1 className={s.cartTitle}>Cart</h1>
         <div className={s.container}>
-          <div className={s.imgBlock}>
-            <div className={s.imgBlockSmallImg}>
-              <button>
-                <img src={smallPhoto} alt={'Photo product'}/>
-              </button>
-              <button>
-                <img src={smallPhoto} alt={'Photo product'}/>
-              </button>
-              <button>
-                <img src={smallPhoto} alt={'Photo product'}/>
-              </button>
-            </div>
-            <img className={s.imgBlockBigImg} src={bigPhoto} alt={'Photo product'}/>
-          </div>
           <div className={s.productParameters}>
             <h2 className={s.productParametersTitle}>Apollo
               <span>Running Short</span>
             </h2>
+            <span className={`${s.price} ${s.productParametersPrice}`}>$50.00</span>
             <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
               <h3>Size:</h3>
               <div className={s.productParametersSizeOptions}>
@@ -50,18 +37,36 @@ class ProductCard extends Component {
                 </div>
               </div>
             </div>
-            <div className={`${s.productParametersItem} ${s.productParametersPrice}`}>
-              <h3>Price:</h3>
-              <span>$50.00</span>
+          </div>
+
+          <div className={s.counterBlock}>
+            <div className={s.counterBlockButtons}>
+              <button>+</button>
+              <span>1</span>
+              <button>-</button>
             </div>
-            <button className={s.productParametersButtonToCart}>add to cart</button>
-            <p className={s.productParametersDescription}>
-              Find stunning women's cocktail dresses and party dresses.
-              Stand out in lace and metallic cocktail dresses
-              and party dresses from all your favorite brands.</p>
+            <div className={s.counterBlockImages}>
+              <img src={imageCartProduct} alt='Product photo'/>
+            </div>
           </div>
         </div>
 
+        <div className={s.cartTotal}>
+          <table className={s.cartTotalTable}>
+            <tr>
+              <th>Tax 21%:</th>
+              <td className={s.price}>$42.00</td>
+            </tr>
+            <tr>
+              <th>Quantity:</th>
+              <td className={s.price}>3</td>
+            </tr>
+            <tr>
+              <th>Total:</th>
+              <td className={s.price}>$200.00</td>
+            </tr>
+          </table>
+        </div>
       </MainContainer>
     )
   }
