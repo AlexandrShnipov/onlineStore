@@ -18,26 +18,19 @@ class App extends Component {
           <main>
             <Routes>
               <Route exact path={'/'} element={<Navigate to={'/women'} />} />
-                <Route path='/women/*' element={<CategoryWomen/>}/>
-                <Route path='/man/*' element={<CategoryMan/>}/>
-                <Route path='/kids/*' element={<CategoryKids/>}/>
-                <Route path='/productCard/*' element={<ProductCard/>}/>
-                <Route path='/cart/*' element={<Cart/>}/>
-                {/*<CategoryWomen/>*/}
-                {/*<CategoryWomen/>*/}
-                {/*<CategoryWomen/>*/}
-                {/*<ProductCard/>*/}
-                {/*<Cart/>*/}
+                <Route exact path='/women' element={<CategoryWomen/>}/>
+                <Route exact path='/man' element={<CategoryMan/>}/>
+                <Route exact path='/kids' element={<CategoryKids/>}/>
+              <Route exact path='/women/*' element={<ProductCard/>}/>
+              <Route exact path='/man/*' element={<ProductCard/>}/>
+              <Route exact path='/kids/*' element={<ProductCard/>}/>
+                {/*<Route path='/cart/*' element={<Cart/>}/>*/}
+                {/*<Route path='/cartSmall/*' element={<CartSmall/>}/>*/}
             </Routes>
-
-
           </main>
-
-          <CartSmall/>
         </div>
       </BrowserRouter>
-
-    );
+    )
   }
 }
 
