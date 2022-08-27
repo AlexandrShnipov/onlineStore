@@ -17,15 +17,15 @@ class App extends Component {
           <Header/>
           <main>
             <Routes>
-              <Route exact path={'/'} element={<Navigate to={'/women'} />} />
-                <Route exact path='/women' element={<CategoryWomen/>}/>
-                <Route exact path='/man' element={<CategoryMan/>}/>
-                <Route exact path='/kids' element={<CategoryKids/>}/>
+              <Route exact path={'/'} element={<Navigate to={'/women'}/>}/>
+              <Route exact path='/women' element={<CategoryWomen/>}/>
+              <Route exact path='/man' element={<CategoryMan/>}/>
+              <Route exact path='/kids' element={<CategoryKids/>}/>
               <Route exact path='/women/*' element={<ProductCard/>}/>
               <Route exact path='/man/*' element={<ProductCard/>}/>
               <Route exact path='/kids/*' element={<ProductCard/>}/>
-                {/*<Route path='/cart/*' element={<Cart/>}/>*/}
-                {/*<Route path='/cartSmall/*' element={<CartSmall/>}/>*/}
+              <Route exact path='/cart/*' element={<Cart/>}/>
+              {/*<Route path='/cartSmall/*' element={<CartSmall/>}/>*/}
             </Routes>
           </main>
         </div>

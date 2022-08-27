@@ -4,6 +4,8 @@ import logo from '../../images/logo.png';
 import cart from '../../images/cart.png'
 import MainContainer from '../../common/MainContainer/MainContainer';
 import HeaderLinkIItem from "./HeaderLinkItem/HeaderLinkIItem";
+import {NavLink} from "react-router-dom";
+import {withRouter} from "../../hocs/withRouter";
 
 class Header extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class Header extends Component {
   }
 
   render() {
+    console.log(this.props.location)
     return (
       <MainContainer>
         <header className={s.header}>
@@ -32,9 +35,9 @@ class Header extends Component {
                 <option>€ eur</option>
                 <option>¥ jpy</option>
               </select>
-              <button className={s.cartButton}>
+              <NavLink className={s.cartButton} to={`/cart`}>
                 <img src={cart} alt=""/>
-              </button>
+              </NavLink>
             </div>
           </div>
         </header>
@@ -43,4 +46,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

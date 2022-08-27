@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import s from'./HeaderLinkItem.module.scss'
 
-class Header extends Component {
+class HeaderLinkIItem extends Component {
   render() {
     return (
       <li className={s.headerItem}>
@@ -15,4 +15,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default HeaderLinkIItem;
