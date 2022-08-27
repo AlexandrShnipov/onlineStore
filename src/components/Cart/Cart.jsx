@@ -3,7 +3,7 @@ import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './Cart.module.scss';
 import imageCartProduct from '../../images/imageCartProduct.png'
 
-class ProductCard extends Component {
+class Cart extends Component {
   render() {
     return (
       <MainContainer>
@@ -72,4 +72,4 @@ class ProductCard extends Component {
   }
 }
 
-export default ProductCard
+export default Cart
