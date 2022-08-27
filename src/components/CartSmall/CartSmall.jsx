@@ -1,12 +1,11 @@
 import {Component} from 'react';
-import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './CartSmall.module.scss';
 import imageCartProduct from '../../images/imageCartProduct.png'
 
 class CartSmall extends Component {
   render() {
     return (
-      <div className={s.modale}>
+      <div className={s.modal}>
         <div className={s.container}>
           <div className={s.cartTitleBlock}>
             <h2 className={s.cartTitle}>MyBag.</h2>

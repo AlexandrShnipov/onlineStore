@@ -1,0 +1,19 @@
+@import "src/styles/sass/abstracts/variables";
+@import "src/styles/sass/abstracts/function";
+
+
+  .headerLink {
+    padding: 0 toRem(16) toRem(32) toRem(16);
+    text-transform: uppercase;
+    line-height: 120%;
+    font-weight: 600;
+    color: $textColorMain;
+    border-bottom: 2px solid transparent;
+  }
+
+
+.active {
+  color: $colorPrimary;
+  border-bottom: 2px solid $colorPrimary;
+}
+
