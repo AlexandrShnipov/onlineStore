@@ -37,7 +37,7 @@ class CategoryWomen extends Component {
     return (
       <MainContainer>
         <CategoryContainer title={'Women'}>
-          {this.props.data.categories.map(({products}, index) =>
+          {this.props.data.categories?.map(({products}, index) =>
             products.map(product =>
               <Card
                 key={product.id}
