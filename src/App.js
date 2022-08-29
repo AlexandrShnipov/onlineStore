@@ -1,14 +1,16 @@
 import s from './App.scss';
 import Header from "./components/Header/Header";
-import CategoryWomen from "./components/Category/CategoryWomen/CategoryWomen";
 import ProductCard from "./components/ProductCard/ProductCard";
 import Cart from "./components/Cart/Cart";
-import CartSmall from "./components/CartSmall/CartSmall";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import CategoryMan from "./components/Category/CategoryMan/CategoryMan";
-import CategoryKids from "./components/Category/CategoryKids/CategoryKids";
+import CategoryTech from "./components/Category/CategoryTech/CategoryTech";
 import {Component} from "react";
+import CategoryAll from "./components/Category/CategoryAll/CategoryAll";
 
+
+function CategoryClothes() {
+  return null;
+}
 
 class App extends Component {
   render() {
@@ -18,13 +20,13 @@ class App extends Component {
             <Header/>
             <main>
               <Routes>
-                <Route exact path={'/'} element={<Navigate to={'/women'}/>}/>
-                <Route exact path='/women' element={<CategoryWomen/>}/>
-                <Route exact path='/man' element={<CategoryMan/>}/>
-                <Route exact path='/kids' element={<CategoryKids/>}/>
-                <Route exact path='/women/*' element={<ProductCard/>}/>
-                <Route exact path='/man/*' element={<ProductCard/>}/>
-                <Route exact path='/kids/*' element={<ProductCard/>}/>
+                <Route exact path={'/'} element={<Navigate to={'/all'}/>}/>
+                <Route exact path='/all' element={<CategoryAll/>}/>
+                <Route exact path='/tech' element={<CategoryTech/>}/>
+                <Route exact path='/clothes' element={<CategoryClothes/>}/>
+                <Route exact path='/all/*' element={<ProductCard/>}/>
+                <Route exact path='/tech/*' element={<ProductCard/>}/>
+                <Route exact path='/clothes/*' element={<ProductCard/>}/>
                 <Route exact path='/cart/*' element={<Cart/>}/>
                 {/*<Route path='/cartSmall/*' element={<CartSmall/>}/>*/}
               </Routes>

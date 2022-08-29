@@ -11,22 +11,21 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.links = [
-      {to: '/women', linkText: 'women'},
-      {to: '/man', linkText: 'man'},
-      {to: '/kids', linkText: 'kids'}
+      {to: '/all', linkText: 'all'},
+      {to: '/tech', linkText: 'tech'},
+      {to: '/clothes', linkText: 'clothes'}
     ];
-    this.linksList = this.links.map((link, index) =>
-      <HeaderLinkIItem key={index} {...link}/>)
   }
 
   render() {
-   // console.log(this.props.location)
+    // console.log(this.props.location)
     return (
       <MainContainer>
         <header className={s.header}>
           <div className={s.headerContainer}>
             <ul className={s.headerItems}>
-              {this.linksList}
+              {this.links.map((link, index) =>
+                <HeaderLinkIItem key={index} {...link}/>)}
             </ul>
             <img className={s.logo} src={logo} alt=""/>
             <div>

@@ -7,7 +7,7 @@ class Kids extends Component {
   render() {
     return (
       <MainContainer>
-        <CategoryContainer title={'Kids'}>
+        <CategoryContainer title={'Clothes'}>
           <Card/>
           <Card/>
           <Card/>

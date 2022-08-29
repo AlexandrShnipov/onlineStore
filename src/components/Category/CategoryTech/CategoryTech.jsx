@@ -3,11 +3,11 @@ import MainContainer from "../../../common/MainContainer/MainContainer";
 import Card from "../../../common/Card/Card";
 import CatagoryContainer from "../../../common/CategoryContainer/CategoryContainer";
 
-class CategoryMan extends Component {
+class CategoryTech extends Component {
   render() {
     return (
       <MainContainer>
-        <CatagoryContainer title={'Man'}>
+        <CatagoryContainer title={'Tech'}>
           <Card/>
           <Card/>
           <Card/>
@@ -21,4 +21,4 @@ class CategoryMan extends Component {
   }
 }
 
-export default CategoryMan
+export default CategoryTech
