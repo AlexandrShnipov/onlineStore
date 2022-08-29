@@ -20,7 +20,7 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.location)
+   // console.log(this.props.location)
     return (
       <MainContainer>
         <header className={s.header}>

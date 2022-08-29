@@ -4,12 +4,25 @@ import './index.css';
 import './styles/sass/base/reset.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {ApolloClient, InMemoryCache, ApolloProvider, gql} from '@apollo/client';
+
+export const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache(),
+});
+//
+// const client = new ApolloClient({
+//   uri: 'https://flyby-gateway.herokuapp.com/',
+//   cache: new InMemoryCache(),
+// });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ApolloProvider client={client}>
+    <React.StrictMode>
+      <App/>
+    </React.StrictMode>
+  </ApolloProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

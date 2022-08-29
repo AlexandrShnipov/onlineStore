@@ -7,12 +7,12 @@ import {withRouter} from "../../hocs/withRouter";
 
 class Card extends Component {
   render() {
-    console.log(this.props.location)
+   // console.log(this.props.location)
     return(
  <NavLink className={s.card} to={`${this.props.location.pathname}/productCard`}>
-   <img className={s.cardImg} src={cardImage} alt=""/>
-   <h2 className={s.cardTitle}>Apollo Running Short</h2>
-   <p className={s.cardPrice}><span>$</span>50.00</p>
+   <img className={s.cardImg} src={this.props.image} alt={this.props.name}/>
+   <h2 className={s.cardTitle}>{this.props.brand}<p>{this.props.name}</p></h2>
+   <p className={s.cardPrice}><span>{this.props.currency}</span>{this.props.price}</p>
  </NavLink>
 
     )
