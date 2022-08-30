@@ -7,11 +7,11 @@ import withHoc from './CategoryClothesHoc';
 class Clothes extends Component {
 
   render() {
-    console.log(this.props.data.category)
+    // console.log(this.props.data.category)
     return (
       <MainContainer>
         <CategoryContainer title={'Clothes'}>
-          {this.props.data.category.products?.map(({brand, id, gallery, name, prices}, index) =>
+          {this.props.data.category?.products?.map(({brand, id, gallery, name, prices}, index) =>
               <Card
                 key={id}
                 image={gallery[0]}

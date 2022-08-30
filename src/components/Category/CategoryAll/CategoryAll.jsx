@@ -8,7 +8,7 @@ import withHoc from './CategoryAllHoc';
 class CategoryAll extends Component {
 
   render() {
-    console.log(this.props.data.categories)
+    // console.log(this.props.data.categories)
 
     return (
       <MainContainer>
