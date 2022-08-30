@@ -9,7 +9,6 @@ class CategoryContainer extends Component {
        <div className={s.cardsContainer}>
          {this.props.children}
        </div>
-
      </div>
     )
   }

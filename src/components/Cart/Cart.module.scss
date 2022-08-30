@@ -139,16 +139,21 @@
   }
 }
 
-.cartTotalTable {
-  border-spacing: toRem(8);
-  & > tr > th {
-    text-align: start;
-  }
+.cartTotal {
+  margin-bottom: toRem(103);
 
-  & > tr > th {
-    font-size: toRem(24);
-    line-height: toRem(18);
-    font-weight: 400;
+  &Table {
+    border-spacing: toRem(8);
+
+    & > tr > th {
+      text-align: start;
+    }
+
+    & > tr > th {
+      font-size: toRem(24);
+      line-height: toRem(18);
+      font-weight: 400;
+    }
   }
 }
 

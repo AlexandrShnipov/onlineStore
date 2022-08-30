@@ -25,7 +25,6 @@ class CategoryAll extends Component {
               />
             ))}
         </CategoryContainer>
-        {/*<DisplayLocations />*/}
       </MainContainer>
     )
   }
