@@ -6,11 +6,8 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import CategoryTech from "./components/Category/CategoryTech/CategoryTech";
 import {Component} from "react";
 import CategoryAll from "./components/Category/CategoryAll/CategoryAll";
+import CategoryClothes from "./components/Category/CategoryClothes/CategoryClothes";
 
-
-function CategoryClothes() {
-  return null;
-}
 
 class App extends Component {
   render() {
