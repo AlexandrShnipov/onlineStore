@@ -1,6 +1,6 @@
-import { getProducts } from './queries' ;
+import { getProduct } from './queries' ;
 import {graphql} from "@apollo/client/react/hoc";
 import {compose} from "redux";
 
 
-export default compose(graphql(getProducts));
+export default compose(graphql(getProduct));

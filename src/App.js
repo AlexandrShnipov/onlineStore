@@ -1,6 +1,6 @@
 import s from './App.scss';
 import Header from "./components/Header/Header";
-import ProductCard from "./common/ProductCard/ProductCard";
+import ProductPage from "./components/ProductPage/ProductPage";
 import Cart from "./components/Cart/Cart";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import CategoryTech from "./components/Category/CategoryTech/CategoryTech";
@@ -21,9 +21,9 @@ class App extends Component {
                 <Route exact path='/all' element={<CategoryAll/>}/>
                 <Route exact path='/tech' element={<CategoryTech/>}/>
                 <Route exact path='/clothes' element={<CategoryClothes/>}/>
-                <Route exact path='/all/*' element={<ProductCard/>}/>
-                <Route exact path='/tech/*' element={<ProductCard/>}/>
-                <Route exact path='/clothes/*' element={<ProductCard/>}/>
+                <Route exact path='/all/*' element={<ProductPage/>}/>
+                <Route exact path='/tech/*' element={<ProductPage/>}/>
+                <Route exact path='/clothes/*' element={<ProductPage/>}/>
                 <Route exact path='/cart/*' element={<Cart/>}/>
                 {/*<Route path='/cartSmall/*' element={<CartSmall/>}/>*/}
               </Routes>

@@ -1,6 +1,6 @@
 import {Component} from "react";
 import MainContainer from "../../../common/MainContainer/MainContainer";
-import Card from "../../ProductPage/ProductPage";
+import Card from "../../../common/ProductCard/ProductCard";
 import CategoryContainer from "../../../common/CategoryContainer/CategoryContainer";
 import withHoc from './CategoryTechHoc';
 
