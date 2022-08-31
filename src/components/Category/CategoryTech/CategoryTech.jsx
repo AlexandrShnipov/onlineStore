@@ -10,9 +10,10 @@ class CategoryTech extends Component {
     return (
       <MainContainer>
         <CategoryContainer title={'Tech'}>
-          {this.props.data.category?.products?.map(({brand, id, gallery, name, prices}, index) =>
+          {this.props.data.category?.products?.map(({brand, gallery, name, prices, id}) =>
             <Card
               key={id}
+              id={id}
               image={gallery[0]}
               brand={brand}
               name={name}

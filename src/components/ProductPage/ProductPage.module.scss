@@ -15,8 +15,19 @@
   max-height: toRem(511);
 
   &BigImg {
-    max-width: toRem(610);
-    height: toRem(511);
+    width: toRem(610);
+    position: relative;
+    padding: 0 0 70% 0;
+
+    &>img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 0 toRem(-35);
+    }
   }
 
   &SmallImg {
@@ -37,6 +48,7 @@
       & > img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
       }
     }
   }
@@ -44,7 +56,8 @@
 
 .productParameters {
   width: 50%;
-    &Title {
+
+  &Title {
     font-size: toRem(30);
     line-height: toRem(27);
     font-weight: 600;

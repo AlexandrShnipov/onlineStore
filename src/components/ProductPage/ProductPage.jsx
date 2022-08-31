@@ -3,12 +3,61 @@ import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './ProductPage.module.scss';
 import bigPhoto from '../../images/imageBigProduct.png';
 import withHoc from './ProductPageHoc';
+import {withRouter} from "../../hocs/withRouter";
+// import {gql} from "@apollo/client";
+import {request, gql} from 'graphql-request'
 
 class ProductPage extends Component {
 
+  state = {
+    product: {}
+  }
+
+  componentDidMount() {
+    const {location} = this.props;
+    const pathnameItems = location.pathname.split('/');
+    const id = pathnameItems[pathnameItems.length-1]
+    console.log(id)
+
+    const getProduct = gql`
+  query GetProduct($id: String!) {
+     product(id: $id) {
+    id
+    brand
+    name
+    description
+    gallery
+    attributes{
+      id
+      name
+      type
+      items{
+        id
+        displayValue
+        value
+      }
+    }
+    prices {
+      currency {
+        label
+        symbol
+      }
+      amount
+    }
+  }
+  }
+  `;
+    request('http://localhost:4000/', getProduct, {id})
+      .then((data) => {
+        console.log('product', data);
+        this.setState({product: data.product})
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
-    console.log(this.props.data.product)
-    const {attributes, gallery, name, brand, prices, description} = this.props.data.product ?? {};
+    // console.log(this.props.data.product)
+    const {attributes, gallery, name, brand, prices, description} = this.state.product ?? {};
     return (
 
       <MainContainer>
@@ -21,7 +70,9 @@ class ProductPage extends Component {
                 </button>
               ))}
             </div>
-            <img className={s.imgBlockBigImg} src={gallery?.[0]} alt={name}/>
+            <div className={s.imgBlockBigImg}>
+              <img  src={gallery?.[0]} alt={name}/>
+            </div>
           </div>
           <div className={s.productParameters}>
             <h2 className={s.productParametersTitle}>{name}
@@ -34,7 +85,7 @@ class ProductPage extends Component {
 
             <div className={`${s.productParametersItem} ${s.productParametersPrice}`}>
               <h3>Price:</h3>
-              <span>$50.00</span>
+              <span>{`${prices?.[0]?.currency?.symbol} ${prices?.[0]?.amount}`}</span>
             </div>
             <button className={s.productParametersButtonToCart}>add to cart</button>
             <div dangerouslySetInnerHTML={{__html: description}} className={s.productParametersDescription}/>
@@ -45,7 +96,7 @@ class ProductPage extends Component {
   }
 
   selectProductAttribute = (param) => {
-    const {attributes} = this.props.data.product ?? {};
+    const {attributes} = this.state.product;
 
     return attributes?.find(attribute => attribute.id.toLowerCase() === param);
   }
@@ -93,4 +144,4 @@ class ProductPage extends Component {
 
 }
 
-export default withHoc(ProductPage);
+export default withRouter(ProductPage);

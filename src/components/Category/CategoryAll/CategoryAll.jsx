@@ -3,6 +3,7 @@ import MainContainer from "../../../common/MainContainer/MainContainer";
 import Card from "../../../common/ProductCard/ProductCard";
 import CategoryContainer from "../../../common/CategoryContainer/CategoryContainer";
 import withHoc from './CategoryAllHoc';
+import {getProducts} from "./queries";
 
 
 class CategoryAll extends Component {
@@ -17,6 +18,7 @@ class CategoryAll extends Component {
             products.map(product =>
               <Card
                 key={product.id}
+                id={product.id}
                 image={product.gallery[0]}
                 brand={product.brand}
                 name={product.name}
