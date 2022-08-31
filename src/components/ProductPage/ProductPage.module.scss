@@ -14,27 +14,37 @@
   gap: toRem(40);
   max-height: toRem(511);
 
+  &BigImg {
+    max-width: toRem(610);
+    height: toRem(511);
+  }
+
   &SmallImg {
     display: flex;
     flex-direction: column;
     gap: toRem(40);
 
     & > button {
-      border: 1px solid transparent;
+      border: 1px solid $textColorLight;
+      width: toRem(79);
+      height: toRem(80);
 
       &:hover,
       &:active {
         border: 1px solid $textColorMain;
+      }
+
+      & > img {
+        width: 100%;
+        height: 100%;
       }
     }
   }
 }
 
 .productParameters {
-  flex-basis: 26%;
-  flex-grow: 1;
-
-  &Title {
+  width: 50%;
+    &Title {
     font-size: toRem(30);
     line-height: toRem(27);
     font-weight: 600;
@@ -47,7 +57,7 @@
     }
   }
 
-  &Item{
+  &Item {
     margin-bottom: toRem(24);
   }
 
@@ -127,6 +137,7 @@
     color: $textColorLight;
     background: $colorPrimary;
     border: 1px solid transparent;
+    max-width: toRem(292);
     width: 100%;
     margin-bottom: toRem(40);
 

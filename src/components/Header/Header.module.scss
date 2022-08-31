@@ -7,8 +7,9 @@
   &Container{
     display: flex;
     align-items: center;
-    padding-top: toRem(24);
+    margin-top: toRem(24);
     justify-content: space-between;
+    position: relative;
   }
 
   &Items {
@@ -26,4 +27,12 @@
 .selectionMoney{
   text-transform: uppercase;
   border: none;
+}
+
+.logo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }

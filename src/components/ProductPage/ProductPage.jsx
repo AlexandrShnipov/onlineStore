@@ -17,12 +17,11 @@ class ProductPage extends Component {
             <div className={s.imgBlockSmallImg}>
               {gallery?.map((img, index) => (
                 <button key={index}>
-                  <img src={img} style={{display: 'block', width: '40px', height: '40px'}} alt={'Photo product'}/>
+                  <img src={img} alt={name}/>
                 </button>
               ))}
             </div>
-            <img className={s.imgBlockBigImg} src={gallery?.[0]} alt={'Photo product'}
-                 style={{display: 'block', width: '400px', height: '400px'}}/>
+            <img className={s.imgBlockBigImg} src={gallery?.[0]} alt={name}/>
           </div>
           <div className={s.productParameters}>
             <h2 className={s.productParametersTitle}>{name}
