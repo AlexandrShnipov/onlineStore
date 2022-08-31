@@ -1,72 +1,97 @@
 import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './ProductPage.module.scss';
-import smallPhoto from '../../images/imageSmallProduct.png';
 import bigPhoto from '../../images/imageBigProduct.png';
 import withHoc from './ProductPageHoc';
 
 class ProductPage extends Component {
 
   render() {
-    //console.log(this.props.data.product)
+    console.log(this.props.data.product)
+    const {attributes, gallery, name, brand, prices, description} = this.props.data.product ?? {};
     return (
+
       <MainContainer>
         <div className={s.container}>
           <div className={s.imgBlock}>
             <div className={s.imgBlockSmallImg}>
-              <button>
-                <img src={smallPhoto} alt={'Photo product'}/>
-              </button>
-              <button>
-                <img src={smallPhoto} alt={'Photo product'}/>
-              </button>
-              <button>
-                <img src={smallPhoto} alt={'Photo product'}/>
-              </button>
+              {gallery?.map((img, index) => (
+                <button key={index}>
+                  <img src={img} style={{display: 'block', width: '40px', height: '40px'}} alt={'Photo product'}/>
+                </button>
+              ))}
             </div>
-            <img className={s.imgBlockBigImg} src={bigPhoto} alt={'Photo product'}/>
+            <img className={s.imgBlockBigImg} src={gallery?.[0]} alt={'Photo product'}
+                 style={{display: 'block', width: '400px', height: '400px'}}/>
           </div>
           <div className={s.productParameters}>
-            <h2 className={s.productParametersTitle}>Apollo
-              <span>Running Short</span>
+            <h2 className={s.productParametersTitle}>{name}
+              <span>{brand}</span>
             </h2>
-            <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
-              <h3>Size:</h3>
-              <div className={s.productParametersSizeOptions}>
-                <span className={s.active}>xs</span>
-                <span>s</span>
-                <span>m</span>
-                <span>l</span>
-              </div>
-            </div>
-            <div className={`${s.productParametersItem} ${s.productParametersColor}`}>
-              <h3>Color:</h3>
-              <div className={s.productParametersColorOptions}>
-                <div className={s.active}>
-                  <span style={{background: 'lightGrey'}}></span>
-                </div>
-                <div>
-                  <span style={{background: 'black'}}></span>
-                </div>
-                <div>
-                  <span style={{background: 'green'}}></span>
-                </div>
-              </div>
-            </div>
+
+            {this.renderProductAttribute('size')}
+            {this.renderProductAttribute('color')}
+            {this.renderProductAttribute('capacity')}
+
             <div className={`${s.productParametersItem} ${s.productParametersPrice}`}>
               <h3>Price:</h3>
               <span>$50.00</span>
             </div>
             <button className={s.productParametersButtonToCart}>add to cart</button>
-            <p className={s.productParametersDescription}>
-              Find stunning women's cocktail dresses and party dresses.
-              Stand out in lace and metallic cocktail dresses
-              and party dresses from all your favorite brands.</p>
+            <div dangerouslySetInnerHTML={{__html: description}} className={s.productParametersDescription}/>
           </div>
         </div>
       </MainContainer>
     )
   }
+
+  selectProductAttribute = (param) => {
+    const {attributes} = this.props.data.product ?? {};
+
+    return attributes?.find(attribute => attribute.id.toLowerCase() === param);
+  }
+
+  renderProductAttribute = (param) => {
+    const data = this.selectProductAttribute(param);
+    switch (param) {
+      case 'size':
+        return (data &&
+          <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
+            <h3>{`${param}:`}</h3>
+            <div className={s.productParametersSizeOptions}>
+              {data?.items.map((item, i) => (
+                <span key={i} className={s.active}>{item.value}</span>
+              ))}
+            </div>
+          </div>
+        )
+      case 'color':
+        return (!!data &&
+          <div className={`${s.productParametersItem} ${s.productParametersColor}`}>
+            <h3>{`${param}:`}</h3>
+            <div className={s.productParametersColorOptions}>
+              {data?.items.map((item, i) => (
+                <div key={i} className={s.active}>
+                  <span style={{backgroundColor: item.value}}></span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      case 'capacity':
+        return (!!data &&
+          <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
+            <h3>{`${param}:`}</h3>
+            <div className={s.productParametersSizeOptions}>
+              {data?.items.map((item, i) => (
+                <span key={i} className={s.active}>{item.value}</span>
+              ))}
+            </div>
+          </div>
+        )
+    }
+  }
+
 }
 
 export default withHoc(ProductPage);

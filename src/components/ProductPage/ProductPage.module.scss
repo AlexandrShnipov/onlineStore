@@ -19,11 +19,11 @@
     flex-direction: column;
     gap: toRem(40);
 
-    &>button{
+    & > button {
       border: 1px solid transparent;
 
       &:hover,
-      &:active{
+      &:active {
         border: 1px solid $textColorMain;
       }
     }
@@ -47,6 +47,10 @@
     }
   }
 
+  &Item{
+    margin-bottom: toRem(24);
+  }
+
   &Item > h3 {
     font-size: toRem(18);
     font-weight: 700;
@@ -56,8 +60,6 @@
   }
 
   &Size {
-    margin-bottom: toRem(24);
-
     &Options {
       display: flex;
       gap: toRem(12);
@@ -83,8 +85,6 @@
   }
 
   &Color {
-    margin-bottom: toRem(36);
-
     &Options {
       display: flex;
       gap: toRem(8);
@@ -144,6 +144,6 @@
   }
 }
 
-button{
+button {
   transition: all .5s linear;
 }

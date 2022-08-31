@@ -3,7 +3,7 @@ import {gql} from "@apollo/client";
 
 export const getProduct = gql`
   query GetProduct {
-     product(id: "huarache-x-stussy-le") {
+     product(id: "xbox-series-s") {
     id
     brand
     name
