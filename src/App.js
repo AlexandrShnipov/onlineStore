@@ -1,6 +1,6 @@
 import s from './App.scss';
 import Header from "./components/Header/Header";
-import ProductCard from "./components/ProductCard/ProductCard";
+import ProductCard from "./common/ProductCard/ProductCard";
 import Cart from "./components/Cart/Cart";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import CategoryTech from "./components/Category/CategoryTech/CategoryTech";

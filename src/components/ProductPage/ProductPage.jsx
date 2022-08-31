@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import s from './Card.module.scss'
+import s from './ProductPage.module.scss'
 import {NavLink} from "react-router-dom";
 import {withRouter} from "../../hocs/withRouter";
 

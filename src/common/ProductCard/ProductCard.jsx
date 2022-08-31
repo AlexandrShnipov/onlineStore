@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import MainContainer from '../../common/MainContainer/MainContainer';
+import MainContainer from '../MainContainer/MainContainer';
 import s from './ProductCard.module.scss';
 import smallPhoto from '../../images/imageSmallProduct.png';
 import bigPhoto from '../../images/imageBigProduct.png';
@@ -61,7 +61,6 @@ class ProductCard extends Component {
               and party dresses from all your favorite brands.</p>
           </div>
         </div>
-
       </MainContainer>
     )
   }
