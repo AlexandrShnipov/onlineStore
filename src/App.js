@@ -2,13 +2,15 @@ import Header from "./components/Header/Header";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {Component} from "react";
 import {gql, request} from 'graphql-request'
-import CategoryPage from "./components/Category/CategoryPage";
-import ProductPage from "./components/ProductPage";
+import ProductPage from "./components/ProductPage/ProductPage";
+import CategoryPage from "./components/Category/CategoryPage/CategoryPage";
+
 
 class App extends Component {
 
   state = {
-    categories: []
+    categories: [],
+    currencies: []
   }
 
   componentDidMount() {
@@ -19,22 +21,40 @@ class App extends Component {
       }
     }`
 
+    const getCurrencies = gql`
+    {
+      currencies{
+        label
+        symbol
+     }
+    }`
+
     request('http://localhost:4000/', getCategories)
       .then((data) => {
-        // console.log('categories', data);
+        //console.log('categories', data);
         this.setState({categories: data.categories})
+      })
+      .catch(err => console.log(err))
+
+    request('http://localhost:4000/', getCurrencies)
+      .then((data) => {
+        console.log('currencies', data);
+        this.setState({currencies: data.currencies})
       })
       .catch(err => console.log(err))
   }
 
   render() {
-    const {categories} = this.state;
+    const {categories, currencies} = this.state;
     const initialRoute = categories[0]?.name ?? '';
 
     return (
       <BrowserRouter>
         <div className='App'>
-          {categories.length ? <Header categories={categories} /> : null}
+          {categories.length && currencies.length ? <Header
+              categories={categories}
+              currencies={currencies}/>
+            : null}
           <main>
             <Routes>
               <Route exact path={'/'} element={<Navigate to={`/${initialRoute}`}/>}/>

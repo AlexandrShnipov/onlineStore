@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
-import s from './styles.module.scss';
+import s from './ProductPage.module.scss';
 import {withRouter} from "../../hocs/withRouter";
 import {request, gql} from 'graphql-request'
 
