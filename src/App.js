@@ -1,35 +1,50 @@
-import s from './App.scss';
 import Header from "./components/Header/Header";
-import ProductPage from "./components/ProductPage/ProductPage";
-import Cart from "./components/Cart/Cart";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import CategoryTech from "./components/Category/CategoryTech/CategoryTech";
 import {Component} from "react";
-import CategoryAll from "./components/Category/CategoryAll/CategoryAll";
-import CategoryClothes from "./components/Category/CategoryClothes/CategoryClothes";
-
+import {gql, request} from 'graphql-request'
+import CategoryPage from "./components/Category/CategoryPage";
+import ProductPage from "./components/ProductPage";
 
 class App extends Component {
+
+  state = {
+    categories: []
+  }
+
+  componentDidMount() {
+    const getCategories = gql`
+    {
+      categories{
+        name
+      }
+    }`
+
+    request('http://localhost:4000/', getCategories)
+      .then((data) => {
+        // console.log('categories', data);
+        this.setState({categories: data.categories})
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
+    const {categories} = this.state;
+    const initialRoute = categories[0]?.name ?? '';
+
     return (
-        <BrowserRouter>
-          <div className='App'>
-            <Header/>
-            <main>
-              <Routes>
-                <Route exact path={'/'} element={<Navigate to={'/all'}/>}/>
-                <Route exact path='/all' element={<CategoryAll/>}/>
-                <Route exact path='/tech' element={<CategoryTech/>}/>
-                <Route exact path='/clothes' element={<CategoryClothes/>}/>
-                <Route exact path='/all/*' element={<ProductPage/>}/>
-                <Route exact path='/tech/*' element={<ProductPage/>}/>
-                <Route exact path='/clothes/*' element={<ProductPage/>}/>
-                <Route exact path='/cart/*' element={<Cart/>}/>
-                {/*<Route path='/cartSmall/*' element={<CartSmall/>}/>*/}
-              </Routes>
-            </main>
-          </div>
-        </BrowserRouter>
+      <BrowserRouter>
+        <div className='App'>
+          {categories.length ? <Header categories={categories} /> : null}
+          <main>
+            <Routes>
+              <Route exact path={'/'} element={<Navigate to={`/${initialRoute}`}/>}/>
+              <Route exact path='/:category' element={<CategoryPage/>}/>
+              <Route exact path='/:category/:productId' element={<ProductPage/>}/>
+              {/*<Route exact path='/cart/*' element={<Cart/>}/>*/}
+            </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
 
     )
   }

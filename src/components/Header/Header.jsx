@@ -10,22 +10,18 @@ import {withRouter} from "../../hocs/withRouter";
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.links = [
-      {to: '/all', linkText: 'all'},
-      {to: '/tech', linkText: 'tech'},
-      {to: '/clothes', linkText: 'clothes'}
-    ];
   }
 
   render() {
+    const { categories } = this.props;
     // console.log(this.props.location)
     return (
       <MainContainer>
         <header className={s.header}>
           <div className={s.headerContainer}>
             <ul className={s.headerItems}>
-              {this.links.map((link, index) =>
-                <HeaderLinkIItem key={index} {...link}/>)}
+              {categories.map((category, index) =>
+                <HeaderLinkIItem key={index} menuItem={category.name} />)}
             </ul>
             <img className={s.logo} src={logo} alt=""/>
             <div>
