@@ -14,18 +14,17 @@ class CategoryAll extends Component {
     return (
       <MainContainer>
         <CategoryContainer title={'All'}>
-          {this.props.data.categories?.map(({products}, index) =>
-            products.map(product =>
-              <Card
-                key={product.id}
-                id={product.id}
-                image={product.gallery[0]}
-                brand={product.brand}
-                name={product.name}
-                currency={product.prices[0].currency.label}
-                price={product.prices[0].amount}
-              />
-            ))}
+          {this.props.data.category?.products?.map(({brand, id, gallery, name, prices}) =>
+            <Card
+              key={id}
+              id={id}
+              image={gallery[0]}
+              brand={brand}
+              name={name}
+              currency={prices[0].currency.label}
+              price={prices[0].amount}
+            />
+          )}
         </CategoryContainer>
       </MainContainer>
     )
