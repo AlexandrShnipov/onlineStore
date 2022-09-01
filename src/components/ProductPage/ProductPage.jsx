@@ -1,8 +1,6 @@
 import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './ProductPage.module.scss';
-import bigPhoto from '../../images/imageBigProduct.png';
-import withHoc from './ProductPageHoc';
 import {withRouter} from "../../hocs/withRouter";
 // import {gql} from "@apollo/client";
 import {request, gql} from 'graphql-request'
