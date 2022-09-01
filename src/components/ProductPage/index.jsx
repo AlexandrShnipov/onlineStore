@@ -1,8 +1,7 @@
 import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
-import s from './ProductPage.module.scss';
+import s from './styles.module.scss';
 import {withRouter} from "../../hocs/withRouter";
-// import {gql} from "@apollo/client";
 import {request, gql} from 'graphql-request'
 
 class ProductPage extends Component {
@@ -14,8 +13,8 @@ class ProductPage extends Component {
   componentDidMount() {
     const {location} = this.props;
     const pathnameItems = location.pathname.split('/');
-    const id = pathnameItems[pathnameItems.length-1]
-    console.log(id)
+    const id = pathnameItems[pathnameItems.length - 1]
+    console.log(location)
 
     const getProduct = gql`
   query GetProduct($id: String!) {
@@ -54,7 +53,7 @@ class ProductPage extends Component {
   }
 
   render() {
-    // console.log(this.props.data.product)
+    console.log(this.state.product)
     const {attributes, gallery, name, brand, prices, description} = this.state.product ?? {};
     return (
 
@@ -69,7 +68,7 @@ class ProductPage extends Component {
               ))}
             </div>
             <div className={s.imgBlockBigImg}>
-              <img  src={gallery?.[0]} alt={name}/>
+              <img src={gallery?.[0]} alt={name}/>
             </div>
           </div>
           <div className={s.productParameters}>
