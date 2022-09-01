@@ -3,10 +3,10 @@
 
 .container {
   display: flex;
-  //flex-wrap: wrap;
   gap: toRem(91);
   margin-right: toRem(100);
   color: $textColorMain;
+  margin-bottom: toRem(103);
 }
 
 .imgBlock {
@@ -19,7 +19,7 @@
     position: relative;
     padding: 0 0 70% 0;
 
-    &>img{
+    & > img {
       position: absolute;
       top: 0;
       left: 0;
