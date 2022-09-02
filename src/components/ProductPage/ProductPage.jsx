@@ -24,6 +24,7 @@ class ProductPage extends Component {
     name
     description
     gallery
+    inStock
     attributes{
       id
       name

@@ -10,7 +10,8 @@ class App extends Component {
 
   state = {
     categories: [],
-    currencies: []
+    currencies: [],
+    currency: ''
   }
 
   componentDidMount() {
@@ -38,14 +39,27 @@ class App extends Component {
 
     request('http://localhost:4000/', getCurrencies)
       .then((data) => {
+        const {currencies} = this.state
         console.log('currencies', data);
-        this.setState({currencies: data.currencies})
+        this.setState({
+          currencies: data.currencies})
       })
       .catch(err => console.log(err))
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const {currencies} = this.state
+    if (prevState.currencies.length !== currencies.length && currencies.length) {
+      this.setState({currency: currencies[0].label})
+    }
+  }
+
+  onCurrencyChange = (value) => {
+    this.setState({currency: value});
+  }
+
   render() {
-    const {categories, currencies} = this.state;
+    const {categories, currencies, currency} = this.state;
     const initialRoute = categories[0]?.name ?? '';
 
     return (
@@ -53,7 +67,10 @@ class App extends Component {
         <div className='App'>
           {categories.length && currencies.length ? <Header
               categories={categories}
-              currencies={currencies}/>
+              currencies={currencies}
+              currency={currency}
+              onCurrencyChange={this.onCurrencyChange}
+            />
             : null}
           <main>
             <Routes>

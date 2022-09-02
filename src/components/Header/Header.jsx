@@ -6,7 +6,9 @@ import MainContainer from '../../common/MainContainer/MainContainer';
 import HeaderLinkIItem from "./HeaderLinkItem/HeaderLinkIItem";
 import {NavLink} from "react-router-dom";
 import {withRouter} from "../../hocs/withRouter";
-import CurrentSelected from "./CurrentSelected/CurrentSelected";
+import Select from "./Select/Select";
+
+
 
 class Header extends Component {
   constructor(props) {
@@ -15,8 +17,8 @@ class Header extends Component {
 
   render() {
 
-    const { categories, currencies } = this.props;
-    console.log(categories)
+    const { categories, currencies, currency, onCurrencyChange } = this.props;
+
     return (
       <MainContainer>
         <header className={s.header}>
@@ -27,7 +29,7 @@ class Header extends Component {
             </ul>
             <img className={s.logo} src={logo} alt=""/>
             <div>
-            <CurrentSelected currencies={currencies}/>
+            <Select currencies={currencies} currency={currency} onCurrencyChange={onCurrencyChange}/>
               <NavLink className={s.cartButton} to={`/cart`}>
                 <img src={cart} alt=""/>
               </NavLink>
