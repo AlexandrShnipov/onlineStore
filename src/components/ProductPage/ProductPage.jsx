@@ -48,15 +48,24 @@ class ProductPage extends Component {
     request('http://localhost:4000/', getProduct, {id})
       .then((data) => {
         console.log('product', data);
-        this.setState({product: data.product})
+        const product = {
+          ...data.product,
+          attributes: data.product.attributes?.map(attribute => (
+            {
+              ...attribute,
+              items: attribute.items?.map((item, i) => ({...item, isChecked: i === 0 }))
+            }
+          ))
+        }
+        this.setState({product})
       })
       .catch(err => console.log(err))
   }
 
   render() {
     console.log(this.state.product)
-     const {gallery, name, brand, prices, description} = this.state.product ?? {};
-    console.log(prices)
+    const {gallery, name, brand, prices, description} = this.state.product ?? {};
+    // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
     return (
 
@@ -110,8 +119,7 @@ class ProductPage extends Component {
             <h3>{`${param}:`}</h3>
             <div className={s.productParametersSizeOptions}>
               {data?.items.map((item, i) => (
-                <span key={i} className={s.active}>{item.value}</span>
-              ))}
+                <span key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>))}
             </div>
           </div>
         )
@@ -121,7 +129,7 @@ class ProductPage extends Component {
             <h3>{`${param}:`}</h3>
             <div className={s.productParametersColorOptions}>
               {data?.items.map((item, i) => (
-                <div key={i} className={s.active}>
+                <div key={i} className={item.isChecked ? s.active : ''}>
                   <span style={{backgroundColor: item.value}}></span>
                 </div>
               ))}
@@ -134,7 +142,7 @@ class ProductPage extends Component {
             <h3>{`${param}:`}</h3>
             <div className={s.productParametersSizeOptions}>
               {data?.items.map((item, i) => (
-                <span key={i} className={s.active}>{item.value}</span>
+                <span key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>
               ))}
             </div>
           </div>
