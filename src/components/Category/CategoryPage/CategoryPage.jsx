@@ -23,25 +23,27 @@ class CategoryPage extends Component {
     }
   }
 
-
   render() {
-    // console.log(this.state.category.name)
+    console.log(this.state.category)
     let name = this.state.category.name
     return (
       <MainContainer>
 
+
         <CategoryContainer title={name}>
-          {this.state.category?.products?.map(({brand, id, gallery, name, prices}) =>
-            <Card
-              key={id}
-              id={id}
-              image={gallery[0]}
-              brand={brand}
-              name={name}
-              currency={prices[0].currency.label}
-              price={prices[0].amount}
-            />
-          )}
+          {this.state.category?.products?.map(({brand, id, gallery, name, prices}) => {
+            const price = prices.find(price => price.currency.label === this.props.currency)
+            return (
+              <Card
+                key={id}
+                id={id}
+                image={gallery[0]}
+                brand={brand}
+                name={name}
+                price={price}
+              />
+            )
+          })}
         </CategoryContainer>
       </MainContainer>
     )
@@ -50,7 +52,7 @@ class CategoryPage extends Component {
   getCategoryProducts = () => {
     const title = this.props.location.pathname.slice(1);
 
-      const getProducts = gql`
+    const getProducts = gql`
   query GetProducts ($title: String!) {
         category(input: { title: $title }) {
     name
@@ -71,13 +73,13 @@ class CategoryPage extends Component {
   }
   }
   `;
-      request('http://localhost:4000/', getProducts, {title})
-        .then((data) => {
-          console.log('category', data);
-          this.setState({category: data.category})
-        })
-        .catch(err => console.log(err))
-    }
+    request('http://localhost:4000/', getProducts, {title})
+      .then((data) => {
+        console.log('category', data);
+        this.setState({category: data.category})
+      })
+      .catch(err => console.log(err))
+  }
 
 }
 

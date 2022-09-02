@@ -42,17 +42,19 @@ class App extends Component {
         const {currencies} = this.state
         console.log('currencies', data);
         this.setState({
-          currencies: data.currencies})
+          currencies: data.currencies,
+            currency: data.currencies[0].label}
+          )
       })
       .catch(err => console.log(err))
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const {currencies} = this.state
-    if (prevState.currencies.length !== currencies.length && currencies.length) {
-      this.setState({currency: currencies[0].label})
-    }
-  }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   const {currencies} = this.state
+  //   if (prevState.currencies.length !== currencies.length && currencies.length) {
+  //     this.setState({currency: currencies[0].label})
+  //   }
+  // }
 
   onCurrencyChange = (value) => {
     this.setState({currency: value});
@@ -75,7 +77,7 @@ class App extends Component {
           <main>
             <Routes>
               <Route exact path={'/'} element={<Navigate to={`/${initialRoute}`}/>}/>
-              <Route exact path='/:category' element={<CategoryPage/>}/>
+              <Route exact path='/:category' element={<CategoryPage currency={currency}/>}/>
               <Route exact path='/:category/:productId' element={<ProductPage/>}/>
               {/*<Route exact path='/cart/*' element={<Cart/>}/>*/}
             </Routes>

@@ -19,7 +19,7 @@ class Card extends Component {
           <img src={image} alt={name}/>
         </div>
         <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
-        <p className={s.cardPrice}><span>{currency}</span> {price}</p>
+        <p className={s.cardPrice}><span>{price.currency.symbol}</span> {price.amount}</p>
       </NavLink>
 
     )
