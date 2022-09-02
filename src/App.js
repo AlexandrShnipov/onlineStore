@@ -42,9 +42,10 @@ class App extends Component {
         const {currencies} = this.state
         console.log('currencies', data);
         this.setState({
-          currencies: data.currencies,
-            currency: data.currencies[0].label}
-          )
+            currencies: data.currencies,
+            currency: data.currencies[0].label
+          }
+        )
       })
       .catch(err => console.log(err))
   }
@@ -76,9 +77,15 @@ class App extends Component {
             : null}
           <main>
             <Routes>
-              <Route exact path={'/'} element={<Navigate to={`/${initialRoute}`}/>}/>
-              <Route exact path='/:category' element={<CategoryPage currency={currency}/>}/>
-              <Route exact path='/:category/:productId' element={<ProductPage/>}/>
+              <Route exact path={'/'}
+                     element={<Navigate to={`/${initialRoute}`}/>}
+              />
+              <Route exact path='/:category'
+                     element={<CategoryPage currency={currency}/>}
+              />
+              <Route exact path='/:category/:productId'
+                     element={<ProductPage currency={currency}/>}
+              />
               {/*<Route exact path='/cart/*' element={<Cart/>}/>*/}
             </Routes>
           </main>

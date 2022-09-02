@@ -7,7 +7,7 @@ import {withRouter} from "../../hocs/withRouter";
 class Card extends Component {
   render() {
     // console.log(this.props.location)
-    const { location, id, image, name, brand, currency, price } = this.props;
+    const { location, id, image, name, brand, price } = this.props;
     return (
       <NavLink
         className={s.card}

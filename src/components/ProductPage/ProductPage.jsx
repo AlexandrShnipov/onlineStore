@@ -55,7 +55,9 @@ class ProductPage extends Component {
 
   render() {
     console.log(this.state.product)
-    const {attributes, gallery, name, brand, prices, description} = this.state.product ?? {};
+     const {gallery, name, brand, prices, description} = this.state.product ?? {};
+    console.log(prices)
+    const price = prices?.find(price => price.currency.label === this.props.currency)
     return (
 
       <MainContainer>
@@ -83,7 +85,7 @@ class ProductPage extends Component {
 
             <div className={`${s.productParametersItem} ${s.productParametersPrice}`}>
               <h3>Price:</h3>
-              <span>{`${prices?.[0]?.currency?.symbol} ${prices?.[0]?.amount}`}</span>
+              <span>{`${price?.currency?.symbol} ${price?.amount}`}</span>
             </div>
             <button className={s.productParametersButtonToCart}>add to cart</button>
             <div dangerouslySetInnerHTML={{__html: description}} className={s.productParametersDescription}/>
