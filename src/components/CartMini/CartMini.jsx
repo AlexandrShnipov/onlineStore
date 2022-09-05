@@ -5,12 +5,12 @@ import {NavLink} from "react-router-dom";
 
 class CartMini extends Component {
 
-
-
   render() {
-
+    const {handleCartButtonClick, isCartMiniOpen} = this.props;
+    console.log(this.props.isCartMiniOpen)
     return (
-      <div className={s.modal}>
+      <>
+        <div className={s.modal} onClick={handleCartButtonClick}/>
         <div className={s.container}>
           <div className={s.cartTitleBlock}>
             <h2 className={s.cartTitle}>MyBag.</h2>
@@ -67,11 +67,12 @@ class CartMini extends Component {
           </div>
 
           <div className={s.buttons}>
-            <NavLink to={'/cart'}>view bag</NavLink>
-            <NavLink to={'/'}>chek out</NavLink>
+            <NavLink to={'/cart'} onClick={handleCartButtonClick}>view bag</NavLink>
+            <NavLink to={'/'} onClick={handleCartButtonClick}>chek out</NavLink>
           </div>
         </div>
-      </div>
+      </>
+
 
     )
   }

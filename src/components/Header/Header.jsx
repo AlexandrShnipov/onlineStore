@@ -21,15 +21,14 @@ class Header extends Component {
 
   handleCartButtonClick = () => {
     this.setState({isCartMiniOpen: !this.state.isCartMiniOpen})
-    console.log('click')
   }
 
   render() {
     const {isCartMiniOpen} = this.state
     const {categories, currencies, currency, onCurrencyChange} = this.props;
 
-    return (
-      <header className={s.header}>
+    return <>
+      <header className={s.header} onClick={this.handleCartButtonClick}>
         <MainContainer>
           <div className={s.headerWrap}>
             <div className={s.headerWrapContainer}>
@@ -45,11 +44,15 @@ class Header extends Component {
                 </button>
               </div>
             </div>
-            {isCartMiniOpen && <CartMini/>}
+
           </div>
         </MainContainer>
       </header>
-    )
+      {isCartMiniOpen && <CartMini
+        isCartMiniOpen={isCartMiniOpen}
+        handleCartButtonClick={this.handleCartButtonClick}/>
+      }
+    </>
   }
 }
 

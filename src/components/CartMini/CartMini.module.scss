@@ -9,7 +9,7 @@
   left: 0;
   background: rgba(57, 55, 72, 0.22);
   z-index: 56;
- }
+}
 
 .container {
   background: $textColorLight;
@@ -20,6 +20,8 @@
   max-width: toRem(325);
   position: absolute;
   right: 5%;
+  top: toRem(80);
+  z-index: 9999;
 }
 
 .cartTitleBlock {
@@ -127,9 +129,8 @@
         min-width: toRem(24);
         min-height: toRem(24);
         border: 1px solid $textColorMain;
-        display: flex;
+        display: grid;
         place-content: center;
-        line-height: 1;
         background: transparent;
         color: $textColorMain;
 
