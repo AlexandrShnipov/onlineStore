@@ -4,23 +4,12 @@ import imageCartProduct from '../../images/imageCartProduct.png'
 
 class CartMini extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isCartMiniOpen: false
-    };
-  }
 
-  handleCartButtonClick = () => {
-    this.setState({isCartMiniOpen: !this.state.isCartMiniOpen})
-    console.log('click')
-  }
 
   render() {
-    const {isCartMiniOpen} = this.state
-    console.log(isCartMiniOpen)
+
     return (
-      <div className={`${s.modal} ${isCartMiniOpen ? s.active : ''}`}>
+      <div className={s.modal}>
         <div className={s.container}>
           <div className={s.cartTitleBlock}>
             <h2 className={s.cartTitle}>MyBag.</h2>

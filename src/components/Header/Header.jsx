@@ -12,8 +12,20 @@ import CartMini from "../CartMini/CartMini";
 
 class Header extends Component {
 
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isCartMiniOpen: false
+    };
+  }
 
+  handleCartButtonClick = () => {
+    this.setState({isCartMiniOpen: !this.state.isCartMiniOpen})
+    console.log('click')
+  }
+
+  render() {
+    const {isCartMiniOpen} = this.state
     const {categories, currencies, currency, onCurrencyChange} = this.props;
 
     return (
@@ -33,7 +45,7 @@ class Header extends Component {
                 </button>
               </div>
             </div>
-            <CartMini/>
+            {isCartMiniOpen && <CartMini/>}
           </div>
         </MainContainer>
       </header>
