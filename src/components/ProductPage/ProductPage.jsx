@@ -62,6 +62,21 @@ class ProductPage extends Component {
       .catch(err => console.log(err))
   }
 
+  toggleChecked = (id) => {
+    const product = {
+      ...this.state.product,
+      attributes: this.state.product.attributes?.map(attribute => (
+        {
+          ...attribute,
+          items: attribute.items?.map((item, i) => ({...item, isChecked: id === item.id}))
+        }
+      ))
+    }
+    this.setState({product})
+    console.log('click')
+    console.log('product', product);
+  }
+
   render() {
     console.log(this.state.product)
     const {gallery, name, brand, prices, description} = this.state.product ?? {};
@@ -142,7 +157,7 @@ class ProductPage extends Component {
             <h3>{`${param}:`}</h3>
             <div className={s.productParametersSizeOptions}>
               {data?.items.map((item, i) => (
-                <span key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>
+                <span onClick={()=>this.toggleChecked(item.id)} key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>
               ))}
             </div>
           </div>
