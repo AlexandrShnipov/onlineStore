@@ -7,36 +7,36 @@ import HeaderLinkIItem from "./HeaderLinkItem/HeaderLinkIItem";
 import {NavLink} from "react-router-dom";
 import {withRouter} from "../../hocs/withRouter";
 import Select from "./Select/Select";
-
+import CartMini from "../CartMini/CartMini";
 
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 
-    const { categories, currencies, currency, onCurrencyChange } = this.props;
+    const {categories, currencies, currency, onCurrencyChange} = this.props;
 
     return (
-      <MainContainer>
-        <header className={s.header}>
-          <div className={s.headerContainer}>
-            <ul className={s.headerItems}>
-              {categories.map((category, index) =>
-                <HeaderLinkIItem key={index} menuItem={category.name} />)}
-            </ul>
-            <img className={s.logo} src={logo} alt=""/>
-            <div>
-            <Select currencies={currencies} currency={currency} onCurrencyChange={onCurrencyChange}/>
-              <NavLink className={s.cartButton} to={`/cart`}>
-                <img src={cart} alt=""/>
-              </NavLink>
+      <header className={s.header}>
+        <MainContainer>
+          <div className={s.headerWrap}>
+            <div className={s.headerWrapContainer}>
+              <ul className={s.headerWrapItems}>
+                {categories.map((category, index) =>
+                  <HeaderLinkIItem key={index} menuItem={category.name}/>)}
+              </ul>
+              <img className={s.logo} src={logo} alt=""/>
+              <div>
+                <Select currencies={currencies} currency={currency} onCurrencyChange={onCurrencyChange}/>
+                <button className={s.cartButton} onClick={this.handleCartButtonClick}>
+                  <img src={cart} alt=""/>
+                </button>
+              </div>
             </div>
+            <CartMini/>
           </div>
-        </header>
-      </MainContainer>
+        </MainContainer>
+      </header>
     )
   }
 }

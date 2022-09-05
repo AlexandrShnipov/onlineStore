@@ -141,7 +141,7 @@ class ProductPage extends Component {
       case 'color':
         return (!!data &&
           <div className={`${s.productParametersItem} ${s.productParametersColor}`}>
-            <h3>{`${param}:`}</h3>
+            <h3 >{`${param}:`}</h3>
             <div className={s.productParametersColorOptions}>
               {data?.items.map((item, i) => (
                 <div key={i} className={item.isChecked ? s.active : ''}>

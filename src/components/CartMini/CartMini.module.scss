@@ -2,12 +2,18 @@
 @import "src/styles/sass/abstracts/function";
 
 .modal {
-  //position: fixed;
-  top: 0;
+  position: fixed;
+  top: toRem(80);
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(57, 55, 72, 0.22);;
+  background: rgba(57, 55, 72, 0.22);
+  z-index: 56;
+  display: none;
+}
+
+.active{
+  display: block;
 }
 
 .container {
@@ -17,6 +23,8 @@
   color: $textColorMain;
   padding: toRem(32) toRem(16);
   max-width: toRem(325);
+  position: absolute;
+  right: 5%;
 }
 
 .cartTitleBlock {
@@ -66,6 +74,7 @@
       gap: toRem(8);
 
       & > span {
+        font-family: Source Sans Pro;
         font-size: toRem(14);
         line-height: 160%;
         font-weight: 400;
@@ -160,6 +169,7 @@
   margin-bottom: toRem(32);
 
   & > h5 {
+    font-family: Roboto;
     line-height: toRem(18);
     font-weight: 500;
   }

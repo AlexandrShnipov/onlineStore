@@ -5,4 +5,9 @@
   margin: 0 auto;
   padding-left: toRem(100);
   padding-right: toRem(100);
+  padding-top: toRem(160);
+}
+
+header>.mainContainer{
+  padding-top: 0;
 }

@@ -4,6 +4,8 @@ import {Component} from "react";
 import {gql, request} from 'graphql-request'
 import ProductPage from "./components/ProductPage/ProductPage";
 import CategoryPage from "./components/Category/CategoryPage/CategoryPage";
+import CartMini from "./components/CartMini/CartMini";
+import './App.scss';
 
 
 class App extends Component {
@@ -75,8 +77,10 @@ class App extends Component {
               onCurrencyChange={this.onCurrencyChange}
             />
             : null}
+          {/*<CartMini/>*/}
           <main>
             <Routes>
+              {/*<Route exact path='/cartMini/*' element={<CartMini/>}/>*/}
               <Route exact path={'/'}
                      element={<Navigate to={`/${initialRoute}`}/>}
               />

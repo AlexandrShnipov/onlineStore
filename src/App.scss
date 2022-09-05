@@ -1,6 +1,12 @@
 @import 'src/styles/sass/abstracts/function';
+@import 'src/styles/fonts/fonts';
 
 .App{
   font-size: toRem(16);
+  font-family: Roleway;
+}
+
+main{
+  position: relative;
 }
 

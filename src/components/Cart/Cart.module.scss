@@ -46,6 +46,7 @@
   }
 
   &Item > h3 {
+    font-family: Roboto;
     font-size: toRem(18);
     font-weight: 700;
     line-height: 1;
@@ -61,6 +62,7 @@
       gap: toRem(12);
 
       & > span {
+        font-family: Source Sans Pro;
         font-size: toRem(16);
         line-height: toRem(18);
         font-weight: 400;

@@ -12,7 +12,7 @@ class Select extends Component {
   render() {
     const {currencies, currency} = this.props;
     return (
-      <select className={s.currentSelected} value={currency} onChange={this.onChange}>
+      <select className={s.select} value={currency} onChange={this.onChange}>
         {currencies.map((item, index) =>
           <option key={index} value={item.label}>
             {item.symbol} {item.label}

@@ -1,7 +1,8 @@
 @import "src/styles/sass/abstracts/variables";
 @import "src/styles/sass/abstracts/function";
 
-.currentSelected{
+.select{
   text-transform: uppercase;
   border: none;
+  background: transparent;
 }

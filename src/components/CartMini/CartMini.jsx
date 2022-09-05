@@ -1,11 +1,26 @@
 import {Component} from 'react';
-import s from './CartSmall.module.scss';
+import s from './CartMini.module.scss';
 import imageCartProduct from '../../images/imageCartProduct.png'
 
-class CartSmall extends Component {
+class CartMini extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isCartMiniOpen: false
+    };
+  }
+
+  handleCartButtonClick = () => {
+    this.setState({isCartMiniOpen: !this.state.isCartMiniOpen})
+    console.log('click')
+  }
+
   render() {
+    const {isCartMiniOpen} = this.state
+    console.log(isCartMiniOpen)
     return (
-      <div className={s.modal}>
+      <div className={`${s.modal} ${isCartMiniOpen ? s.active : ''}`}>
         <div className={s.container}>
           <div className={s.cartTitleBlock}>
             <h2 className={s.cartTitle}>MyBag.</h2>
@@ -72,4 +87,4 @@ class CartSmall extends Component {
   }
 }
 
-export default CartSmall
+export default CartMini
