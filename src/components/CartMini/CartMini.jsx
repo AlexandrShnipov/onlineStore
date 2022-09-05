@@ -1,6 +1,7 @@
 import {Component} from 'react';
 import s from './CartMini.module.scss';
 import imageCartProduct from '../../images/imageCartProduct.png'
+import {NavLink} from "react-router-dom";
 
 class CartMini extends Component {
 
@@ -66,8 +67,8 @@ class CartMini extends Component {
           </div>
 
           <div className={s.buttons}>
-            <a href={'/'}>view bag</a>
-            <a href={'/'}>chek out</a>
+            <NavLink to={'/cart'}>view bag</NavLink>
+            <NavLink to={'/'}>chek out</NavLink>
           </div>
         </div>
       </div>

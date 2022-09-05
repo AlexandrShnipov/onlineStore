@@ -6,6 +6,7 @@ import ProductPage from "./components/ProductPage/ProductPage";
 import CategoryPage from "./components/Category/CategoryPage/CategoryPage";
 import CartMini from "./components/CartMini/CartMini";
 import './App.scss';
+import Cart from "./components/Cart/Cart";
 
 
 class App extends Component {
@@ -90,7 +91,7 @@ class App extends Component {
               <Route exact path='/:category/:productId'
                      element={<ProductPage currency={currency}/>}
               />
-              {/*<Route exact path='/cart/*' element={<Cart/>}/>*/}
+              <Route exact path='/cart/*' element={<Cart/>}/>
             </Routes>
           </main>
         </div>
