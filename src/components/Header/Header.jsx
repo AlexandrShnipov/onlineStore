@@ -23,6 +23,7 @@ class Header extends Component {
     this.setState({isCartMiniOpen: !this.state.isCartMiniOpen})
   }
 
+
   render() {
     const {isCartMiniOpen} = this.state
     const {categories, currencies, currency, onCurrencyChange} = this.props;
@@ -52,6 +53,7 @@ class Header extends Component {
         isCartMiniOpen={isCartMiniOpen}
         handleCartButtonClick={this.handleCartButtonClick}/>
       }
+
     </>
   }
 }
