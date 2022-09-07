@@ -53,7 +53,7 @@ class ProductPage extends Component {
           attributes: data.product.attributes?.map(attribute => (
             {
               ...attribute,
-              items: attribute.items?.map((item, i) => ({...item, isChecked: i === 0 }))
+              items: attribute.items?.map((item, i) => ({...item, isChecked: i === 0}))
             }
           ))
         }
@@ -62,19 +62,25 @@ class ProductPage extends Component {
       .catch(err => console.log(err))
   }
 
-  toggleChecked = (id) => {
-    const product = {
-      ...this.state.product,
-      attributes: this.state.product.attributes?.map(attribute => (
-        {
+  toggleCheckedAttribute = (id, param) => {
+    const {product} = this.state;
+    const newAttributes = product.attributes.map(attribute => {
+      if (attribute.id.toLowerCase() === param) {
+        return {
           ...attribute,
-          items: attribute.items?.map((item, i) => ({...item, isChecked: id === item.id}))
+          items: attribute.items.map(item => ({...item, isChecked: item.id === id}))
         }
-      ))
+      } else return {
+        ...attribute,
+        items: attribute.items.map(item => ({...item}))
+      }
+    });
+
+    const newProduct = {
+      ...product,
+      attributes: newAttributes
     }
-    this.setState({product})
-    console.log('click')
-    console.log('product', product);
+    this.setState({product: newProduct})
   }
 
   render() {
@@ -127,25 +133,30 @@ class ProductPage extends Component {
 
   renderProductAttribute = (param) => {
     const data = this.selectProductAttribute(param);
+    const checkedAttribute = this.state.product.attributes?.find(attribute => attribute.id.toLowerCase() === param);
+    const checkedItem = checkedAttribute?.items?.find(item => item.isChecked)
+
     switch (param) {
       case 'size':
         return (data &&
           <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
-            <h3>{`${param}:`}</h3>
+            <h3>{`${param}: ${checkedItem.displayValue}`}</h3>
             <div className={s.productParametersSizeOptions}>
               {data?.items.map((item, i) => (
-                <span key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>))}
+                <span onClick={() => this.toggleCheckedAttribute(item.id, param)}
+                      key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>))}
             </div>
           </div>
         )
       case 'color':
         return (!!data &&
           <div className={`${s.productParametersItem} ${s.productParametersColor}`}>
-            <h3 >{`${param}:`}</h3>
+            <h3>{`${param}: ${checkedItem.displayValue}`}</h3>
             <div className={s.productParametersColorOptions}>
               {data?.items.map((item, i) => (
                 <div key={i} className={item.isChecked ? s.active : ''}>
-                  <span style={{backgroundColor: item.value}}></span>
+                  <span onClick={() => this.toggleCheckedAttribute(item.id, param)} key={i}
+                        style={{backgroundColor: item.value}}></span>
                 </div>
               ))}
             </div>
@@ -154,10 +165,11 @@ class ProductPage extends Component {
       case 'capacity':
         return (!!data &&
           <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
-            <h3>{`${param}:`}</h3>
+            <h3>{`${param}: ${checkedItem.value}`}</h3>
             <div className={s.productParametersSizeOptions}>
               {data?.items.map((item, i) => (
-                <span onClick={()=>this.toggleChecked(item.id)} key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>
+                <span onClick={() => this.toggleCheckedAttribute(item.id, param)} key={i}
+                      className={item.isChecked ? s.active : ''}>{item.value}</span>
               ))}
             </div>
           </div>
