@@ -7,7 +7,7 @@ import cart from '../../images/cartWhite.png';
 
 class Card extends Component {
 
-  handlerButtonAddInCartClick = (e) => {
+  handleButtonAddInCartClick = (e) => {
     alert('hi')
     e.stopPropagation()
   }
@@ -29,7 +29,7 @@ class Card extends Component {
         <p className={s.cardPrice}><span>{price.currency?.symbol}</span> {price.amount}</p>
         <button
           className={s.buttonAddInCart}
-          onClick={this.handlerButtonAddInCartClick}>
+          onClick={this.handleButtonAddInCartClick}>
           <img src={cart} alt='cart images'/>
         </button>
       </NavLink>
