@@ -66,8 +66,8 @@ class CartMini extends Component {
           </div>
 
           <div className={s.buttons}>
-            <NavLink to={'/cart'} >view bag</NavLink>
-            <NavLink to={'/'} >chek out</NavLink>
+            <NavLink to={'/cart'} onClick={handleCartButtonClickForOpenMiniCart}>view bag</NavLink>
+            <NavLink to={'/'} onClick={handleCartButtonClickForOpenMiniCart}>chek out</NavLink>
           </div>
         </div>
       </>
