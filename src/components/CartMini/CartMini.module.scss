@@ -18,7 +18,7 @@
   color: $textColorMain;
   padding: toRem(32) toRem(16);
   max-width: toRem(325);
-  position: absolute;
+  position: fixed;
   right: 5%;
   top: toRem(80);
   z-index: 9999;
