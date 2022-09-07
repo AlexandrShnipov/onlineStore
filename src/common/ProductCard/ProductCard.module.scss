@@ -52,14 +52,13 @@
   background: $colorPrimary;
   place-content: center;
   display: none;
-  transition: all .5s linear;
 
-  &:hover{
+  &:hover {
     transform: scale(1.2);
   }
 }
 
-.card:hover > .buttonAddCart {
+.card:hover > .buttonAddInCart {
   display: grid;
 }
 
