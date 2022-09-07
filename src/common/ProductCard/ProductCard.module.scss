@@ -1,6 +1,10 @@
 @import "../../styles/sass/abstracts/variables";
 @import "../../styles/sass/abstracts/function";
 
+.container {
+  position: relative;
+}
+
 .card {
   display: grid;
   grid-auto-flow: row;
@@ -10,7 +14,6 @@
   color: $textColorMain;
   padding: toRem(16);
   transition: all .5s linear;
-  position: relative;
 
   &:hover {
     box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
@@ -61,4 +64,26 @@
 .card:hover > .buttonAddInCart {
   display: grid;
 }
+
+.stockBox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, .6);
+  display: grid;
+  place-content: center;
+
+  & > span {
+    display: inline-block;
+    position: relative;
+    top:-131%;
+    font-size: toRem(24);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #8D8F9A;
+  }
+}
+
 

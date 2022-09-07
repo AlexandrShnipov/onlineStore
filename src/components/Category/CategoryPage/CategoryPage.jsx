@@ -31,7 +31,7 @@ class CategoryPage extends Component {
 
 
         <CategoryContainer title={name}>
-          {this.state.category?.products?.map(({brand, id, gallery, name, prices}) => {
+          {this.state.category?.products?.map(({brand, id, gallery, name, prices, inStock}) => {
             const price = prices.find(price => price.currency.label === this.props.currency)
             return (
               <Card
@@ -41,6 +41,7 @@ class CategoryPage extends Component {
                 brand={brand}
                 name={name}
                 price={price}
+                inStock={inStock}
               />
             )
           })}
