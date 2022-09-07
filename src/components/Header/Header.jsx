@@ -19,9 +19,10 @@ class Header extends Component {
     };
   }
 
-  handleCartButtonClick = (e) => {
+  handleCartButtonClickForOpenMiniCart = (e) => {
     this.setState({isCartMiniOpen: !this.state.isCartMiniOpen});
     e.stopPropagation()
+    console.log('click')
   }
 
   handleHeaderClick = () => {
@@ -45,18 +46,17 @@ class Header extends Component {
               <img className={s.logo} src={logo} alt=""/>
               <div>
                 <Select currencies={currencies} currency={currency} onCurrencyChange={onCurrencyChange}/>
-                <button className={s.cartButton} onClick={this.handleCartButtonClick}>
+                <button className={s.cartButton} onClick={this.handleCartButtonClickForOpenMiniCart}>
                   <img src={cart} alt=""/>
                 </button>
               </div>
             </div>
-
           </div>
         </MainContainer>
       </header>
       {isCartMiniOpen && <CartMini
         isCartMiniOpen={isCartMiniOpen}
-        handleCartButtonClick={this.handleCartButtonClick}/>
+        handleCartButtonClickForOpenMiniCart={this.handleCartButtonClickForOpenMiniCart}/>
       }
 
     </>

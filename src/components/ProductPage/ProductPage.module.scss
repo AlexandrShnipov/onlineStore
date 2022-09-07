@@ -2,7 +2,8 @@
 @import "../../styles/sass/abstracts/function";
 
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   gap: toRem(91);
   margin-right: toRem(100);
   color: $textColorMain;
@@ -17,7 +18,6 @@
   &BigImg {
     width: toRem(610);
     position: relative;
-    padding: 0 0 70% 0;
 
     & > img {
       position: absolute;
@@ -26,7 +26,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 0 toRem(-35);
+     object-position: 0 toRem(-35);
     }
   }
 
@@ -55,7 +55,6 @@
 }
 
 .productParameters {
-  width: 50%;
 
   &Title {
     font-size: toRem(30);
