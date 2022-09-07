@@ -2,12 +2,19 @@ import {Component} from 'react';
 import s from './ProductCard.module.scss'
 import {NavLink} from "react-router-dom";
 import {withRouter} from "../../hocs/withRouter";
+import cart from '../../images/cartWhite.png';
 
 
 class Card extends Component {
+
+  handlerButtonAddInCartClick = (e) => {
+    alert('hi')
+    e.stopPropagation()
+  }
+
   render() {
     // console.log(this.props.location)
-    const { location, id, image, name, brand, price } = this.props;
+    const {location, id, image, name, brand, price} = this.props;
     return (
       <NavLink
         className={s.card}
@@ -19,9 +26,13 @@ class Card extends Component {
           <img src={image} alt={name}/>
         </div>
         <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
-        <p className={s.cardPrice}><span>{price.currency.symbol}</span> {price.amount}</p>
+        <p className={s.cardPrice}><span>{price.currency?.symbol}</span> {price.amount}</p>
+        <button
+          className={s.buttonAddInCart}
+          onClick={this.handlerButtonAddInCartClick}>
+          <img src={cart} alt='cart images'/>
+        </button>
       </NavLink>
-
     )
   }
 }
