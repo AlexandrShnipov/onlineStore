@@ -3,7 +3,7 @@
 
 .container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr toRem(301);
   gap: toRem(91);
   margin-right: toRem(100);
   color: $textColorMain;
