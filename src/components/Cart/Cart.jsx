@@ -17,8 +17,9 @@ class Cart extends Component {
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
 
-        {this.state.cartItems.map((cartItem, i) =>
-          <CartItem key={i} {...cartItem}/>)}
+        {/*{this.state.cartItems.map((cartItem, i) =>*/}
+        {/*  <CartItem key={i} {...cartItem}/>)}*/}
+        <CartItem/>
 
         <div className={s.cartTotal}>
           <table className={s.cartTotalTable}>
