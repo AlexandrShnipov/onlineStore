@@ -117,7 +117,11 @@ class ProductPage extends Component {
               <h3>Price:</h3>
               <span>{`${price?.currency?.symbol} ${price?.amount}`}</span>
             </div>
-            <button className={s.productParametersButtonToCart}>add to cart</button>
+            <button
+              className={s.productParametersButtonToCart}
+              onClick={() => alert('hi')}>
+              add to cart
+            </button>
             <div dangerouslySetInnerHTML={{__html: description}} className={s.productParametersDescription}/>
           </div>
         </div>
