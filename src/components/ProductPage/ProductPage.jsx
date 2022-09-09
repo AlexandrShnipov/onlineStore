@@ -3,6 +3,11 @@ import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './ProductPage.module.scss';
 import {withRouter} from "../../hocs/withRouter";
 import {request, gql} from 'graphql-request'
+import {connect} from "react-redux";
+import {addProductAC} from "../../redux/cartReducer";
+import AttributeSize from "../AttributeSize/AttributeSize";
+import AttributeWrapper from "../AttributeWrapper/AttributeWrapper";
+import AttributeRender from "../AttributeRender/AttributeRender";
 
 class ProductPage extends Component {
 
@@ -47,9 +52,10 @@ class ProductPage extends Component {
   `;
     request('http://localhost:4000/', getProduct, {id})
       .then((data) => {
-        console.log('product', data);
+        console.log('duct', data);
         const product = {
           ...data.product,
+          amount: 1,
           attributes: data.product.attributes?.map(attribute => (
             {
               ...attribute,
@@ -85,7 +91,7 @@ class ProductPage extends Component {
 
   render() {
     console.log(this.state.product)
-    const {gallery, name, brand, prices, description} = this.state.product ?? {};
+    const {gallery, name, brand, prices, description, attributes } = this.state.product ?? {};
     // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
     return (
@@ -109,9 +115,12 @@ class ProductPage extends Component {
               <span>{brand}</span>
             </h2>
 
-            {this.renderProductAttribute('size')}
-            {this.renderProductAttribute('color')}
-            {this.renderProductAttribute('capacity')}
+            {attributes?.map((attribute, i) =>
+              <AttributeRender
+                key={i}
+                attribute={attribute}
+                onCheck={this.toggleCheckedAttribute}
+              />)}
 
             <div className={`${s.productParametersItem} ${s.productParametersPrice}`}>
               <h3>Price:</h3>
@@ -119,7 +128,7 @@ class ProductPage extends Component {
             </div>
             <button
               className={s.productParametersButtonToCart}
-              onClick={() => alert('hi')}>
+              onClick={this.onAddToCartClick}>
               add to cart
             </button>
             <div dangerouslySetInnerHTML={{__html: description}} className={s.productParametersDescription}/>
@@ -129,58 +138,12 @@ class ProductPage extends Component {
     )
   }
 
-  selectProductAttribute = (param) => {
-    const {attributes} = this.state.product;
+  onAddToCartClick = () => {
+    const {state: {product}, props: {addProductAC}} = this;
 
-    return attributes?.find(attribute => attribute.id.toLowerCase() === param);
-  }
-
-  renderProductAttribute = (param) => {
-    const data = this.selectProductAttribute(param);
-    const checkedAttribute = this.state.product.attributes?.find(attribute => attribute.id.toLowerCase() === param);
-    const checkedItem = checkedAttribute?.items?.find(item => item.isChecked)
-
-    switch (param) {
-      case 'size':
-        return (data &&
-          <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
-            <h3>{`${param}: ${checkedItem.displayValue}`}</h3>
-            <div className={s.productParametersSizeOptions}>
-              {data?.items.map((item, i) => (
-                <span onClick={() => this.toggleCheckedAttribute(item.id, param)}
-                      key={i} className={item.isChecked ? s.active : ''}>{item.value}</span>))}
-            </div>
-          </div>
-        )
-      case 'color':
-        return (!!data &&
-          <div className={`${s.productParametersItem} ${s.productParametersColor}`}>
-            <h3>{`${param}: ${checkedItem.displayValue}`}</h3>
-            <div className={s.productParametersColorOptions}>
-              {data?.items.map((item, i) => (
-                <div key={i} className={item.isChecked ? s.active : ''}>
-                  <span onClick={() => this.toggleCheckedAttribute(item.id, param)} key={i}
-                        style={{backgroundColor: item.value}}></span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      case 'capacity':
-        return (!!data &&
-          <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
-            <h3>{`${param}: ${checkedItem.value}`}</h3>
-            <div className={s.productParametersSizeOptions}>
-              {data?.items.map((item, i) => (
-                <span onClick={() => this.toggleCheckedAttribute(item.id, param)} key={i}
-                      className={item.isChecked ? s.active : ''}>{item.value}</span>
-              ))}
-            </div>
-          </div>
-        )
-    }
+    addProductAC(product);
   }
 
 }
 
-export default withRouter(ProductPage);
+export default connect(null, {addProductAC})(withRouter(ProductPage));

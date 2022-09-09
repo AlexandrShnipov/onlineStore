@@ -91,7 +91,7 @@ class App extends Component {
               <Route exact path='/:category/:productId'
                      element={<ProductPage currency={currency}/>}
               />
-              <Route exact path='/cart/*' element={<Cart/>}/>
+              <Route exact path='/cart/*' element={<Cart currency={currency}/>}/>
             </Routes>
           </main>
         </div>

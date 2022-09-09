@@ -4,14 +4,16 @@ import imageCartProduct from '../../../images/imageCartProduct.png'
 
 class CartItem extends Component {
   render() {
-    return (
+       return (
       <>
         <div className={s.container}>
           <div className={s.productParameters}>
-            <h2 className={s.productParametersTitle}>Apollo
-              <span>Running Short</span>
+            <h2 className={s.productParametersTitle}>{this.props.brand}
+              <span>{this.props.name}</span>
             </h2>
-            <span className={`${s.price} ${s.productParametersPrice}`}>$50.00</span>
+            <span className={`${s.price} ${s.productParametersPrice}`}>
+              {`${this.props.price?.currency?.symbol} ${this.props?.price?.amount}`}
+            </span>
             <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
               <h3>Size:</h3>
               <div className={s.productParametersSizeOptions}>

@@ -7,9 +7,21 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
+      // debugger
       return {
         ...state,
-        cartProducts: [...state.cartProducts, action.payload.product]
+        cartProducts:
+          [...state.cartProducts,
+            {
+              ...action.payload.product,
+              attributes: action.payload.product.attributes.map(attribute => ({
+                ...attribute,
+                items: attribute.items.filter(item => item.isChecked)
+              }))
+            },
+
+
+            ]
       }
     default:
       return {
@@ -20,7 +32,7 @@ const cartReducer = (state = initialState, action) => {
 
 export const addProductAC = (product) => ({
   type: ADD_PRODUCT_TO_CART,
-  payload: { product }
+  payload: {product}
 });
 
 export default cartReducer;

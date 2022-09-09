@@ -1,0 +1,19 @@
+@import "../../styles/sass/abstracts/variables";
+@import "../../styles/sass/abstracts/function";
+
+.attributeSize {
+  font-family: Source Sans Pro;
+  font-size: toRem(16);
+  line-height: toRem(18);
+  font-weight: 400;
+  text-transform: uppercase;
+  display: grid;
+  place-content: center;
+  min-width: toRem(63);
+  min-height: toRem(45);
+  border: 1px solid $textColorMain;
+}
+.active {
+  color: $textColorLight;
+  background: $textColorMain;
+}

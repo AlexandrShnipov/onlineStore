@@ -54,20 +54,20 @@
   }
 }
 
-.productParameters {
+.productParametersTitle {
+  font-size: toRem(30);
+  line-height: toRem(27);
+  font-weight: 600;
+  margin-bottom: toRem(43);
 
-  &Title {
-    font-size: toRem(30);
-    line-height: toRem(27);
-    font-weight: 600;
-    margin-bottom: toRem(43);
-
-    & > span {
-      font-weight: 400;
-      display: block;
-      padding-top: toRem(16);
-    }
+  & > span {
+    font-weight: 400;
+    display: block;
+    padding-top: toRem(16);
   }
+}
+
+.productParameters {
 
   &Item {
     margin-bottom: toRem(24);

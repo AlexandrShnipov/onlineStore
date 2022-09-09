@@ -2,6 +2,7 @@ import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './Cart.module.scss';
 import CartItem from "./CartItem/CartItem";
+import {connect} from "react-redux";
 
 class Cart extends Component {
 
@@ -13,13 +14,18 @@ class Cart extends Component {
   }
 
   render() {
+    const {cartProducts} = this.props;
+    console.log(cartProducts)
+
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
 
-        {/*{this.state.cartItems.map((cartItem, i) =>*/}
-        {/*  <CartItem key={i} {...cartItem}/>)}*/}
-        <CartItem/>
+        {cartProducts.map(product => <CartItem
+          brand={product.brand}
+          name={product.name}
+          price={product.prices?.find(price => price.currency.label === this.props.currency)}
+        />)}
 
         <div className={s.cartTotal}>
           <table className={s.cartTotalTable}>
@@ -42,4 +48,6 @@ class Cart extends Component {
   }
 }
 
-export default Cart;
+export default connect((state) => ({
+  cartProducts: state.cart.cartProducts
+}), null)(Cart);

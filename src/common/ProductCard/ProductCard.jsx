@@ -34,12 +34,12 @@ class Card extends Component {
             <img src={cart} alt='cart images'/>
           </button>
         </NavLink>
-        {
-          inStock &&
-          <div className={s.stockBox}>
-            <span>out of stock</span>
-          </div>
-        }
+        {/*{*/}
+        {/*  inStock &&*/}
+        {/*  <div className={s.stockBox}>*/}
+        {/*    <span>out of stock</span>*/}
+        {/*  </div>*/}
+        {/*}*/}
       </div>
 
     )
