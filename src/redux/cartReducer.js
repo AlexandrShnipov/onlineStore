@@ -17,11 +17,10 @@ const cartReducer = (state = initialState, action) => {
               attributes: action.payload.product.attributes.map(attribute => ({
                 ...attribute,
                 items: attribute.items.filter(item => item.isChecked)
-              }))
+              })),
+              gallery: action.payload.product.gallery[0]
             },
-
-
-            ]
+          ]
       }
     default:
       return {

@@ -4,6 +4,7 @@
 .container {
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
   padding-bottom: toRem(30);
   border-bottom: 1px solid $colorMedium;
   margin-bottom: toRem(32);
@@ -98,6 +99,8 @@
 .counterBlock {
   display: flex;
   gap: toRem(24);
+  height: toRem(288);
+  overflow: hidden;
 
   &Buttons {
     display: flex;
@@ -120,7 +123,6 @@
       &:active {
         background: $colorMedium;
       }
-    ;
     }
 
     & > span {
@@ -128,5 +130,17 @@
       line-height: 160%;
       font-weight: 500;
     }
+  }
+
+  &ImagesWrap {
+    width: toRem(208);
+    height: 100%;
+    display: grid;
+    place-content: center;
+  }
+
+  &Images {
+    width: 100%;
+    object-fit: cover;
   }
 }

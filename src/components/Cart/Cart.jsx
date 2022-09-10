@@ -3,6 +3,7 @@ import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './Cart.module.scss';
 import CartItem from "./CartItem/CartItem";
 import {connect} from "react-redux";
+import imageCartProduct from "../../images/imageCartProduct.png";
 
 class Cart extends Component {
 
@@ -25,6 +26,8 @@ class Cart extends Component {
           brand={product.brand}
           name={product.name}
           price={product.prices?.find(price => price.currency.label === this.props.currency)}
+          attributes={product.attributes}
+          imageCartProduct={product.gallery}
         />)}
 
         <div className={s.cartTotal}>

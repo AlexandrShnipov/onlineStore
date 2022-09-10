@@ -1,42 +1,32 @@
 import {Component} from 'react';
 import s from './CartItem.module.scss';
 import imageCartProduct from '../../../images/imageCartProduct.png'
+import AttributeSize from "../../AttributeSize/AttributeSize";
+import AttributeRender from "../../AttributeRender/AttributeRender";
 
 class CartItem extends Component {
   render() {
+
+    const {brand, name, price,attributes, imageCartProduct} =  this.props;
+
        return (
       <>
         <div className={s.container}>
           <div className={s.productParameters}>
-            <h2 className={s.productParametersTitle}>{this.props.brand}
-              <span>{this.props.name}</span>
+            <h2 className={s.productParametersTitle}>{brand}
+              <span>{name}</span>
             </h2>
             <span className={`${s.price} ${s.productParametersPrice}`}>
-              {`${this.props.price?.currency?.symbol} ${this.props?.price?.amount}`}
+              {`${price?.currency?.symbol} ${price?.amount}`}
             </span>
-            <div className={`${s.productParametersItem} ${s.productParametersSize}`}>
-              <h3>Size:</h3>
-              <div className={s.productParametersSizeOptions}>
-                <span className={s.active}>xs</span>
-                <span>s</span>
-                <span>m</span>
-                <span>l</span>
-              </div>
-            </div>
-            <div className={`${s.productParametersItem} ${s.productParametersColor}`}>
-              <h3>Color:</h3>
-              <div className={s.productParametersColorOptions}>
-                <div className={s.active}>
-                  <span style={{background: 'lightGrey'}}></span>
-                </div>
-                <div>
-                  <span style={{background: 'black'}}></span>
-                </div>
-                <div>
-                  <span style={{background: 'green'}}></span>
-                </div>
-              </div>
-            </div>
+
+            {attributes?.map((attribute, i) =>
+              <AttributeRender
+                key={i}
+                attribute={attribute}
+                onCheck={this.toggleCheckedAttribute}
+              />)}
+
           </div>
 
           <div className={s.counterBlock}>
@@ -45,8 +35,8 @@ class CartItem extends Component {
               <span>1</span>
               <button>-</button>
             </div>
-            <div className={s.counterBlockImages}>
-              <img src={imageCartProduct} alt='Product photo'/>
+            <div className={s.counterBlockImagesWrap}>
+              <img className={s.counterBlockImages} src={imageCartProduct} alt={`${brand} ${name}`}/>
             </div>
           </div>
         </div>
