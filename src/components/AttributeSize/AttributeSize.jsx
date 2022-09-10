@@ -8,7 +8,7 @@ class AttributeSize extends PureComponent {
     return (
       <span
         onClick={onClick}
-        className={isChecked ? `${s.attributeSize} ${s.active}` : s.attributeSize}
+        className={isChecked ? `${s.attributeSize}  ${s.active}` : s.attributeSize}
       >
         {value}
       </span>

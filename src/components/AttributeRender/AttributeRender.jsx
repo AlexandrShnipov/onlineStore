@@ -2,11 +2,12 @@ import {PureComponent} from "react";
 import AttributeWrapper from "../AttributeWrapper/AttributeWrapper";
 import AttributeSize from "../AttributeSize/AttributeSize";
 import s from "../ProductPage/ProductPage.module.scss";
+import AttributeColor from "../AttributeColor/AttributeColor";
 
 class AttributeRender extends PureComponent {
 
   render() {
-    const { attribute } = this.props;
+    const {attribute} = this.props;
     const checkedItem = attribute?.items?.find(item => item.isChecked);
     const param = attribute.id.toLowerCase();
 
@@ -26,12 +27,12 @@ class AttributeRender extends PureComponent {
       case 'color':
         return (!!attribute &&
           <AttributeWrapper name={attribute.id} value={checkedItem.displayValue}>
-            {attribute?.items.map((item, i) => (
-              <div key={i} className={item.isChecked ? s.active : ''}>
-                  <span onClick={this.onCheckAttributeValue(item.id, param)}
-                        style={{backgroundColor: item.value}}></span>
-              </div>
-            ))}
+            {attribute?.items.map((item, i) => <AttributeColor
+              key={i}
+              isChecked={item.isChecked}
+              background={item.value}
+              onClick={this.onCheckAttributeValue(item.id, param)}
+            />)}
           </AttributeWrapper>
         )
       case 'capacity':
