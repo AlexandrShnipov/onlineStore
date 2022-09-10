@@ -29,10 +29,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    bottom: 0;
     height: 100%;
     object-fit: cover;
-    object-position: 0 toRem(-17);
+    margin: auto;
   }
 
   &Title {
@@ -78,7 +79,7 @@
   & > span {
     display: inline-block;
     position: relative;
-    top:-131%;
+    top: -131%;
     font-size: toRem(24);
     font-weight: 400;
     text-transform: uppercase;

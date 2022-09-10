@@ -31,9 +31,9 @@ class CartItem extends Component {
 
           <div className={s.counterBlock}>
             <div className={s.counterBlockButtons}>
-              <button>+</button>
+              <button>&#43;</button>
               <span>1</span>
-              <button>-</button>
+              <button>&#8722;</button>
             </div>
             <div className={s.counterBlockImagesWrap}>
               <img className={s.counterBlockImages} src={imageCartProduct} alt={`${brand} ${name}`}/>

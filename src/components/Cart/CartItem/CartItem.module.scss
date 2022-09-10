@@ -113,7 +113,7 @@
       min-width: toRem(45);
       min-height: toRem(45);
       border: 1px solid $textColorMain;
-      display: flex;
+      display: grid;
       place-content: center;
       line-height: 1;
       background: transparent;
