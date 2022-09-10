@@ -21,7 +21,7 @@ class Cart extends Component {
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
-
+        {cartProducts.length === 0 && <p>Your shopping cart is empty</p>}
         {cartProducts.map(product => <CartItem
           brand={product.brand}
           name={product.name}
