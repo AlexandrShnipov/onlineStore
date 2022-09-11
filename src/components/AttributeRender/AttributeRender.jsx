@@ -8,7 +8,7 @@ class AttributeRender extends PureComponent {
 
   render() {
     const {attribute} = this.props;
-    const checkedItem = attribute?.items?.find(item => item.isChecked);
+    const checkedItem = attribute?.items?.find((item, i) => item.isChecked);
     const param = attribute.id.toLowerCase();
 
     switch (param) {

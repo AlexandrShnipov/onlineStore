@@ -16,7 +16,9 @@ const cartReducer = (state = initialState, action) => {
               ...action.payload.product,
               attributes: action.payload.product.attributes.map(attribute => ({
                 ...attribute,
-                items: attribute.items.filter(item => item.isChecked)
+                items: attribute.items
+                  .filter((item, i) => item.isChecked || i === 0)
+                  .map(item => (item.isChecked ? {...item} : {...item, isChecked: true}))
               })),
               gallery: action.payload.product.gallery[0]
             },

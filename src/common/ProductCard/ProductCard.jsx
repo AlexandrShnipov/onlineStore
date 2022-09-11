@@ -3,14 +3,11 @@ import s from './ProductCard.module.scss'
 import {NavLink} from "react-router-dom";
 import {withRouter} from "../../hocs/withRouter";
 import cart from '../../images/cartWhite.png';
+import {connect} from "react-redux";
+import {addProductAC} from "../../redux/cartReducer";
 
 
 class Card extends Component {
-
-  handleButtonAddInCartClick = (e) => {
-    alert('hi')
-    e.stopPropagation()
-  }
 
   render() {
     // console.log(this.props.location)
@@ -30,7 +27,7 @@ class Card extends Component {
           <p className={s.cardPrice}><span>{price?.currency?.symbol}</span> {price?.amount}</p>
           <button
             className={s.buttonAddInCart}
-            onClick={this.handleButtonAddInCartClick}>
+            onClick={this.onAddToCartClick}>
             <img src={cart} alt='cart images'/>
           </button>
         </NavLink>
@@ -44,6 +41,11 @@ class Card extends Component {
 
     )
   }
+
+  onAddToCartClick = () => {
+    this.props.addProductToCart(this.props.id);
+  }
 }
 
-export default withRouter(Card)
+
+export default connect(null, {addProductAC})(withRouter(Card))
