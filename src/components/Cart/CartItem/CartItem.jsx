@@ -29,9 +29,11 @@ class CartItem extends Component {
 
           <div className={s.counterBlock}>
             <div className={s.counterBlockButtons}>
-              <button>&#43;</button>
+              <button onClick={this.increaseProducts}>&#43;</button>
               <span>{amount}</span>
-              <button>&#8722;</button>
+              <button
+                disabled={amount === 1}
+                onClick={this.decreaseProducts}>&#8722;</button>
             </div>
             <div className={s.counterBlockImagesWrap}>
               <img className={s.counterBlockImages} src={imageCartProduct} alt={`${brand} ${name}`}/>
@@ -41,6 +43,9 @@ class CartItem extends Component {
       </>
     )
   }
+
+  increaseProducts = () => this.props.increaseProducts();
+  decreaseProducts = () => this.props.decreaseProducts()
 }
 
 export default CartItem;

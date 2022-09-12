@@ -4,6 +4,12 @@ import s from './Cart.module.scss';
 import CartItem from "./CartItem/CartItem";
 import {connect} from "react-redux";
 import imageCartProduct from "../../images/imageCartProduct.png";
+import {
+  decreaseProductAC,
+  decreaseProductsNumberAC,
+  increaseProductAC,
+  increaseProductsNumberAC
+} from "../../redux/cartReducer";
 
 class Cart extends Component {
 
@@ -29,6 +35,8 @@ class Cart extends Component {
           attributes={product.attributes}
           imageCartProduct={product.gallery}
           amount={product.amount}
+          increaseProducts={this.increaseProductsNumber(product.id)}
+          decreaseProducts={this.decreaseProductsNumber(product.id)}
         />)}
 
         <div className={s.cartTotal}>
@@ -50,8 +58,16 @@ class Cart extends Component {
       </MainContainer>
     )
   }
+
+  increaseProductsNumber = (id) => () => {
+    this.props.increaseProductsNumberAC(id);
+  }
+
+  decreaseProductsNumber = (id) => () => {
+    this.props.decreaseProductsNumberAC(id)
+  }
 }
 
 export default connect((state) => ({
   cartProducts: state.cart.cartProducts
-}), null)(Cart);
+}), {increaseProductsNumberAC, decreaseProductsNumberAC})(Cart);

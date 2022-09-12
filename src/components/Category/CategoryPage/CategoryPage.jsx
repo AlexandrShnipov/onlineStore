@@ -97,7 +97,6 @@ class CategoryPage extends Component {
 
   addProductToCart = (id) => {
     const product = this.state.category.products.find(product => product.id === id);
-
     this.props.addProductAC(product);
   }
 

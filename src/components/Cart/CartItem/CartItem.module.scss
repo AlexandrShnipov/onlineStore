@@ -120,7 +120,8 @@
       color: $textColorMain;
 
       &:hover,
-      &:active {
+      &:active,
+      &:disabled{
         background: $colorMedium;
       }
     }

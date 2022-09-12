@@ -49,4 +49,4 @@ class Card extends Component {
 }
 
 
-export default connect(null, {addProductAC})(withRouter(Card))
+export default withRouter(Card)
