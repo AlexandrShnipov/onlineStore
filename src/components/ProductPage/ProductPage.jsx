@@ -55,7 +55,6 @@ class ProductPage extends Component {
         console.log('duct', data);
         const product = {
           ...data.product,
-          amount: 1,
           attributes: data.product.attributes?.map(attribute => (
             {
               ...attribute,

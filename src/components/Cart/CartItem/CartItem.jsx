@@ -5,7 +5,7 @@ import AttributeRender from "../../AttributeRender/AttributeRender";
 class CartItem extends Component {
   render() {
 
-    const {brand, name, price,attributes, imageCartProduct, amount, id} =  this.props;
+    const {brand, name, price,attributes, imageCartProduct, amount} =  this.props;
 
        return (
       <>

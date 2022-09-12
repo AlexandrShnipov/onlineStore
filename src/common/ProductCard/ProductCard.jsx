@@ -1,17 +1,14 @@
-import {Component} from 'react';
+import { PureComponent} from 'react';
 import s from './ProductCard.module.scss'
 import {NavLink} from "react-router-dom";
 import {withRouter} from "../../hocs/withRouter";
 import cart from '../../images/cartWhite.png';
-import {connect} from "react-redux";
-import {addProductAC} from "../../redux/cartReducer";
 
-
-class Card extends Component {
+class Card extends PureComponent {
 
   render() {
     // console.log(this.props.location)
-    const {location, id, image, name, brand, price, inStock} = this.props;
+    const {location, id, image, name, brand, price, isAdded, inStock} = this.props;
     return (
       <div className={s.container}>
         <div className={s.wrapper}>
@@ -27,11 +24,13 @@ class Card extends Component {
             <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
             <p className={s.cardPrice}><span>{price?.currency?.symbol}</span> {price?.amount}</p>
           </NavLink>
+          {!isAdded &&
           <button
             className={s.buttonAddInCart}
-            onClick={this.onAddToCartClick}>
+            onClick={this.onAddToCartClick}
+          >
             <img src={cart} alt='cart images'/>
-          </button>
+          </button>}
         </div>
         {
           inStock &&
