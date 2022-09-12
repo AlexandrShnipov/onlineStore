@@ -28,6 +28,7 @@ class Cart extends Component {
           price={product.prices?.find(price => price.currency.label === this.props.currency)}
           attributes={product.attributes}
           imageCartProduct={product.gallery}
+          amount={product.amount}
         />)}
 
         <div className={s.cartTotal}>

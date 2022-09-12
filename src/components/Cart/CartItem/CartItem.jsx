@@ -1,13 +1,11 @@
 import {Component} from 'react';
 import s from './CartItem.module.scss';
-import imageCartProduct from '../../../images/imageCartProduct.png'
-import AttributeSize from "../../AttributeSize/AttributeSize";
 import AttributeRender from "../../AttributeRender/AttributeRender";
 
 class CartItem extends Component {
   render() {
 
-    const {brand, name, price,attributes, imageCartProduct} =  this.props;
+    const {brand, name, price,attributes, imageCartProduct, amount, id} =  this.props;
 
        return (
       <>
@@ -32,7 +30,7 @@ class CartItem extends Component {
           <div className={s.counterBlock}>
             <div className={s.counterBlockButtons}>
               <button>&#43;</button>
-              <span>1</span>
+              <span>{amount}</span>
               <button>&#8722;</button>
             </div>
             <div className={s.counterBlockImagesWrap}>

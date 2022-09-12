@@ -14,23 +14,25 @@ class Card extends Component {
     const {location, id, image, name, brand, price, inStock} = this.props;
     return (
       <div className={s.container}>
-        <NavLink
-          className={s.card}
-          to={{
-            pathname: `${location.pathname}/${id}`
-          }}
-        >
-          <div className={s.cardImg}>
-            <img src={image} alt={name}/>
-          </div>
-          <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
-          <p className={s.cardPrice}><span>{price?.currency?.symbol}</span> {price?.amount}</p>
-        </NavLink>
-        <button
-          className={s.buttonAddInCart}
-          onClick={this.onAddToCartClick}>
-          <img src={cart} alt='cart images'/>
-        </button>
+        <div className={s.wrapper}>
+          <NavLink
+            className={s.card}
+            to={{
+              pathname: `${location.pathname}/${id}`
+            }}
+          >
+            <div className={s.cardImg}>
+              <img src={image} alt={name}/>
+            </div>
+            <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
+            <p className={s.cardPrice}><span>{price?.currency?.symbol}</span> {price?.amount}</p>
+          </NavLink>
+          <button
+            className={s.buttonAddInCart}
+            onClick={this.onAddToCartClick}>
+            <img src={cart} alt='cart images'/>
+          </button>
+        </div>
         {
           inStock &&
           <div className={s.stockBox}>
@@ -38,7 +40,6 @@ class Card extends Component {
           </div>
         }
       </div>
-
     )
   }
 

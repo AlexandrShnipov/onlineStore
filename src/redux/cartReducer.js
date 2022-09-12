@@ -1,7 +1,8 @@
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 
 const initialState = {
-  cartProducts: []
+  cartProducts: [],
+
 };
 
 const cartReducer = (state = initialState, action) => {

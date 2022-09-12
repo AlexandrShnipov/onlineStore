@@ -40,6 +40,7 @@
 
 .productParameters {
   display: flex;
+  justify-content: space-between;
   column-gap: toRem(16);
   margin-bottom: toRem(32);
 
@@ -147,7 +148,7 @@
     }
 
     &Images {
-      max-width: toRem(121);
+      width: toRem(121);
 
       & > img {
         max-width: 100%;
