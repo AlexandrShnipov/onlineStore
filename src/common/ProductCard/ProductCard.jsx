@@ -25,12 +25,12 @@ class Card extends Component {
           </div>
           <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
           <p className={s.cardPrice}><span>{price?.currency?.symbol}</span> {price?.amount}</p>
-          <button
-            className={s.buttonAddInCart}
-            onClick={this.onAddToCartClick}>
-            <img src={cart} alt='cart images'/>
-          </button>
         </NavLink>
+        <button
+          className={s.buttonAddInCart}
+          onClick={this.onAddToCartClick}>
+          <img src={cart} alt='cart images'/>
+        </button>
         {
           inStock &&
           <div className={s.stockBox}>
