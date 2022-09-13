@@ -13,22 +13,49 @@
 
 .cartTotal {
   margin-bottom: toRem(103);
+  width: fit-content;
 
   &Table {
-    border-spacing: toRem(8);
+    border-spacing: toRem(10);
 
-    & > tr > th {
+    & > tr > th,
+    & > tr > td {
+      font-size: toRem(24);
+      line-height: toRem(18);
       text-align: start;
     }
 
     & > tr > th {
-      font-size: toRem(24);
-      line-height: toRem(18);
       font-weight: 400;
     }
+
+    & > tr > td {
+      font-weight: 700;
+    }
+  }
+
+  & > button{
+    width: 100%;
+    background: $colorPrimary;
+    border: 1px solid $colorPrimary;
+    color: $textColorLight;
+    text-transform: uppercase;
+    font-size: toRem(14);
+    font-weight: 600;
+    padding-bottom: toRem(13);
+    padding-top: toRem(13);
+
+    &:hover,
+    &:active{
+      color: #5ECE7B;
+      background-color: #1D1F22;
+      border: 1px solid #1D1F22;
+    };
   }
 }
 
 button {
   transition: all .5s linear;
+
+
 }

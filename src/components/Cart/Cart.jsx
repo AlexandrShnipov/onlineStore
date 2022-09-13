@@ -50,6 +50,7 @@ class Cart extends Component {
               <td className={s.price}>$200.00</td>
             </tr>
           </table>
+          <button>Order</button>
         </div>
       </MainContainer>
     )
