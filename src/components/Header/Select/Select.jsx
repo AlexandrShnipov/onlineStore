@@ -5,6 +5,7 @@ import {withRouter} from "../../../hocs/withRouter";
 class Select extends Component {
 
   onChange = (event) => {
+    const currencyActive =
     this.props.onCurrencyChange(event.target.value)
     console.log(event.target.value)
   }

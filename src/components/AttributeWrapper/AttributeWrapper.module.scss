@@ -1,13 +1,10 @@
 @import "../../styles/sass/abstracts/variables";
 @import "../../styles/sass/abstracts/function";
 
-.productParameters {
+.productParametersItem {
+  margin-bottom: toRem(24);
 
-  &Item {
-    margin-bottom: toRem(24);
-  }
-
-  &Item > h3 {
+  & > h3 {
     font-family: Roboto;
     font-size: toRem(18);
     font-weight: 700;
@@ -15,11 +12,12 @@
     margin-bottom: toRem(8);
     text-transform: uppercase;
   }
-
-  &Attribute {
-    &Options {
-      display: flex;
-      gap: toRem(8);
-    }
-  }
 }
+
+.productParametersAttributeOptions {
+
+  display: flex;
+  gap: toRem(8);
+}
+
+

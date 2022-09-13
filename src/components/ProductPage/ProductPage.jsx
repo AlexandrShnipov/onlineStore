@@ -93,7 +93,8 @@ class ProductPage extends Component {
     const {gallery, name, brand, prices, description, attributes } = this.state.product ?? {};
     // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
-    return (
+    const isCheckedPrice = price
+        return (
 
       <MainContainer>
         <div className={s.container}>
@@ -123,7 +124,7 @@ class ProductPage extends Component {
 
             <div className={`${s.productParametersItem} ${s.productParametersPrice}`}>
               <h3>Price:</h3>
-              <span>{`${price?.currency?.symbol} ${price?.amount}`}</span>
+              <span>{`${isCheckedPrice?.currency?.symbol} ${isCheckedPrice?.amount}`}</span>
             </div>
             <button
               className={s.productParametersButtonToCart}

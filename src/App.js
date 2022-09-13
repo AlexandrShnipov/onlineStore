@@ -53,13 +53,6 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   const {currencies} = this.state
-  //   if (prevState.currencies.length !== currencies.length && currencies.length) {
-  //     this.setState({currency: currencies[0].label})
-  //   }
-  // }
-
   onCurrencyChange = (value) => {
     this.setState({currency: value});
   }

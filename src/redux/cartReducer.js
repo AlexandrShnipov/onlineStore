@@ -25,6 +25,7 @@ const cartReducer = (state = initialState, action) => {
             .filter((item, i) => typeof item.isChecked === 'undefined' ? i === 0 : item.isChecked)
             .map(item => (item.isChecked ? {...item} : {...item, isChecked: true}))
         })),
+        prices: product.prices,
         gallery: product.gallery[0],
         amount: 1
       };
@@ -33,8 +34,8 @@ const cartReducer = (state = initialState, action) => {
         cartProducts: productIsAdded
           ? [...state.cartProducts
             .map(product => product.id === newProduct.id ? {...newProduct} : {...product})]
-          : [...state.cartProducts, newProduct ],
-        totalQuantity: state.totalQuantity + 1
+          : [...state.cartProducts, newProduct],
+        totalQuantity: state.totalQuantity + 1,
       }
 
     case INCREASE_PRODUCTS_NUMBER:
@@ -48,28 +49,28 @@ const cartReducer = (state = initialState, action) => {
               amount: product.amount + 1,
             }
           } else {
-            return { ...copiedProduct }
+            return {...copiedProduct}
           }
         }),
         totalQuantity: state.totalQuantity + 1
       }
 
-      case DECREASE_PRODUCTS_NUMBER:
-        return {
-          ...state,
-          cartProducts: state.cartProducts.map(product => {
-            const copiedProduct = cloneDeep(product);
-            if (action.payload.id === product.id) {
-              return {
-                ...copiedProduct,
-                amount: product.amount - 1
-              }
-            } else {
-              return { ...copiedProduct }
+    case DECREASE_PRODUCTS_NUMBER:
+      return {
+        ...state,
+        cartProducts: state.cartProducts.map(product => {
+          const copiedProduct = cloneDeep(product);
+          if (action.payload.id === product.id) {
+            return {
+              ...copiedProduct,
+              amount: product.amount - 1
             }
-          }),
-          totalQuantity: state.totalQuantity - 1
-        }
+          } else {
+            return {...copiedProduct}
+          }
+        }),
+        totalQuantity: state.totalQuantity - 1
+      }
 
     default:
       return {
@@ -94,9 +95,5 @@ export const decreaseProductsNumberAC = (id) => ({
   payload: {id}
 });
 
-export const totalQuantityAC = (amount) => ({
-  type: TOTAL_QUANTITY,
-  payload: {amount}
-});
 
 export default cartReducer;

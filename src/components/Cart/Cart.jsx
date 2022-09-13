@@ -4,20 +4,20 @@ import s from './Cart.module.scss';
 import CartItem from "./CartItem/CartItem";
 import {connect} from "react-redux";
 import {
-  decreaseProductsNumberAC, increaseProductsNumberAC, totalQuantityAC
+  decreaseProductsNumberAC, increaseProductsNumberAC
 } from "../../redux/cartReducer";
 
 class Cart extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartItems: {}
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     cartItems: {}
+  //   };
+  // }
 
   render() {
-    const {cartProducts} = this.props;
+    const {cartProducts, totalQuantity} = this.props;
     console.log(cartProducts)
 
     return (
@@ -43,7 +43,7 @@ class Cart extends Component {
             </tr>
             <tr>
               <th>Quantity:</th>
-              <td className={s.price}>{this.props.totalQuantity}</td>
+              <td className={s.price}>{totalQuantity}</td>
             </tr>
             <tr>
               <th>Total:</th>
@@ -62,15 +62,12 @@ class Cart extends Component {
   decreaseProductsNumber = (id) => () => {
     this.props.decreaseProductsNumberAC(id)
   }
-
-  totalQuantity = (amount) => {
-    this.props.totalQuantityAC(amount)
-  }
 }
 
 export default connect((state) => ({
   cartProducts: state.cart.cartProducts,
-  totalQuantity: state.cart.totalQuantity
+  totalQuantity: state.cart.totalQuantity,
+
 }), {increaseProductsNumberAC,
   decreaseProductsNumberAC,
-  totalQuantityAC})(Cart);
+ })(Cart);
