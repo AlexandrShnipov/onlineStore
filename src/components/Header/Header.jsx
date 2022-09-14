@@ -7,6 +7,8 @@ import HeaderLinkIItem from "./HeaderLinkItem/HeaderLinkIItem";
 import {withRouter} from "../../hocs/withRouter";
 import Select from "./Select/Select";
 import CartMini from "../CartMini/CartMini";
+import {connect} from "react-redux";
+import {decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC} from "../../redux/cartReducer";
 
 
 class Header extends Component {
@@ -31,7 +33,7 @@ class Header extends Component {
 
   render() {
     const {isCartMiniOpen} = this.state
-    const {categories} = this.props;
+    const {categories, totalQuantity} = this.props;
 
     return <>
       <header className={s.header} onClick={this.handleHeaderClick}>
@@ -43,11 +45,19 @@ class Header extends Component {
                   <HeaderLinkIItem key={index} menuItem={category.name}/>)}
               </ul>
               <img className={s.logo} src={logo} alt=""/>
-              <div>
-                <Select />
-                <button className={s.cartButton} onClick={this.handleCartButtonClickForOpenMiniCart}>
-                  <img src={cart} alt=""/>
-                </button>
+              <div className={s.headerSelectAndCartBlock}>
+                <Select/>
+                <div className={s.cartButtonWrap}>
+                  <button className={s.cartButton} onClick={this.handleCartButtonClickForOpenMiniCart}>
+                    <img src={cart} alt=""/>
+                  </button>
+
+                  {
+                    totalQuantity > 0 &&
+                    <span className={s.cartCount}>{totalQuantity}</span>
+                  }
+
+                </div>
               </div>
             </div>
           </div>
@@ -62,4 +72,7 @@ class Header extends Component {
   }
 }
 
-export default withRouter(Header);
+export default connect((state) => ({
+  totalQuantity: state.cart.totalQuantity
+
+}), null)(withRouter(Header));

@@ -6,7 +6,7 @@ import {gql, request} from 'graphql-request'
 import {withRouter} from "../../../hocs/withRouter";
 import {connect} from "react-redux";
 import {addProductAC} from "../../../redux/cartReducer";
-import {selectCartProductsIds, selectCurrencyLabel} from "../../../redux/catrSelectors";
+import {selectCartProductsId, selectCurrencyLabel} from "../../../redux/catrSelectors";
 
 
 class CategoryPage extends Component {
@@ -27,7 +27,7 @@ class CategoryPage extends Component {
   }
 
   render() {
-    const { props: { cartProducts } } = this;
+    const {props: {cartProducts}} = this;
     console.log('cartProducts', cartProducts)
     let name = this.state.category.name
     return (
@@ -37,7 +37,7 @@ class CategoryPage extends Component {
         <CategoryContainer title={name}>
           {this.state.category?.products?.map(({brand, id, gallery, name, prices, inStock}) => {
             const price = prices.find(price => price.currency.label === this.props.currency)
-           const isAdded = cartProducts?.includes(id);
+            const isAdded = cartProducts?.includes(id);
             return (
               <Card
                 key={id}
@@ -108,7 +108,7 @@ class CategoryPage extends Component {
 
 export default connect(
   (state) => ({
-    cartProducts: selectCartProductsIds(state),
+    cartProducts: selectCartProductsId(state),
     currency: selectCurrencyLabel(state)
   }),
   {addProductAC})(withRouter(CategoryPage))

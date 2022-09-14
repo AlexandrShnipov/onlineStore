@@ -91,12 +91,12 @@ class ProductPage extends Component {
 
   render() {
     console.log(this.state.product)
-    const {gallery, name, brand, prices, description, attributes } = this.state.product ?? {};
+    const {gallery, name, brand, prices, description, attributes, cartProducts} = this.state.product ?? {};
     // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
     const isCheckedPrice = price
-        return (
 
+    return (
       <MainContainer>
         <div className={s.container}>
           <div className={s.imgBlock}>
@@ -127,11 +127,13 @@ class ProductPage extends Component {
               <h3>Price:</h3>
               <span>{`${isCheckedPrice?.currency?.symbol} ${isCheckedPrice?.amount}`}</span>
             </div>
+
             <button
               className={s.productParametersButtonToCart}
               onClick={this.onAddToCartClick}>
               add to cart
             </button>
+
             <div dangerouslySetInnerHTML={{__html: description}} className={s.productParametersDescription}/>
           </div>
         </div>
@@ -148,6 +150,6 @@ class ProductPage extends Component {
 }
 
 export default connect(
-  state => ({ currency: selectCurrencyLabel(state) }),
+  state => ({currency: selectCurrencyLabel(state)}),
   {addProductAC})
 (withRouter(ProductPage));

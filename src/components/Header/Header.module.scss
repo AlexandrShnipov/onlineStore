@@ -7,32 +7,55 @@
   max-height: toRem(80);
   z-index: 100;
   background-color: rgba(255, 255, 255, .9);
+
+  &Wrap {
+
+    &Container {
+      display: flex;
+      align-items: center;
+      margin-top: toRem(16);
+      justify-content: space-between;
+      position: relative;
+    }
+
+    &Items {
+      display: flex;
+    }
+  }
+
+  &SelectAndCartBlock {
+    display: flex;
+  }
 }
 
-.headerWrap {
-  margin-bottom: toRem(80);
-
-
-  &Container {
-    display: flex;
-    align-items: center;
-    margin-top: toRem(24);
-    justify-content: space-between;
-    position: relative;
-  }
-
-  &Items {
-    display: flex;
-  }
+.cartButtonWrap{
+  margin-left: toRem(13);
+  position: relative;
 }
 
 .cartButton {
   display: inline-block;
-  margin-left: toRem(22);
   border: transparent;
   background-color: transparent;
+  padding: toRem(8);
 }
 
+.cartCount{
+  position: absolute;
+  display: grid;
+  place-content: center;
+  top:3px;
+  right: 0;
+  width: toRem(16);
+  height: toRem(16);
+  border-radius: 50%;
+  background-color: $textColorMain;
+  color: $textColorLight;
+  font-size: toRem(11);
+  font-weight: 700;
+  font-family: Roboto;
+
+}
 
 .logo {
   position: absolute;
