@@ -10,7 +10,7 @@ class CartItem extends Component {
       amount, styledCartMini, productParametersTitle,
       productParametersItemCartMini, attributeNameTitle, counterBlockCartMini,
       attributeColorCartMiniWrap, attributeSizeCartMini,
-      counterBlockImagesWrapCartMini
+      counterBlockImagesWrapCartMini, currency
     } = this.props;
 
     return (
@@ -21,7 +21,7 @@ class CartItem extends Component {
               <span>{name}</span>
             </h2>
             <span className={`${s.price} ${s.productParametersPrice}`}>
-              {`${price?.currency?.symbol} ${price?.amount}`}
+              {`${currency} ${price}`}
             </span>
 
             {attributes?.map((attribute, i) =>

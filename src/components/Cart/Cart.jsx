@@ -17,8 +17,11 @@ class Cart extends Component {
   // }
 
   render() {
-    const {cartProducts, totalQuantity} = this.props;
-    console.log(cartProducts)
+    const {cartProducts, totalQuantity, totalPrice, currency} = this.props;
+    // console.log(cartProducts)
+    const tax = 0.21
+    const taxAmount = Math.round((totalPrice * tax) * 100) / 100
+    const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
 
     return (
       <MainContainer>
@@ -27,7 +30,8 @@ class Cart extends Component {
         {cartProducts.map(product => <CartItem
           brand={product.brand}
           name={product.name}
-          price={product.prices?.find(price => price.currency.label === this.props.currency)}
+          price={product.price}
+          currency={currency.symbol}
           attributes={product.attributes}
           imageCartProduct={product.gallery}
           amount={product.amount}
@@ -39,7 +43,7 @@ class Cart extends Component {
           <table className={s.cartTotalTable}>
             <tr>
               <th>Tax 21%:</th>
-              <td className={s.price}>$42.00</td>
+              <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
             </tr>
             <tr>
               <th>Quantity:</th>
@@ -47,7 +51,7 @@ class Cart extends Component {
             </tr>
             <tr>
               <th>Total:</th>
-              <td className={s.price}>$200.00</td>
+              <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
             </tr>
           </table>
           <button>Order</button>
@@ -68,7 +72,8 @@ class Cart extends Component {
 export default connect((state) => ({
   cartProducts: state.cart.cartProducts,
   totalQuantity: state.cart.totalQuantity,
-
+  totalPrice: state.cart.totalPrice,
+  currency: state.cart.currency
 }), {increaseProductsNumberAC,
   decreaseProductsNumberAC,
  })(Cart);

@@ -8,6 +8,7 @@ import {addProductAC} from "../../redux/cartReducer";
 import AttributeSize from "../AttributeSize/AttributeSize";
 import AttributeWrapper from "../AttributeWrapper/AttributeWrapper";
 import AttributeRender from "../AttributeRender/AttributeRender";
+import {selectCurrencyLabel} from "../../redux/catrSelectors";
 
 class ProductPage extends Component {
 
@@ -146,4 +147,7 @@ class ProductPage extends Component {
 
 }
 
-export default connect(null, {addProductAC})(withRouter(ProductPage));
+export default connect(
+  state => ({ currency: selectCurrencyLabel(state) }),
+  {addProductAC})
+(withRouter(ProductPage));

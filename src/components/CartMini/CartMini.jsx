@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import CartItem from "../Cart/CartItem/CartItem";
 import {connect} from "react-redux";
 import {decreaseProductsNumberAC, increaseProductsNumberAC} from "../../redux/cartReducer";
+import {selectCurrencyLabel} from "../../redux/catrSelectors";
 
 class CartMini extends Component {
 
@@ -15,6 +16,7 @@ class CartMini extends Component {
 
         <div className={s.modal} onClick={handleCartButtonClickForOpenMiniCart}/>
         <div className={s.container}>
+          {cartProducts.length === 0  && <p>Your shopping cart is empty</p>}
           <div className={s.cartTitleBlock}>
             <h2 className={s.cartTitle}>MyBag.&nbsp; </h2>
             <span>
@@ -23,7 +25,6 @@ class CartMini extends Component {
           </span>
           </div>
           <div>
-            {cartProducts.length === 0  && <p>Your shopping cart is empty</p>}
             {cartProducts.map(product => <CartItem
               styledCartMini={s.styledCartMini}
               productParametersTitle={s.productParametersTitle}
@@ -70,7 +71,7 @@ class CartMini extends Component {
 export default connect((state) => ({
   cartProducts: state.cart.cartProducts,
   totalQuantity: state.cart.totalQuantity,
-
+  currency: selectCurrencyLabel(state)
 }), {
   increaseProductsNumberAC,
   decreaseProductsNumberAC,

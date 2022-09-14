@@ -42,8 +42,7 @@
     text-transform: uppercase;
     font-size: toRem(14);
     font-weight: 600;
-    padding-bottom: toRem(13);
-    padding-top: toRem(13);
+    padding: toRem(13) toRem(115);
 
     &:hover,
     &:active{

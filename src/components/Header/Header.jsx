@@ -4,7 +4,6 @@ import logo from '../../images/logo.png';
 import cart from '../../images/cart.png'
 import MainContainer from '../../common/MainContainer/MainContainer';
 import HeaderLinkIItem from "./HeaderLinkItem/HeaderLinkIItem";
-import {NavLink} from "react-router-dom";
 import {withRouter} from "../../hocs/withRouter";
 import Select from "./Select/Select";
 import CartMini from "../CartMini/CartMini";
@@ -32,7 +31,7 @@ class Header extends Component {
 
   render() {
     const {isCartMiniOpen} = this.state
-    const {categories, currencies, currency, onCurrencyChange} = this.props;
+    const {categories} = this.props;
 
     return <>
       <header className={s.header} onClick={this.handleHeaderClick}>
@@ -45,7 +44,7 @@ class Header extends Component {
               </ul>
               <img className={s.logo} src={logo} alt=""/>
               <div>
-                <Select currencies={currencies} currency={currency} onCurrencyChange={onCurrencyChange}/>
+                <Select />
                 <button className={s.cartButton} onClick={this.handleCartButtonClickForOpenMiniCart}>
                   <img src={cart} alt=""/>
                 </button>

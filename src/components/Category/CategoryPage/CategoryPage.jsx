@@ -6,7 +6,7 @@ import {gql, request} from 'graphql-request'
 import {withRouter} from "../../../hocs/withRouter";
 import {connect} from "react-redux";
 import {addProductAC} from "../../../redux/cartReducer";
-import {selectCartProductsIds} from "../../../redux/catrSelectors";
+import {selectCartProductsIds, selectCurrencyLabel} from "../../../redux/catrSelectors";
 
 
 class CategoryPage extends Component {
@@ -108,5 +108,8 @@ class CategoryPage extends Component {
 }
 
 export default connect(
-  (state) => ({ cartProducts: selectCartProductsIds(state) }),
+  (state) => ({
+    cartProducts: selectCartProductsIds(state),
+    currency: selectCurrencyLabel(state)
+  }),
   {addProductAC})(withRouter(CategoryPage))

@@ -3,10 +3,10 @@ import cloneDeep from "lodash.clonedeep";
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 const INCREASE_PRODUCTS_NUMBER = 'INCREASE_PRODUCT';
 const DECREASE_PRODUCTS_NUMBER = 'DECREASE_PRODUCT';
-const TOTAL_QUANTITY = 'TOTAL_QUANTITY';
-const TOTAL_PRICE = 'TOTAL_PRICE'
+const SET_CURRENCY = 'SET_CURRENCY';
 
 const initialState = {
+  currency: '',
   cartProducts: [],
   totalQuantity: 0,
   totalPrice: 0
@@ -14,7 +14,7 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_PRODUCT_TO_CART:
+    case ADD_PRODUCT_TO_CART: {
       const productIsAdded = state.cartProducts.some(product => product.id === action.payload.product.id);
       const product = cloneDeep(action.payload.product);
       const newProduct = {
@@ -26,52 +26,81 @@ const cartReducer = (state = initialState, action) => {
             .map(item => (item.isChecked ? {...item} : {...item, isChecked: true}))
         })),
         prices: product.prices,
+        price: product.prices.find(price => price.currency.label === state.currency.label).amount,
         gallery: product.gallery[0],
         amount: 1
       };
+      const newCartProducts = productIsAdded
+        ? [...state.cartProducts
+          .map(product => product.id === newProduct.id ? {...newProduct} : {...product})]
+        : [...state.cartProducts, newProduct]
+      const newTotalQuantity = state.totalQuantity + 1;
+      const netProductsPrice = newCartProducts.reduce((sum, product) => sum + product.price, 0);
+
       return {
         ...state,
-        cartProducts: productIsAdded
-          ? [...state.cartProducts
-            .map(product => product.id === newProduct.id ? {...newProduct} : {...product})]
-          : [...state.cartProducts, newProduct],
+        cartProducts: newCartProducts,
+        totalQuantity: newTotalQuantity,
+        totalPrice: netProductsPrice
+      }
+    }
+    case INCREASE_PRODUCTS_NUMBER: {
+      const newCartProducts = state.cartProducts.map(product => {
+        const copiedProduct = cloneDeep(product);
+        if (action.payload.id === product.id) {
+          return {
+            ...copiedProduct,
+            amount: product.amount + 1,
+          }
+        } else {
+          return {...copiedProduct}
+        }
+      })
+      return {
+        ...state,
+        cartProducts: newCartProducts,
         totalQuantity: state.totalQuantity + 1,
+        totalPrice: newCartProducts.reduce((sum, product) =>
+          sum + product.price * product.amount, 0)
       }
-
-    case INCREASE_PRODUCTS_NUMBER:
+    }
+    case DECREASE_PRODUCTS_NUMBER: {
+      const newCartProducts = state.cartProducts.map(product => {
+        const copiedProduct = cloneDeep(product);
+        if (action.payload.id === product.id) {
+          return {
+            ...copiedProduct,
+            amount: product.amount - 1
+          }
+        } else {
+          return {...copiedProduct}
+        }
+      })
       return {
         ...state,
-        cartProducts: state.cartProducts.map(product => {
-          const copiedProduct = cloneDeep(product);
-          if (action.payload.id === product.id) {
-            return {
-              ...copiedProduct,
-              amount: product.amount + 1,
-            }
-          } else {
-            return {...copiedProduct}
-          }
-        }),
-        totalQuantity: state.totalQuantity + 1
+        cartProducts: newCartProducts,
+        totalQuantity: state.totalQuantity - 1,
+        totalPrice: newCartProducts.reduce((sum, product) =>
+          sum + product.price * product.amount, 0)
       }
-
-    case DECREASE_PRODUCTS_NUMBER:
+    }
+    case SET_CURRENCY: {
+      const cartProducts = state.cartProducts.map(product => {
+        const copiedProduct = cloneDeep(product)
+        return {
+          ...copiedProduct,
+          price: copiedProduct.prices?.find(price =>
+            price.currency.label === action.payload.currency.label).amount
+        }
+      })
       return {
         ...state,
-        cartProducts: state.cartProducts.map(product => {
-          const copiedProduct = cloneDeep(product);
-          if (action.payload.id === product.id) {
-            return {
-              ...copiedProduct,
-              amount: product.amount - 1
-            }
-          } else {
-            return {...copiedProduct}
-          }
-        }),
-        totalQuantity: state.totalQuantity - 1
+        cartProducts,
+        currency: {...action.payload.currency},
+        totalPrice: cartProducts.reduce((sum, product) =>
+          sum + product.price * product.amount, 0)
       }
-
+    }
     default:
       return {
         ...state,
@@ -95,5 +124,9 @@ export const decreaseProductsNumberAC = (id) => ({
   payload: {id}
 });
 
+export const setCurrencyAC = (currency) => ({
+  type: SET_CURRENCY,
+  payload: {currency}
+})
 
 export default cartReducer;
