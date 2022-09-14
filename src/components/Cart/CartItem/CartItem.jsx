@@ -47,7 +47,9 @@ class CartItem extends Component {
             <div className={`${s.counterBlockImagesWrap} ${counterBlockImagesWrapCartMini}`}>
               <img className={s.counterBlockImages} src={imageCartProduct} alt={`${brand} ${name}`}/>
             </div>
-            <button className={s.buttonDeleteProduct}>
+            <button
+              className={s.buttonDeleteProduct}
+              onClick={this.deleteProductToCart}>
               <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
                    className={s.svg}
                    data-spm-anchor-id="a2g2w.cart.0.i2.76774aa6Ng8cZE">
@@ -62,7 +64,8 @@ class CartItem extends Component {
   }
 
   increaseProducts = () => this.props.increaseProducts();
-  decreaseProducts = () => this.props.decreaseProducts()
+  decreaseProducts = () => this.props.decreaseProducts();
+  deleteProductToCart = () => this.props.deleteProductToCart();
 }
 
 export default CartItem;

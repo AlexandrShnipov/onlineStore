@@ -4,7 +4,7 @@ import s from './Cart.module.scss';
 import CartItem from "./CartItem/CartItem";
 import {connect} from "react-redux";
 import {
-  decreaseProductsNumberAC, increaseProductsNumberAC
+  decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC
 } from "../../redux/cartReducer";
 
 class Cart extends Component {
@@ -18,11 +18,11 @@ class Cart extends Component {
 
   render() {
     const {cartProducts, totalQuantity, totalPrice, currency} = this.props;
-    // console.log(cartProducts)
+
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
-
+    console.log(cartProducts)
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
@@ -37,6 +37,7 @@ class Cart extends Component {
           amount={product.amount}
           increaseProducts={this.increaseProductsNumber(product.id)}
           decreaseProducts={this.decreaseProductsNumber(product.id)}
+          deleteProductToCart={this.deleteProductToCart(product.id)}
         />)}
 
         <div className={s.cartTotal}>
@@ -67,6 +68,10 @@ class Cart extends Component {
   decreaseProductsNumber = (id) => () => {
     this.props.decreaseProductsNumberAC(id)
   }
+
+  deleteProductToCart = (id) => () => {
+    this.props.deleteProductToCartAC(id)
+  }
 }
 
 export default connect((state) => ({
@@ -74,6 +79,8 @@ export default connect((state) => ({
   totalQuantity: state.cart.totalQuantity,
   totalPrice: state.cart.totalPrice,
   currency: state.cart.currency
-}), {increaseProductsNumberAC,
+}), {
+  increaseProductsNumberAC,
   decreaseProductsNumberAC,
- })(Cart);
+  deleteProductToCartAC
+})(Cart);

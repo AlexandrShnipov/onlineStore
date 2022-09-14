@@ -28,7 +28,6 @@ class CategoryPage extends Component {
 
   render() {
     const { props: { cartProducts } } = this;
-    console.log(this.state.category)
     console.log('cartProducts', cartProducts)
     let name = this.state.category.name
     return (

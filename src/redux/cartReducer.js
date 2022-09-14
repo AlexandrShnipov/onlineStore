@@ -4,6 +4,7 @@ const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 const INCREASE_PRODUCTS_NUMBER = 'INCREASE_PRODUCT';
 const DECREASE_PRODUCTS_NUMBER = 'DECREASE_PRODUCT';
 const SET_CURRENCY = 'SET_CURRENCY';
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 const initialState = {
   currency: '',
@@ -36,7 +37,6 @@ const cartReducer = (state = initialState, action) => {
         : [...state.cartProducts, newProduct]
       const newTotalQuantity = state.totalQuantity + 1;
       const netProductsPrice = newCartProducts.reduce((sum, product) => sum + product.price, 0);
-
       return {
         ...state,
         cartProducts: newCartProducts,
@@ -56,6 +56,7 @@ const cartReducer = (state = initialState, action) => {
           return {...copiedProduct}
         }
       })
+
       return {
         ...state,
         cartProducts: newCartProducts,
@@ -101,6 +102,17 @@ const cartReducer = (state = initialState, action) => {
           sum + product.price * product.amount, 0)
       }
     }
+
+    case DELETE_PRODUCT: {
+      const cartProducts = state.cartProducts
+          .filter(product => product.id !== action.payload.id)
+      return {
+        ...state,
+        cartProducts: cartProducts,
+        totalQuantity: cartProducts.reduce((sum, product) => sum + product.amount, 0),
+        totalPrice: cartProducts.reduce((sum, product) => sum + product.price, 0)
+      }
+    }
     default:
       return {
         ...state,
@@ -127,6 +139,11 @@ export const decreaseProductsNumberAC = (id) => ({
 export const setCurrencyAC = (currency) => ({
   type: SET_CURRENCY,
   payload: {currency}
+})
+
+export const deleteProductToCartAC = (id) => ({
+  type: DELETE_PRODUCT,
+  payload: {id}
 })
 
 export default cartReducer;

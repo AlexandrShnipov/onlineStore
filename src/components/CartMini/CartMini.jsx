@@ -1,11 +1,9 @@
 import {Component} from 'react';
 import s from './CartMini.module.scss';
-import imageCartProduct from '../../images/imageCartProduct.png'
 import {NavLink} from "react-router-dom";
 import CartItem from "../Cart/CartItem/CartItem";
 import {connect} from "react-redux";
-import {decreaseProductsNumberAC, increaseProductsNumberAC} from "../../redux/cartReducer";
-import {selectCurrencyLabel} from "../../redux/catrSelectors";
+import {decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC} from "../../redux/cartReducer";
 
 class CartMini extends Component {
 
@@ -48,6 +46,7 @@ class CartMini extends Component {
               amount={product.amount}
               increaseProducts={this.increaseProductsNumber(product.id)}
               decreaseProducts={this.decreaseProductsNumber(product.id)}
+              deleteProductToCart={this.deleteProductToCart(product.id)}
             />)}
 
             <div className={s.cartTotal}>
@@ -70,7 +69,11 @@ class CartMini extends Component {
   }
 
   decreaseProductsNumber = (id) => () => {
-    this.props.decreaseProductsNumberAC(id)
+    this.props.decreaseProductsNumberAC(id);
+  }
+
+  deleteProductToCart = (id) => () => {
+    this.props.deleteProductToCartAC(id);
   }
 }
 
@@ -83,4 +86,5 @@ export default connect((state) => ({
 }), {
   increaseProductsNumberAC,
   decreaseProductsNumberAC,
+  deleteProductToCartAC
 })(CartMini);
