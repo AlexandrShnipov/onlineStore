@@ -10,13 +10,19 @@ import {selectCurrencyLabel} from "../../redux/catrSelectors";
 class CartMini extends Component {
 
   render() {
-    const {handleCartButtonClickForOpenMiniCart, cartProducts, totalQuantity} = this.props;
+    const {
+      handleCartButtonClickForOpenMiniCart, cartProducts,
+      totalQuantity, currency, totalPrice
+    } = this.props;
+    const tax = 0.21
+    const taxAmount = Math.round((totalPrice * tax) * 100) / 100
+    const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
     return (
       <>
 
         <div className={s.modal} onClick={handleCartButtonClickForOpenMiniCart}/>
         <div className={s.container}>
-          {cartProducts.length === 0  && <p>Your shopping cart is empty</p>}
+          {cartProducts.length === 0 && <p>Your shopping cart is empty</p>}
           <div className={s.cartTitleBlock}>
             <h2 className={s.cartTitle}>MyBag.&nbsp; </h2>
             <span>
@@ -36,7 +42,8 @@ class CartMini extends Component {
               counterBlockImagesWrapCartMini={s.counterBlockImagesWrapCartMini}
               brand={product.brand}
               name={product.name}
-              price={product.prices?.find(price => price.currency.label === this.props.currency)}
+              price={product.price}
+              currency={currency.symbol}
               attributes={product.attributes}
               imageCartProduct={product.gallery}
               amount={product.amount}
@@ -46,7 +53,7 @@ class CartMini extends Component {
 
             <div className={s.cartTotal}>
               <h5>Total</h5>
-              <span>$200.00</span>
+              <span>{`${currency.symbol} ${totalAmount}`}</span>
             </div>
 
             <div className={s.buttons}>
@@ -71,7 +78,9 @@ class CartMini extends Component {
 export default connect((state) => ({
   cartProducts: state.cart.cartProducts,
   totalQuantity: state.cart.totalQuantity,
-  currency: selectCurrencyLabel(state)
+  currency: state.cart.currency,
+  totalPrice: state.cart.totalPrice
+
 }), {
   increaseProductsNumberAC,
   decreaseProductsNumberAC,
