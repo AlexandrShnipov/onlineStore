@@ -8,7 +8,7 @@ class CartItem extends Component {
     const {
       brand, name, price, attributes, imageCartProduct,
       amount, styledCartMini, productParametersTitle,
-      productParametersItemCartMini, attributeNameTitle, counterBlockCartMini,
+      attributeNameTitle, counterBlockCartMini,
       attributeColorCartMiniWrap, attributeSizeCartMini,
       counterBlockImagesWrapCartMini, currency
     } = this.props;
@@ -26,7 +26,6 @@ class CartItem extends Component {
 
             {attributes?.map((attribute, i) =>
               <AttributeRender
-                productParametersItemCartMini={productParametersItemCartMini}
                 attributeNameTitle={attributeNameTitle}
                 attributeColorCartMiniWrap={attributeColorCartMiniWrap}
                 attributeSizeCartMini={attributeSizeCartMini}

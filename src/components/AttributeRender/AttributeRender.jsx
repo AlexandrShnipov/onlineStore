@@ -8,8 +8,8 @@ class AttributeRender extends PureComponent {
 
   render() {
     const {
-      attribute, attributeNameTitle, productParametersItemCartMini,
-      attributeColorCartMiniWrap, attributeSizeCartMini
+      attribute, attributeNameTitle,attributeColorCartMiniWrap,
+      attributeSizeCartMini
     } = this.props;
     const checkedItem = attribute?.items?.find((item, i) => item.isChecked);
     const param = attribute.id.toLowerCase();
@@ -18,7 +18,6 @@ class AttributeRender extends PureComponent {
       case 'size':
         return (!!attribute &&
           <AttributeWrapper attributeNameTitle={attributeNameTitle}
-                            productParametersItemCartMini={productParametersItemCartMini}
                             name={attribute.id}
                             value={checkedItem.displayValue}>
             {attribute?.items.map((item, i) =>

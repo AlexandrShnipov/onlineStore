@@ -103,17 +103,17 @@ a {
 // styles for cartMini
 .container {
 
-  & .productParametersItemCartMini {
-    margin-bottom: toRem(.5)
-  }
+
 
   & .styledCartMini {
-    display: flex;
-    justify-content: space-between;
     column-gap: toRem(16);
     margin-bottom: toRem(16);
     padding-bottom: toRem(16);
     min-height: toRem(180);
+
+    & .productParametersItemCartMini {
+      margin-bottom: toRem(.5)!important;
+    }
 
     & .attributeNameTitle {
       text-transform: initial;

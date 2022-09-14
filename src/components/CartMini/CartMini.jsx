@@ -34,7 +34,6 @@ class CartMini extends Component {
             {cartProducts.map(product => <CartItem
               styledCartMini={s.styledCartMini}
               productParametersTitle={s.productParametersTitle}
-              productParametersItemCartMini={s.productParametersItemCartMini}
               attributeNameTitle={s.attributeNameTitle}
               counterBlockCartMini={s.counterBlockCartMini}
               attributeColorCartMiniWrap={s.attributeColorCartMiniWrap}
