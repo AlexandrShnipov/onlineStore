@@ -19,4 +19,5 @@
   grid-template-columns: repeat(auto-fit, minmax(toRem(386), 1fr));
   grid-column-gap: toRem(40);
   grid-row-gap: toRem(103);
+  overflow: hidden;
 }
