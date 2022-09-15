@@ -103,6 +103,7 @@
   overflow: hidden;
   position: relative;
   justify-self: end;
+  padding-right: toRem(32);
 
   &Buttons {
     display: flex;

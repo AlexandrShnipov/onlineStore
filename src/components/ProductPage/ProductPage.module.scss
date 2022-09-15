@@ -162,6 +162,11 @@
       color: $colorPrimary;
       border: 1px solid $colorPrimary;
     }
+
+    &:disabled{
+      cursor: initial;
+      background: $colorMedium;
+    };
   }
 
   &Description {

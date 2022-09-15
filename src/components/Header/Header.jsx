@@ -16,7 +16,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCartMiniOpen: true
+      isCartMiniOpen: false
     };
   }
 
@@ -33,7 +33,7 @@ class Header extends Component {
 
   render() {
     const {isCartMiniOpen} = this.state
-    const {categories, totalQuantity} = this.props;
+    const {categories, cartProducts} = this.props;
 
     return <>
       <header className={s.header} onClick={this.handleHeaderClick}>
@@ -53,8 +53,8 @@ class Header extends Component {
                   </button>
 
                   {
-                    totalQuantity > 0 &&
-                    <span className={s.cartCount}>{totalQuantity}</span>
+                    cartProducts.length > 0 &&
+                    <span className={s.cartCount}>{cartProducts.length}</span>
                   }
 
                 </div>
@@ -73,6 +73,5 @@ class Header extends Component {
 }
 
 export default connect((state) => ({
-  totalQuantity: state.cart.totalQuantity
-
+  cartProducts: state.cart. cartProducts,
 }), null)(withRouter(Header));

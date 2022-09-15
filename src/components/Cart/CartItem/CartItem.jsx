@@ -44,6 +44,7 @@ class CartItem extends Component {
                 disabled={amount === 1}
                 onClick={this.decreaseProducts}>&#8722;</button>
             </div>
+
             <div className={`${s.counterBlockImagesWrap} ${counterBlockImagesWrapCartMini}`}>
               <img className={s.counterBlockImages} src={imageCartProduct} alt={`${brand} ${name}`}/>
             </div>

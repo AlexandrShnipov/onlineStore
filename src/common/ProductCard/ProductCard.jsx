@@ -32,12 +32,12 @@ class Card extends PureComponent {
             <img src={cart} alt='cart images'/>
           </button>}
         </div>
-        {
-          inStock &&
-          <div className={s.stockBox}>
-            <span>out of stock</span>
-          </div>
-        }
+        {/*{*/}
+        {/*  inStock &&*/}
+        {/*  <div className={s.stockBox}>*/}
+        {/*    <span>out of stock</span>*/}
+        {/*  </div>*/}
+        {/*}*/}
       </div>
     )
   }

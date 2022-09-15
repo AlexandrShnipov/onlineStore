@@ -28,7 +28,7 @@ const cartReducer = (state = initialState, action) => {
         })),
         prices: product.prices,
         price: product.prices.find(price => price.currency.label === state.currency.label).amount,
-        gallery: product.gallery[0],
+        gallery: [product.gallery[0]],
         amount: 1
       };
       const newCartProducts = productIsAdded
@@ -105,7 +105,7 @@ const cartReducer = (state = initialState, action) => {
 
     case DELETE_PRODUCT: {
       const cartProducts = state.cartProducts
-          .filter(product => product.id !== action.payload.id)
+        .filter(product => product.id !== action.payload.id)
       return {
         ...state,
         cartProducts: cartProducts,

@@ -5,10 +5,8 @@ import {withRouter} from "../../hocs/withRouter";
 import {request, gql} from 'graphql-request'
 import {connect} from "react-redux";
 import {addProductAC} from "../../redux/cartReducer";
-import AttributeSize from "../AttributeSize/AttributeSize";
-import AttributeWrapper from "../AttributeWrapper/AttributeWrapper";
 import AttributeRender from "../AttributeRender/AttributeRender";
-import {selectCurrencyLabel} from "../../redux/catrSelectors";
+import {selectCartProductsId, selectCurrencyLabel} from "../../redux/catrSelectors";
 
 class ProductPage extends Component {
 
@@ -91,10 +89,12 @@ class ProductPage extends Component {
 
   render() {
     console.log(this.state.product)
-    const {gallery, name, brand, prices, description, attributes, cartProducts} = this.state.product ?? {};
+    const {gallery, name, brand, prices, description, attributes } = this.state.product ?? {};
+    const {cartProducts} = this.props;
     // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
     const isCheckedPrice = price
+    const isProductInCart = cartProducts?.includes(this.state.product.id)
 
     return (
       <MainContainer>
@@ -130,7 +130,9 @@ class ProductPage extends Component {
 
             <button
               className={s.productParametersButtonToCart}
-              onClick={this.onAddToCartClick}>
+              onClick={this.onAddToCartClick}
+              disabled={isProductInCart}
+            >
               add to cart
             </button>
 
@@ -150,6 +152,9 @@ class ProductPage extends Component {
 }
 
 export default connect(
-  state => ({currency: selectCurrencyLabel(state)}),
+  state => ({
+    currency: selectCurrencyLabel(state),
+    cartProducts: selectCartProductsId(state)
+  }),
   {addProductAC})
 (withRouter(ProductPage));
