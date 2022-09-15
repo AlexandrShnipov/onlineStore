@@ -166,6 +166,8 @@
     &:disabled{
       cursor: initial;
       background: $colorMedium;
+      border: 1px solid transparent;
+      color: $textColorLight;
     };
   }
 

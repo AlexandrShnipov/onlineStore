@@ -50,13 +50,11 @@ class Header extends Component {
                 <div className={s.cartButtonWrap}>
                   <button className={s.cartButton} onClick={this.handleCartButtonClickForOpenMiniCart}>
                     <img src={cart} alt=""/>
+                    {
+                      cartProducts.length > 0 &&
+                      <span className={s.cartCount}>{cartProducts.length}</span>
+                    }
                   </button>
-
-                  {
-                    cartProducts.length > 0 &&
-                    <span className={s.cartCount}>{cartProducts.length}</span>
-                  }
-
                 </div>
               </div>
             </div>
