@@ -28,7 +28,7 @@ const cartReducer = (state = initialState, action) => {
         })),
         prices: product.prices,
         price: product.prices.find(price => price.currency.label === state.currency.label).amount,
-        gallery: [product.gallery[0]],
+        gallery: product.gallery,
         amount: 1
       };
       const newCartProducts = productIsAdded

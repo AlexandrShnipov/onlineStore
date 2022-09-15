@@ -1,18 +1,54 @@
 import {Component} from 'react';
 import s from './CartItem.module.scss';
 import AttributeRender from "../../AttributeRender/AttributeRender";
+import buttonPrev from '../../../images/arrowPrev.png';
+import buttonNext from '../../../images/arrowNext.png';
 
 class CartItem extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      sliderIndex: 1
+    }
+  }
+
+  nextSlide = () => {
+    console.log('click')
+    if (this.state.sliderIndex !== this.props.imageCartProduct.length) {
+      return (
+        this.setState({sliderIndex: this.state.sliderIndex + 1})
+      )
+    } else if (this.state.sliderIndex === this.props.imageCartProduct.length) {
+      return (
+        this.setState({sliderIndex: 1})
+      )
+    }
+  }
+
+  prevSlide = () => {
+    console.log('click')
+    if (this.state.sliderIndex !== 1) {
+      return (
+        this.setState({sliderIndex: this.state.sliderIndex - 1})
+      )
+    } else if (this.state.sliderIndex === 1) {
+      return (
+        this.setState({sliderIndex: 1})
+      )
+    }
+  }
+
   render() {
 
     const {
       brand, name, price, attributes, imageCartProduct,
       amount, styledCartMini, productParametersTitle,
-      attributeNameTitle, counterBlockCartMini,
-      attributeColorCartMiniWrap, attributeSizeCartMini,
-      counterBlockImagesWrapCartMini, currency
+      attributeNameTitle, counterBlockCartMini,cartSliderButtonsCartMini,
+     attributeColorCartMiniWrap, attributeSizeCartMini,
+      cartSliderImagesWrapCartMini, currency
     } = this.props;
-
+    console.log(imageCartProduct.length)
     return (
       <>
         <div className={`${s.container} ${styledCartMini}`}>
@@ -44,10 +80,34 @@ class CartItem extends Component {
                 disabled={amount === 1}
                 onClick={this.decreaseProducts}>&#8722;</button>
             </div>
-
-            <div className={`${s.counterBlockImagesWrap} ${counterBlockImagesWrapCartMini}`}>
-              <img className={s.counterBlockImages} src={imageCartProduct} alt={`${brand} ${name}`}/>
+            <div className={s.cartSlider}>
+              {imageCartProduct.map((image, index) =>
+                <div
+                  className={this.state.sliderIndex === index + 1
+                    ? `${s.cartSliderImagesWrap} ${s.activeAnim} ${cartSliderImagesWrapCartMini}`
+                    : `${s.cartSliderImagesWrap} ${cartSliderImagesWrapCartMini}`}
+                  key={index}>
+                  <img className={s.cartSliderImages} src={image} alt={`${brand} ${name}`}/>
+                </div>
+              )}
+              {imageCartProduct.length > 1 &&
+              <div className={`${s.cartSliderButtons} ${cartSliderButtonsCartMini}`}>
+                <button
+                  onClick={this.prevSlide}
+                  disabled={this.state.sliderIndex === 1}
+                >
+                  <img src={buttonPrev} alt={buttonPrev}/>
+                </button>
+                <button
+                  onClick={this.nextSlide}
+                  disabled={this.state.sliderIndex === imageCartProduct.length}
+                >
+                  <img src={buttonNext} alt={buttonNext}/>
+                </button>
+              </div>}
             </div>
+
+
             <button
               className={s.buttonDeleteProduct}
               onClick={this.deleteProductToCart}>

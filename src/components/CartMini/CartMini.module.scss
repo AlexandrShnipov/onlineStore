@@ -103,8 +103,6 @@ a {
 // styles for cartMini
 .container {
 
-
-
   & .styledCartMini {
     column-gap: toRem(16);
     margin-bottom: toRem(16);
@@ -153,8 +151,8 @@ a {
 
       & button {
         font-size: toRem(16);
-        min-width: toRem(24);
-        min-height: toRem(24);
+        width: toRem(24);
+        height: toRem(24);
         border: 1px solid $textColorMain;
         display: grid;
         place-content: center;
@@ -191,8 +189,19 @@ a {
     }
   }
 
-  & .counterBlockImagesWrapCartMini {
+  & .cartSliderImagesWrapCartMini {
     width: 100%;
+  }
+
+  & .cartSliderButtonsCartMini>button{
+    width: toRem(20)!important;
+    height: toRem(20)!important;
+
+    & >img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 

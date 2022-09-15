@@ -9,20 +9,13 @@ import {
 
 class Cart extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     cartItems: {}
-  //   };
-  // }
-
   render() {
     const {cartProducts, totalQuantity, totalPrice, currency} = this.props;
 
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
-    console.log(cartProducts[0].gallery)
+
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>

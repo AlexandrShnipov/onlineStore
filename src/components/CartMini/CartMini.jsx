@@ -34,9 +34,10 @@ class CartMini extends Component {
               productParametersTitle={s.productParametersTitle}
               attributeNameTitle={s.attributeNameTitle}
               counterBlockCartMini={s.counterBlockCartMini}
+              cartSliderButtonsCartMini={s.cartSliderButtonsCartMini}
               attributeColorCartMiniWrap={s.attributeColorCartMiniWrap}
               attributeSizeCartMini={s.attributeSizeCartMini}
-              counterBlockImagesWrapCartMini={s.counterBlockImagesWrapCartMini}
+              cartSliderImagesWrapCartMini={s.cartSliderImagesWrapCartMini}
               brand={product.brand}
               name={product.name}
               price={product.price}
