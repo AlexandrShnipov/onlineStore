@@ -55,6 +55,13 @@
 
 button {
   transition: all .5s linear;
+}
 
+.cartText{
+  font-size: toRem(32);
+  color:$textColorMain;
 
+  &>a{
+    color: $colorPrimary;
+  }
 }

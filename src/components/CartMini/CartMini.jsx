@@ -17,9 +17,7 @@ class CartMini extends Component {
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
     return (
       <>
-
         <div className={s.modal} onClick={handleCartButtonClickForOpenMiniCart}/>
-
           <div className={s.container}>
             {cartProducts.length ? (
               <>

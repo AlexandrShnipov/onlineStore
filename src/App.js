@@ -28,7 +28,6 @@ class App extends Component {
         this.setState({categories: data.categories})
       })
       .catch(err => console.log(err))
-
   }
 
   render() {
@@ -39,14 +38,14 @@ class App extends Component {
       <BrowserRouter>
         <div className='App'>
           {categories.length
-            ? <Header categories={categories} />
+            ? <Header categories={categories}/>
             : null}
           <main>
             <Routes>
-              <Route exact path={'/'} element={<Navigate to={`/${initialRoute}`}/>} />
-              <Route exact path='/:category' element={<CategoryPage />} />
-              <Route exact path='/:category/:productId' element={<ProductPage />} />
-              <Route exact path='/cart/*' element={<Cart />} />
+              <Route exact path={'/'} element={<Navigate to={`/${initialRoute}`}/>}/>
+              <Route exact path='/:category' element={<CategoryPage/>}/>
+              <Route exact path='/:category/:productId' element={<ProductPage/>}/>
+              <Route exact path='/cart/*' element={<Cart/>}/>
             </Routes>
           </main>
         </div>

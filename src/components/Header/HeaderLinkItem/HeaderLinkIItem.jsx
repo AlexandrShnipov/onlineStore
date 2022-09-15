@@ -5,6 +5,7 @@ import s from'./HeaderLinkItem.module.scss'
 class HeaderLinkIItem extends Component {
   render() {
     const { menuItem } = this.props;
+    console.log(menuItem)
     const menuItemStyles = ({isActive})=> isActive ? `${s.headerLink} ${s.active}` : s.headerLink;
     return (
       <li className={s.headerItem}>

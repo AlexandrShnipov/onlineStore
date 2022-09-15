@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 import {
   decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC
 } from "../../redux/cartReducer";
+import {NavLink} from "react-router-dom";
+import {withRouter} from "../../hocs/withRouter";
 
 class Cart extends Component {
 
@@ -19,36 +21,45 @@ class Cart extends Component {
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
-        {cartProducts.map(product => <CartItem
-          brand={product.brand}
-          name={product.name}
-          price={product.price}
-          currency={currency.symbol}
-          attributes={product.attributes}
-          imageCartProduct={product.gallery}
-          amount={product.amount}
-          increaseProducts={this.increaseProductsNumber(product.id)}
-          decreaseProducts={this.decreaseProductsNumber(product.id)}
-          deleteProductToCart={this.deleteProductToCart(product.id)}
-        />)}
+        {cartProducts.length ? (
+        <>
+          {cartProducts.map(product => <CartItem
+            brand={product.brand}
+            name={product.name}
+            price={product.price}
+            currency={currency.symbol}
+            attributes={product.attributes}
+            imageCartProduct={product.gallery}
+            amount={product.amount}
+            increaseProducts={this.increaseProductsNumber(product.id)}
+            decreaseProducts={this.decreaseProductsNumber(product.id)}
+            deleteProductToCart={this.deleteProductToCart(product.id)}
+          />)}
 
-        <div className={s.cartTotal}>
-          <table className={s.cartTotalTable}>
-            <tr>
-              <th>Tax 21%:</th>
-              <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
-            </tr>
-            <tr>
-              <th>Quantity:</th>
-              <td className={s.price}>{totalQuantity}</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
-            </tr>
-          </table>
-          <button>Order</button>
-        </div>
+          <div className={s.cartTotal}>
+            <table className={s.cartTotalTable}>
+              <tr>
+                <th>Tax 21%:</th>
+                <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
+              </tr>
+              <tr>
+                <th>Quantity:</th>
+                <td className={s.price}>{totalQuantity}</td>
+              </tr>
+              <tr>
+                <th>Total:</th>
+                <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
+              </tr>
+            </table>
+            <button>Order</button>
+          </div>
+        </>
+          )
+          : <p className={s.cartText}>Your shopping cart is empty
+            &#128532;. But it's easy to fix!
+            <NavLink to={'/'}> Go shopping &#128293;</NavLink>
+        </p>}
+
       </MainContainer>
     )
   }
@@ -75,4 +86,4 @@ export default connect((state) => ({
   increaseProductsNumberAC,
   decreaseProductsNumberAC,
   deleteProductToCartAC
-})(Cart);
+})(withRouter(Cart));
