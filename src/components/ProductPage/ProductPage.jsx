@@ -11,8 +11,11 @@ import Images from "./Images/Images";
 
 class ProductPage extends Component {
 
-  state = {
-    product: {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: {}
+    };
   }
 
   componentDidMount() {
@@ -90,7 +93,7 @@ class ProductPage extends Component {
 
   render() {
     console.log(this.state.product)
-    const {gallery, name, brand, prices, description, attributes } = this.state.product ?? {};
+    const {gallery, name, brand, prices, description, attributes} = this.state.product ?? {};
     const {cartProducts} = this.props;
     // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
@@ -100,7 +103,12 @@ class ProductPage extends Component {
     return (
       <MainContainer>
         <div className={s.container}>
-          <Images gallery={gallery} nane={name}/>
+
+          <Images
+            gallery={gallery}
+            nane={name}
+          />
+
           <div className={s.productParameters}>
             <h2 className={s.productParametersTitle}>{name}
               <span>{brand}</span>

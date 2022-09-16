@@ -6,21 +6,35 @@ import {selectCartProductsId, selectCurrencyLabel} from "../../../redux/catrSele
 
 class Images extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      mainImage: 0
+    };
+  }
+
+  getMainImage = (index) => () => {
+    this.setState({
+      mainImage: index
+    })
+  }
+
   render() {
-    const {gallery, name} = this.props ?? {};
+    const {gallery, name} = this.props;
+    console.log(gallery)
 
     return (
       <>
         <div className={s.imgBlock}>
           <div className={s.imgBlockSmallImg}>
             {gallery?.map((img, index) => (
-              <button key={index}>
+              <button key={index} onClick={this.getMainImage(index)}>
                 <img src={img} alt={name}/>
               </button>
             ))}
           </div>
           <div className={s.imgBlockBigImg}>
-            <img src={gallery?.[0]} alt={name}/>
+            <img src={gallery?.[this.state.mainImage] ?? ''} alt={name}/>
           </div>
         </div>
       </>
