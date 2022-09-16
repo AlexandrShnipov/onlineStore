@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 2rem;
+  min-height: toRem(320);
   padding-bottom: toRem(30);
   border-bottom: 1px solid $colorMedium;
   margin-bottom: toRem(32);
@@ -98,7 +99,7 @@
 
 .counterBlock {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4.5fr;
   gap: toRem(24);
   overflow: hidden;
   position: relative;

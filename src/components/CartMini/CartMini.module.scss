@@ -153,17 +153,6 @@ a {
         font-size: toRem(16);
         width: toRem(24);
         height: toRem(24);
-        border: 1px solid $textColorMain;
-        display: grid;
-        place-content: center;
-        background: transparent;
-        color: $textColorMain;
-
-        &:hover,
-        &:active,
-        &:disabled {
-          background: $colorMedium;
-        }
       }
     }
 
@@ -207,8 +196,8 @@ a {
 
 .cartMiniText {
   font-size: toRem(32);
-  color:$textColorMain;
-  }
+  color: $textColorMain;
+}
 
 
 
