@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {addProductAC} from "../../redux/cartReducer";
 import AttributeRender from "../AttributeRender/AttributeRender";
 import {selectCartProductsId, selectCurrencyLabel} from "../../redux/catrSelectors";
+import Images from "./Images/Images";
 
 class ProductPage extends Component {
 
@@ -99,18 +100,7 @@ class ProductPage extends Component {
     return (
       <MainContainer>
         <div className={s.container}>
-          <div className={s.imgBlock}>
-            <div className={s.imgBlockSmallImg}>
-              {gallery?.map((img, index) => (
-                <button key={index}>
-                  <img src={img} alt={name}/>
-                </button>
-              ))}
-            </div>
-            <div className={s.imgBlockBigImg}>
-              <img src={gallery?.[0]} alt={name}/>
-            </div>
-          </div>
+          <Images gallery={gallery} nane={name}/>
           <div className={s.productParameters}>
             <h2 className={s.productParametersTitle}>{name}
               <span>{brand}</span>
