@@ -25,13 +25,11 @@
 
   .slider {
     height: 70%;
-    padding-bottom: toRem(30);
-    overflow: hidden;
     position: relative;
   }
 
   &SmallImg {
-    display: flex;
+    display: grid;
     flex-direction: column;
     gap: toRem(40);
     width: 100%;
@@ -40,37 +38,31 @@
     scroll-behavior: smooth;
 
     & > button {
-      border: 1px solid $textColorLight;
-      width: toRem(80)!important;
+      border: none;
+      width: toRem(80) !important;
       //height: max-content;
-      height: toRem(80)!important;
+      height: toRem(80) !important;
       background: transparent;
 
-      &:hover,
-      &:active {
-        border: 1px solid $textColorMain;
-      }
 
       & > img {
-        width: calc(toRem(80) - toRem(2));
-        height: calc(toRem(80) - toRem(2));
+        width: toRem(80);
+        height: toRem(80);
         object-fit: cover;
       }
     }
   }
 
   .sliderButtons {
-    position: absolute;
-    bottom: 0;
-    right: 0;
     display: flex;
     gap: toRem(16);
+    margin-top: 1rem;
 
     & > button {
       border: none;
       width: toRem(24);
 
-      &:hover{
+      &:hover {
         opacity: .5;
       }
     }

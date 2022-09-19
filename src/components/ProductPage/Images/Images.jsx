@@ -58,6 +58,8 @@ class Images extends Component {
                 </button>
               ))}
             </div>
+
+
             {gallery?.length > 3 &&
             <div className={s.sliderButtons}>
               <button
@@ -75,7 +77,7 @@ class Images extends Component {
             </div>
 
             }
-          </div>
+        </div>
           <div className={s.imgBlockBigImg}>
             <img src={gallery?.[this.state.mainImage] ?? ''} alt={name}/>
           </div>
