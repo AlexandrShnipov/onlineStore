@@ -1,8 +1,48 @@
 @import "src/styles/sass/abstracts/variables";
 @import "src/styles/sass/abstracts/function";
 
-.select{
-  text-transform: uppercase;
-  border: none;
-  background: transparent;
+//.select{
+//  text-transform: uppercase;
+//  border: none;
+//  background: transparent;
+//}
+
+.select {
+  width: toRem(48);
+
+  &Btn {
+    width: 100%;
+    padding: toRem(5) toRem(10) toRem(5) toRem(10);
+    border: none;
+    position: relative;
+    caret-color: transparent;
+  }
+
+  .arrow{
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &Content {
+    position: absolute;
+    background-color: $textColorLight;
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    width: 100%;
+  }
+
+  &Item {
+    padding: toRem(5) toRem(10);
+    transition: all .5s linear;
+
+
+    &:hover {
+      background: #EEEEEE;;
+    }
+  }
+
+
 }
+
+
