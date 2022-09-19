@@ -25,11 +25,12 @@
 
   &SelectAndCartBlock {
     display: flex;
+    align-items: center;
+    position: relative;
   }
 }
 
-.cartButtonWrap{
-  margin-left: toRem(13);
+.cartButtonWrap {
   position: relative;
 }
 
@@ -40,11 +41,11 @@
   padding: toRem(8);
 }
 
-.cartCount{
+.cartCount {
   position: absolute;
   display: grid;
   place-content: center;
-  top:3px;
+  top: 3px;
   right: 0;
   width: toRem(16);
   height: toRem(16);
@@ -54,7 +55,6 @@
   font-size: toRem(11);
   font-weight: 700;
   font-family: Roboto;
-
 }
 
 .logo {
