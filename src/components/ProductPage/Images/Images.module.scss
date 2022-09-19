@@ -25,7 +25,6 @@
 
   .slider {
     height: 70%;
-    position: relative;
   }
 
   &SmallImg {
@@ -55,6 +54,7 @@
 
   .sliderButtons {
     display: flex;
+    justify-content: end;
     gap: toRem(16);
     margin-top: 1rem;
 
