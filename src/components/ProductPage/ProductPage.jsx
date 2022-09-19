@@ -93,7 +93,7 @@ class ProductPage extends Component {
 
   render() {
     console.log(this.state.product)
-    const {gallery, name, brand, prices, description, attributes} = this.state.product ?? {};
+    const {gallery, name, brand, prices, description, attributes, id} = this.state.product ?? {};
     const {cartProducts} = this.props;
     // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
@@ -107,6 +107,7 @@ class ProductPage extends Component {
           <Images
             gallery={gallery}
             nane={name}
+            id={id}
           />
 
           <div className={s.productParameters}>

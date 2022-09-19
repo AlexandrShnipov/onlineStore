@@ -117,7 +117,7 @@
       width: toRem(45);
       height: toRem(45);
       border: 1px solid $textColorMain;
-      display: grid;
+      display: flex;
       place-content: center;
       line-height: 1;
       background: transparent;
