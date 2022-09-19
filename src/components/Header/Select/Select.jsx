@@ -36,18 +36,22 @@ class Select extends Component {
       .catch(err => console.log(err))
   }
 
-  onChange = (event) => {
-    const {currencies} = this.state;
-    const selectedCurrency = currencies.find(cur => cur.label === event.target.value)
-    this.props.setCurrencyAC(selectedCurrency)
-    console.log(event.target.value)
-  }
+  //
+  // onChange = (event) => {
+  //   const {currencies} = this.state;
+  //   const selectedCurrency = currencies.find(cur => cur.label === event.target.value)
+  //   this.props.setCurrencyAC(selectedCurrency)
+  //   console.log(event.target.value)
+  // }
 
-  getSelectedCurrency = (index) => () => {
+  getSelectedCurrency = (index,) => (event) => {
     this.setState({
       selectedCurrency: index,
       isActive: false
     })
+    const {currencies} = this.state;
+    const selectedCurrency = currencies.find(cur => cur.label === event.target.value)
+    this.props.setCurrencyAC(selectedCurrency)
   }
 
   inputHandlerClickForOpenDropdown = () => {
@@ -62,22 +66,7 @@ class Select extends Component {
     console.log(currencies)
     return (
       <>
-        {/*<div className={s.select} data-state={''}>*/}
-        {/*  <div className={s.selectTitle}*/}
-        {/*       value={currency}*/}
-        {/*       onChange={this.onChange}>Option 0*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*<div className={s.selectContent}>*/}
-        {/*  {currencies.map((item, index) =>*/}
-        {/*    <>*/}
-        {/*      <input className={s.selectInput} type="radio"/>*/}
-        {/*      <label className={s.selectLabel} key={index} value={item.label}> {item.symbol} {item.label}</label>*/}
-        {/*    </>*/}
-        {/*  )}*/}
-        {/*</div>*/}
-
-        {/*<select className={s.select} value={currency} onChange={this.onChange}>*/}
+        {/*<select className={s.select} onChange={this.onChange}>*/}
         {/*  {currencies.map((item, index) =>*/}
         {/*    <option key={index} value={item.label}>*/}
         {/*      {item.symbol} {item.label}*/}
@@ -88,29 +77,27 @@ class Select extends Component {
           <input className={s.selectBtn}
                  value={currencies[this.state.selectedCurrency]?.symbol}
                  onClick={this.inputHandlerClickForOpenDropdown}
-                 onChange={this.onChange}/>
+            // onChange={this.onChange}
+          />
           {!this.state.isActive ?
-          <img className={s.arrow} src={arrow} alt={arrow} style={{transform:'rotate(180deg)'}}/>
-            :<img className={s.arrow} src={arrow} alt={arrow} style={{transform:'rotate(0)'}}/>
+            <img className={s.arrow} src={arrow} alt={arrow} style={{transform: 'rotate(180deg)'}}/>
+            : <img className={s.arrow} src={arrow} alt={arrow} style={{transform: 'rotate(0)'}}/>
           }
-
-
           {this.state.isActive &&
           <ul className={s.selectContent}>
             {currencies.map((item, index) =>
-              <li className={s.selectItem}
-                  key={index}
-                  value={item.label}
-                  onClick={this.getSelectedCurrency(index)}
-              >
-                {item.symbol} {item.label}
-              </li>)}
+              <li className={s.selectItemWrap}>
+                {item.label} {item.symbol}
+                <input className={s.selectItem}
+                       key={index}
+                       value={item.label}
+                       onClick={this.getSelectedCurrency(index)}/>
+              </li>
+            )}
           </ul>
           }
-
         </div>
       </>
-
     )
   }
 }

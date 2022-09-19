@@ -8,7 +8,7 @@
 //}
 
 .select {
-  width: toRem(48);
+  width: toRem(60);
 
   &Btn {
     width: 100%;
@@ -18,7 +18,7 @@
     caret-color: transparent;
   }
 
-  .arrow{
+  .arrow {
     position: absolute;
     right: 50%;
     top: 50%;
@@ -32,17 +32,31 @@
     width: 100%;
   }
 
-  &Item {
+  &ItemWrap {
     padding: toRem(5) toRem(10);
     transition: all .5s linear;
-
+    position: relative;
 
     &:hover {
       background: #EEEEEE;;
     }
   }
 
+  &Item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    font-size: 0;
+    background: transparent;
+    border: none;
+
+
+  }
+
 
 }
+
+
 
 
