@@ -113,9 +113,9 @@
 
     &:hover,
     &:active {
-      background: $textColorLight;
       color: $colorPrimary;
-      border: 1px solid $colorPrimary;
+      background-color: $textColorMain;
+      border: 1px solid $textColorMain;
     }
 
     &:disabled{
