@@ -11,6 +11,7 @@
   width: toRem(60);
 
   &Btn {
+    font-size: toRem(18);
     width: 100%;
     padding: toRem(5) toRem(10) toRem(5) toRem(10);
     border: none;
@@ -33,6 +34,7 @@
   }
 
   &ItemWrap {
+    font-size: toRem(18);
     padding: toRem(5) toRem(10);
     transition: all .5s linear;
     position: relative;
@@ -50,9 +52,5 @@
     font-size: 0;
     background: transparent;
     border: none;
-
-
   }
-
-
 }

@@ -31,10 +31,6 @@
   display: flex;
   align-items: center;
   margin-bottom: toRem(32);
-
-  & > .cartTitle {
-    font-size: toRem(16);
-  }
 }
 
 .cartTotal {
@@ -45,7 +41,6 @@
   margin-bottom: toRem(32);
 
   & > h5 {
-    font-size: toRem(16);
     font-family: Roboto;
     line-height: toRem(18);
     font-weight: 500;

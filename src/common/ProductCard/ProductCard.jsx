@@ -7,7 +7,6 @@ import cart from '../../images/cartWhite.png';
 class Card extends PureComponent {
 
   render() {
-    // console.log(this.props.location)
     const {location, id, image, name, brand, price, isAdded, inStock} = this.props;
     return (
       <div className={s.container}>
@@ -46,6 +45,5 @@ class Card extends PureComponent {
     this.props.addProductToCart(this.props.id);
   }
 }
-
 
 export default withRouter(Card)

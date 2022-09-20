@@ -13,13 +13,17 @@ class CartItem extends Component {
     }
   }
 
+  increaseProducts = () => this.props.increaseProducts();
+  decreaseProducts = () => this.props.decreaseProducts();
+  deleteProductToCart = () => this.props.deleteProductToCart();
+
   nextSlide = () => {
-    console.log('click')
-    if (this.state.sliderIndex !== this.props.imageCartProduct.length) {
+   const {state:{sliderIndex}, props:{imageCartProduct}} = this;
+    if (sliderIndex !== imageCartProduct.length) {
       return (
-        this.setState({sliderIndex: this.state.sliderIndex + 1})
+        this.setState({sliderIndex: sliderIndex + 1})
       )
-    } else if (this.state.sliderIndex === this.props.imageCartProduct.length) {
+    } else if (sliderIndex === imageCartProduct.length) {
       return (
         this.setState({sliderIndex: 1})
       )
@@ -27,12 +31,12 @@ class CartItem extends Component {
   }
 
   prevSlide = () => {
-    console.log('click')
-    if (this.state.sliderIndex !== 1) {
+    const {sliderIndex} = this.state;
+    if (sliderIndex !== 1) {
       return (
-        this.setState({sliderIndex: this.state.sliderIndex - 1})
+        this.setState({sliderIndex: sliderIndex - 1})
       )
-    } else if (this.state.sliderIndex === 1) {
+    } else if (sliderIndex === 1) {
       return (
         this.setState({sliderIndex: 1})
       )
@@ -48,7 +52,10 @@ class CartItem extends Component {
      attributeColorCartMiniWrap, attributeSizeCartMini,
       cartSliderImagesWrapCartMini, currency
     } = this.props;
-    console.log(imageCartProduct.length)
+    const {sliderIndex} = this.state
+    const {toggleCheckedAttribute, increaseProducts,
+      decreaseProducts,prevSlide, nextSlide, deleteProductToCart} = this
+
     return (
       <>
         <div className={`${s.container} ${styledCartMini}`}>
@@ -67,23 +74,23 @@ class CartItem extends Component {
                 attributeSizeCartMini={attributeSizeCartMini}
                 key={i}
                 attribute={attribute}
-                onCheck={this.toggleCheckedAttribute}
+                onCheck={toggleCheckedAttribute}
               />)}
 
           </div>
 
           <div className={`${s.counterBlock} ${counterBlockCartMini}`}>
             <div className={s.counterBlockButtons}>
-              <button onClick={this.increaseProducts}>&#43;</button>
+              <button onClick={increaseProducts}>&#43;</button>
               <span>{amount}</span>
               <button
                 disabled={amount === 1}
-                onClick={this.decreaseProducts}>&#8722;</button>
+                onClick={decreaseProducts}>&#8722;</button>
             </div>
             <div className={s.cartSlider}>
               {imageCartProduct.map((image, index) =>
                 <div
-                  className={this.state.sliderIndex === index + 1
+                  className={sliderIndex === index + 1
                     ? `${s.cartSliderImagesWrap} ${s.activeAnim} ${cartSliderImagesWrapCartMini}`
                     : `${s.cartSliderImagesWrap} ${cartSliderImagesWrapCartMini}`}
                   key={index}>
@@ -93,14 +100,14 @@ class CartItem extends Component {
               {imageCartProduct.length > 1 &&
               <div className={`${s.cartSliderButtons} ${cartSliderButtonsCartMini}`}>
                 <button
-                  onClick={this.prevSlide}
-                  disabled={this.state.sliderIndex === 1}
+                  onClick={prevSlide}
+                  disabled={sliderIndex === 1}
                 >
                   <img src={buttonPrev} alt={buttonPrev}/>
                 </button>
                 <button
-                  onClick={this.nextSlide}
-                  disabled={this.state.sliderIndex === imageCartProduct.length}
+                  onClick={nextSlide}
+                  disabled={sliderIndex === imageCartProduct.length}
                 >
                   <img src={buttonNext} alt={buttonNext}/>
                 </button>
@@ -110,7 +117,7 @@ class CartItem extends Component {
 
             <button
               className={s.buttonDeleteProduct}
-              onClick={this.deleteProductToCart}>
+              onClick={deleteProductToCart}>
               <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
                    className={s.svg}
                    data-spm-anchor-id="a2g2w.cart.0.i2.76774aa6Ng8cZE">
@@ -123,10 +130,6 @@ class CartItem extends Component {
       </>
     )
   }
-
-  increaseProducts = () => this.props.increaseProducts();
-  decreaseProducts = () => this.props.decreaseProducts();
-  deleteProductToCart = () => this.props.deleteProductToCart();
 }
 
 export default CartItem;

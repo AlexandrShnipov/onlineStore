@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.wrapper{
+.wrapper {
   position: relative;
 
   &:hover {
@@ -22,7 +22,6 @@
   color: $textColorMain;
   padding: toRem(16);
   transition: all .5s linear;
-
 
 
   &Img {
@@ -68,7 +67,7 @@
   }
 }
 
-.wrapper:hover>.buttonAddInCart{
+.wrapper:hover > .buttonAddInCart {
   display: grid;
 }
 
@@ -88,7 +87,6 @@
     position: relative;
     top: -131%;
     font-size: toRem(24);
-    font-weight: 400;
     text-transform: uppercase;
     color: #8D8F9A;
   }

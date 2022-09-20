@@ -8,8 +8,6 @@ import {withRouter} from "../../hocs/withRouter";
 import Select from "./Select/Select";
 import CartMini from "../CartMini/CartMini";
 import {connect} from "react-redux";
-import {decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC} from "../../redux/cartReducer";
-
 
 class Header extends Component {
 
@@ -34,9 +32,10 @@ class Header extends Component {
   render() {
     const {isCartMiniOpen} = this.state
     const {categories, cartProducts} = this.props;
+    const {handleHeaderClick, handleCartButtonClickForOpenMiniCart} = this;
 
     return <>
-      <header className={s.header} onClick={this.handleHeaderClick}>
+      <header className={s.header} onClick={handleHeaderClick}>
         <MainContainer>
           <div className={s.headerWrap}>
             <div className={s.headerWrapContainer}>
@@ -48,7 +47,7 @@ class Header extends Component {
               <div className={s.headerSelectAndCartBlock}>
                 <Select/>
                 <div className={s.cartButtonWrap}>
-                  <button className={s.cartButton} onClick={this.handleCartButtonClickForOpenMiniCart}>
+                  <button className={s.cartButton} onClick={handleCartButtonClickForOpenMiniCart}>
                     <img src={cart} alt=""/>
                     {
                       cartProducts.length > 0 &&
@@ -63,7 +62,7 @@ class Header extends Component {
       </header>
       {isCartMiniOpen && <CartMini
         isCartMiniOpen={isCartMiniOpen}
-        handleCartButtonClickForOpenMiniCart={this.handleCartButtonClickForOpenMiniCart}/>
+        handleCartButtonClickForOpenMiniCart={handleCartButtonClickForOpenMiniCart}/>
       }
 
     </>
@@ -71,5 +70,5 @@ class Header extends Component {
 }
 
 export default connect((state) => ({
-  cartProducts: state.cart. cartProducts,
+  cartProducts: state.cart.cartProducts,
 }), null)(withRouter(Header));

@@ -38,15 +38,14 @@
 
     & > button {
       border: none;
-      width: toRem(80) !important;
-      //height: max-content;
-      height: toRem(80) !important;
+      width: toRem(80);
+      height: toRem(80);
       background: transparent;
+      overflow: hidden;
 
 
       & > img {
-        width: toRem(80);
-        height: toRem(80);
+        width: 100%;
         object-fit: cover;
       }
     }

@@ -92,10 +92,8 @@ class ProductPage extends Component {
   }
 
   render() {
-    console.log(this.state.product)
     const {gallery, name, brand, prices, description, attributes, id} = this.state.product ?? {};
     const {cartProducts} = this.props;
-    // console.log(prices)
     const price = prices?.find(price => price.currency.label === this.props.currency)
     const isCheckedPrice = price
     const isProductInCart = cartProducts?.includes(this.state.product.id)
@@ -128,7 +126,7 @@ class ProductPage extends Component {
             </div>
 
             <button
-              className={s.productParametersButtonToCart}
+              className={s.productParametersButtonAddToCart}
               onClick={this.onAddToCartClick}
               disabled={isProductInCart}
             >
@@ -144,7 +142,6 @@ class ProductPage extends Component {
 
   onAddToCartClick = () => {
     const {state: {product}, props: {addProductAC}} = this;
-
     addProductAC(product);
   }
 

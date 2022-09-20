@@ -12,9 +12,7 @@ class AttributeColor extends PureComponent {
          <span className={s.attribute} style={{background: background}}>
              </span>
         </div>
-
       </div>
-
     )
   }
 }

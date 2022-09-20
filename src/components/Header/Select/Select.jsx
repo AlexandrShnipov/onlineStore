@@ -66,7 +66,6 @@ class Select extends Component {
 
   render() {
     const {state: {currencies}, props: {currency}} = this;
-    console.log(currencies)
     return (
       <>
         {/*<select className={s.select} onChange={this.onChange}>*/}

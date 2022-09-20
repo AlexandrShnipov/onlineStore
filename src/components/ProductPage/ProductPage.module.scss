@@ -8,6 +8,10 @@
   margin-right: toRem(100);
   color: $textColorMain;
   margin-bottom: toRem(103);
+
+  @media(max-width: toRem(900)) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .productParametersTitle {
@@ -38,55 +42,6 @@
     text-transform: uppercase;
   }
 
-  &Size {
-    &Options {
-      display: flex;
-      gap: toRem(12);
-
-      & > span {
-        font-family: Source Sans Pro;
-        font-size: toRem(16);
-        line-height: toRem(18);
-        font-weight: 400;
-        text-transform: uppercase;
-        display: grid;
-        place-content: center;
-        min-width: toRem(63);
-        min-height: toRem(45);
-        border: 1px solid $textColorMain;
-
-        &.active {
-          color: $textColorLight;
-          background: $textColorMain;
-
-        }
-      }
-    }
-  }
-
-  &Color {
-    &Options {
-      display: flex;
-      gap: toRem(8);
-
-      & > div {
-        padding: 2px;
-        min-width: toRem(36);
-        min-height: toRem(36);
-
-        &.active {
-          border: 1px solid $colorPrimary;
-        }
-      }
-
-      & > div > span {
-        display: inline-block;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-
   &Price {
     margin-bottom: toRem(25);
 
@@ -101,7 +56,7 @@
     }
   }
 
-  &ButtonToCart {
+  &ButtonAddToCart {
     line-height: toRem(52);
     text-transform: uppercase;
     color: $textColorLight;
