@@ -89,10 +89,9 @@ class Select extends Component {
           {this.state.isActive &&
           <ul className={s.selectContent}>
             {currencies.map((item, index) =>
-              <li key={index} className={s.selectItemWrap}>
-                <div className={s.selectItem} onClick={this.getSelectedCurrency(index, item.label)}>
-                  {item.label} {item.symbol}
-                </div>
+              <li className={s.selectItem} key={index}
+                  onClick={this.getSelectedCurrency(index, item.label)}>
+                {item.label} {item.symbol}
               </li>
             )}
           </ul>
@@ -103,10 +102,10 @@ class Select extends Component {
   }
 
   onSelectToggle = (e) => {
-    const { isActive } = this.state;
+    const {isActive} = this.state;
 
     if (isActive && !this.selectRef.current.contains(e.target)) {
-      this.setState({ isActive: false });
+      this.setState({isActive: false});
     }
   }
 
