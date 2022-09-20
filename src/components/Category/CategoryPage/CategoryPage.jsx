@@ -11,8 +11,11 @@ import {selectCartProductsId, selectCurrencyLabel} from "../../../redux/catrSele
 
 class CategoryPage extends Component {
 
-  state = {
-    category: {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: {}
+    }
   }
 
   componentDidMount() {

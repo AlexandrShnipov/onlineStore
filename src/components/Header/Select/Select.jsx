@@ -9,10 +9,13 @@ import arrow from '../../../images/arrowForSelect.png'
 
 class Select extends Component {
 
-  state = {
-    currencies: [],
-    selectedCurrency: 0,
-    isActive: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      currencies: [],
+      selectedCurrency: 0,
+      isActive: false
+    }
   }
 
   componentDidMount() {
