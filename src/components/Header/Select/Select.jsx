@@ -66,6 +66,7 @@ class Select extends Component {
 
   render() {
     const {state: {currencies}, props: {currency}} = this;
+
     return (
       <>
         {/*<select className={s.select} onChange={this.onChange}>*/}
@@ -76,15 +77,16 @@ class Select extends Component {
         {/*</select>*/}
 
         <div className={s.select}>
-          <input className={s.selectBtn}
-                 value={currencies[this.state.selectedCurrency]?.symbol}
-                 onClick={this.inputHandlerClickForOpenDropdown}
-            // onChange={this.onChange}
-          />
-          {!this.state.isActive ?
-            <img className={s.arrow} src={arrow} alt={arrow} style={{transform: 'rotate(180deg)'}}/>
-            : <img className={s.arrow} src={arrow} alt={arrow} style={{transform: 'rotate(0)'}}/>
-          }
+          <button className={s.selectBtn}
+                  value={currencies[this.state.selectedCurrency]?.symbol}
+                  onClick={this.inputHandlerClickForOpenDropdown}
+          >
+            {currencies[this.state.selectedCurrency]?.symbol}
+            {!this.state.isActive ?
+              <img className={s.arrow} src={arrow} alt={arrow} style={{transform: 'rotate(180deg)'}}/>
+              : <img className={s.arrow} src={arrow} alt={arrow} style={{transform: 'rotate(0)'}}/>
+            }
+          </button>
           {this.state.isActive &&
           <ul className={s.selectContent}>
             {currencies.map((item, index) =>
@@ -93,7 +95,9 @@ class Select extends Component {
                 <input className={s.selectItem}
                        key={index}
                        value={item.label}
-                       onClick={this.getSelectedCurrency(index)}/>
+                       onClick={this.getSelectedCurrency(index)}
+                       tabIndex={index}
+                />
               </li>
             )}
           </ul>

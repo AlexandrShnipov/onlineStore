@@ -12,53 +12,55 @@ import {withRouter} from "../../hocs/withRouter";
 class Cart extends Component {
 
   render() {
-    const {cartProducts, totalQuantity, totalPrice, currency} = this.props;
-
-    const tax = 0.21
+    const {cartProducts, totalQuantity, totalPrice, currency, location, id, category} = this.props;
+      const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
-
+    console.log(cartProducts, id, category)
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
         {cartProducts.length ? (
-        <>
-          {cartProducts.map(product => <CartItem
-            brand={product.brand}
-            name={product.name}
-            price={product.price}
-            currency={currency.symbol}
-            attributes={product.attributes}
-            imageCartProduct={product.gallery}
-            amount={product.amount}
-            increaseProducts={this.increaseProductsNumber(product.id)}
-            decreaseProducts={this.decreaseProductsNumber(product.id)}
-            deleteProductToCart={this.deleteProductToCart(product.id)}
-          />)}
+            <>
+              {cartProducts.map(product => <CartItem
+                category={category}
+                location={location}
+                id={id}
+                brand={product.brand}
+                name={product.name}
+                price={product.price}
+                currency={currency.symbol}
+                attributes={product.attributes}
+                imageCartProduct={product.gallery}
+                amount={product.amount}
+                increaseProducts={this.increaseProductsNumber(product.id)}
+                decreaseProducts={this.decreaseProductsNumber(product.id)}
+                deleteProductToCart={this.deleteProductToCart(product.id)}
+              />)}
 
-          <div className={s.cartTotal}>
-            <table className={s.cartTotalTable}>
-              <tr>
-                <th>Tax 21%:</th>
-                <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
-              </tr>
-              <tr>
-                <th>Quantity:</th>
-                <td className={s.price}>{totalQuantity}</td>
-              </tr>
-              <tr>
-                <th>Total:</th>
-                <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
-              </tr>
-            </table>
-            <button>Order</button>
-          </div>
-        </>
+              <div className={s.cartTotal}>
+                <table className={s.cartTotalTable}>
+                  <tr>
+                    <th>Tax 21%:</th>
+                    <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
+                  </tr>
+                  <tr>
+                    <th>Quantity:</th>
+                    <td className={s.price}>{totalQuantity}</td>
+                  </tr>
+                  <tr>
+                    <th>Total:</th>
+                    <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
+                  </tr>
+                </table>
+                <button>Order</button>
+              </div>
+            </>
           )
           : <p className={s.cartText}>Your shopping cart is empty
             &#128532;. But it's easy to fix!
             <NavLink to={'/'}> Go shopping &#128293;</NavLink>
-        </p>}
+          </p>}
 
       </MainContainer>
     )

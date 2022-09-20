@@ -3,6 +3,8 @@ import s from './CartItem.module.scss';
 import AttributeRender from "../../AttributeRender/AttributeRender";
 import buttonPrev from '../../../images/arrowPrev.png';
 import buttonNext from '../../../images/arrowNext.png';
+import {withRouter} from "../../../hocs/withRouter";
+import {NavLink} from "react-router-dom";
 
 class CartItem extends Component {
 
@@ -50,7 +52,7 @@ class CartItem extends Component {
       amount, styledCartMini, productParametersTitle,
       attributeNameTitle, counterBlockCartMini,cartSliderButtonsCartMini,
      attributeColorCartMiniWrap, attributeSizeCartMini,
-      cartSliderImagesWrapCartMini, currency
+      cartSliderImagesWrapCartMini, currency, location, id, category
     } = this.props;
     const {sliderIndex} = this.state
     const {toggleCheckedAttribute, increaseProducts,
@@ -59,7 +61,10 @@ class CartItem extends Component {
     return (
       <>
         <div className={`${s.container} ${styledCartMini}`}>
-          <div className={s.productParameters}>
+          <NavLink
+            className={s.productParameters}
+            to={{pathname: `${id}`}}
+          >
             <h2 className={`${s.productParametersTitle} ${productParametersTitle}`}>{brand}
               <span>{name}</span>
             </h2>
@@ -77,7 +82,7 @@ class CartItem extends Component {
                 onCheck={toggleCheckedAttribute}
               />)}
 
-          </div>
+          </NavLink>
 
           <div className={`${s.counterBlock} ${counterBlockCartMini}`}>
             <div className={s.counterBlockButtons}>
@@ -132,4 +137,4 @@ class CartItem extends Component {
   }
 }
 
-export default CartItem;
+export default withRouter(CartItem);

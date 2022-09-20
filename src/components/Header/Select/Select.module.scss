@@ -15,15 +15,11 @@
     width: 100%;
     padding: toRem(5) toRem(10) toRem(5) toRem(10);
     border: none;
-    position: relative;
+    background: transparent;
     caret-color: transparent;
-  }
-
-  .arrow {
-    position: absolute;
-    right: 50%;
-    top: 50%;
-    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &Content {
