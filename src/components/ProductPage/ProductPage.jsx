@@ -27,7 +27,8 @@ class ProductPage extends Component {
     const getProduct = gql`
   query GetProduct($id: String!) {
      product(id: $id) {
-      id
+    category
+    id
     brand
     name
     description

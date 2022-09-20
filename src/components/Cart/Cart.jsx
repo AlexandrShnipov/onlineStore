@@ -23,9 +23,9 @@ class Cart extends Component {
         {cartProducts.length ? (
             <>
               {cartProducts.map(product => <CartItem
-                category={category}
+                category={product.category}
                 location={location}
-                id={id}
+                id={product.id}
                 brand={product.brand}
                 name={product.name}
                 price={product.price}

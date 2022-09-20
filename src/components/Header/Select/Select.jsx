@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import React, {Component} from 'react';
 import s from './Select.module.scss';
 import {withRouter} from "../../../hocs/withRouter";
 import {gql, request} from "graphql-request";
@@ -8,9 +8,9 @@ import {selectCurrencyLabel} from "../../../redux/catrSelectors";
 import arrow from '../../../images/arrowForSelect.png'
 
 class Select extends Component {
-
   constructor(props) {
     super(props);
+    this.selectRef = React.createRef();
     this.state = {
       currencies: [],
       selectedCurrency: 0,
@@ -19,6 +19,7 @@ class Select extends Component {
   }
 
   componentDidMount() {
+    document.addEventListener('click', this.onSelectToggle)
     const getCurrencies = gql`
     {
       currencies{
@@ -39,6 +40,10 @@ class Select extends Component {
       .catch(err => console.log(err))
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onSelectToggle)
+  }
+
   //
   // onChange = (event) => {
   //   const {currencies} = this.state;
@@ -47,13 +52,13 @@ class Select extends Component {
   //   console.log(event.target.value)
   // }
 
-  getSelectedCurrency = (index,) => (event) => {
+  getSelectedCurrency = (index, value) => () => {
     this.setState({
       selectedCurrency: index,
       isActive: false
     })
     const {currencies} = this.state;
-    const selectedCurrency = currencies.find(cur => cur.label === event.target.value)
+    const selectedCurrency = currencies.find(cur => cur.label === value)
     this.props.setCurrencyAC(selectedCurrency)
   }
 
@@ -66,17 +71,11 @@ class Select extends Component {
 
   render() {
     const {state: {currencies}, props: {currency}} = this;
+    console.log(this.selectRef?.current)
 
     return (
       <>
-        {/*<select className={s.select} onChange={this.onChange}>*/}
-        {/*  {currencies.map((item, index) =>*/}
-        {/*    <option key={index} value={item.label}>*/}
-        {/*      {item.symbol} {item.label}*/}
-        {/*    </option>)}*/}
-        {/*</select>*/}
-
-        <div className={s.select}>
+        <div className={s.select} ref={this.selectRef}>
           <button className={s.selectBtn}
                   value={currencies[this.state.selectedCurrency]?.symbol}
                   onClick={this.inputHandlerClickForOpenDropdown}
@@ -90,14 +89,10 @@ class Select extends Component {
           {this.state.isActive &&
           <ul className={s.selectContent}>
             {currencies.map((item, index) =>
-              <li className={s.selectItemWrap}>
-                {item.label} {item.symbol}
-                <input className={s.selectItem}
-                       key={index}
-                       value={item.label}
-                       onClick={this.getSelectedCurrency(index)}
-                       tabIndex={index}
-                />
+              <li key={index} className={s.selectItemWrap}>
+                <div className={s.selectItem} onClick={this.getSelectedCurrency(index, item.label)}>
+                  {item.label} {item.symbol}
+                </div>
               </li>
             )}
           </ul>
@@ -106,6 +101,15 @@ class Select extends Component {
       </>
     )
   }
+
+  onSelectToggle = (e) => {
+    const { isActive } = this.state;
+
+    if (isActive && !this.selectRef.current.contains(e.target)) {
+      this.setState({ isActive: false });
+    }
+  }
+
 }
 
 export default connect(

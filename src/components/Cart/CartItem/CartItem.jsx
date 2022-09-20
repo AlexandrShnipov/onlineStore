@@ -63,7 +63,7 @@ class CartItem extends Component {
         <div className={`${s.container} ${styledCartMini}`}>
           <NavLink
             className={s.productParameters}
-            to={{pathname: `${id}`}}
+            to={{pathname: `/${category}/${id}`}}
           >
             <h2 className={`${s.productParametersTitle} ${productParametersTitle}`}>{brand}
               <span>{name}</span>
