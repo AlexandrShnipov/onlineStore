@@ -1,4 +1,5 @@
 import cloneDeep from "lodash.clonedeep";
+import { v4 as uuidv4 } from 'uuid'
 
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 const INCREASE_PRODUCTS_NUMBER = 'INCREASE_PRODUCT';
@@ -16,24 +17,29 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART: {
-      const productIsAdded = state.cartProducts.some(product => product.id === action.payload.product.id);
-      const product = cloneDeep(action.payload.product);
+      const checkedAttributes = action.payload.product.attributes.map(attribute => ({
+        ...attribute,
+        items: attribute.items
+          .filter((item, i) => typeof item.isChecked === 'undefined' ? i === 0 : item.isChecked)
+          .map(item => (item.isChecked ? {...item} : {...item, isChecked: true}))
+      }));
+      const uniqueId = checkedAttributes.reduce((acc, item) => {
+        return `${acc}-${item.id}-${item.items[0].id}`
+      }, `${action.payload.product.id}`);
+      const productIsAdded = state.cartProducts.some(product => product.uniqueId === uniqueId);
       const newProduct = {
-        ...product,
-        attributes: product.attributes.map(attribute => ({
-          ...attribute,
-          items: attribute.items
-            .filter((item, i) => typeof item.isChecked === 'undefined' ? i === 0 : item.isChecked)
-            .map(item => (item.isChecked ? {...item} : {...item, isChecked: true}))
-        })),
-        prices: product.prices,
-        price: product.prices.find(price => price.currency.label === state.currency.label).amount,
-        gallery: product.gallery,
+        ...action.payload.product,
+        uniqueId,
+        attributes: checkedAttributes,
+        prices: cloneDeep(action.payload.product.prices),
+        price: action.payload.product.prices.find(price => price.currency.label === state.currency.label).amount,
+        gallery: cloneDeep(action.payload.product.gallery),
         amount: 1
       };
       const newCartProducts = productIsAdded
-        ? [...state.cartProducts
-          .map(product => product.id === newProduct.id ? {...newProduct} : {...product})]
+        ? [...state.cartProducts.map(product => product.uniqueId === newProduct.uniqueId
+          ? {...product, amount: product.amount + 1}
+          : {...product})]
         : [...state.cartProducts, newProduct]
       const newTotalQuantity = state.totalQuantity + 1;
       const netProductsPrice = newCartProducts.reduce((sum, product) => sum + product.price, 0);
@@ -47,7 +53,7 @@ const cartReducer = (state = initialState, action) => {
     case INCREASE_PRODUCTS_NUMBER: {
       const newCartProducts = state.cartProducts.map(product => {
         const copiedProduct = cloneDeep(product);
-        if (action.payload.id === product.id) {
+        if (action.payload.id === product.uniqueId) {
           return {
             ...copiedProduct,
             amount: product.amount + 1,
@@ -68,7 +74,7 @@ const cartReducer = (state = initialState, action) => {
     case DECREASE_PRODUCTS_NUMBER: {
       const newCartProducts = state.cartProducts.map(product => {
         const copiedProduct = cloneDeep(product);
-        if (action.payload.id === product.id) {
+        if (action.payload.id === product.uniqueId) {
           return {
             ...copiedProduct,
             amount: product.amount - 1
@@ -105,7 +111,7 @@ const cartReducer = (state = initialState, action) => {
 
     case DELETE_PRODUCT: {
       const cartProducts = state.cartProducts
-        .filter(product => product.id !== action.payload.id)
+        .filter(product => product.uniqueId !== action.payload.id)
       return {
         ...state,
         cartProducts: cartProducts,

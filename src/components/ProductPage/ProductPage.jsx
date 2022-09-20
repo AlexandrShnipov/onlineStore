@@ -27,7 +27,7 @@ class ProductPage extends Component {
     const getProduct = gql`
   query GetProduct($id: String!) {
      product(id: $id) {
-    id
+      id
     brand
     name
     description
@@ -96,7 +96,6 @@ class ProductPage extends Component {
     const {cartProducts} = this.props;
     const price = prices?.find(price => price.currency.label === this.props.currency)
     const isCheckedPrice = price
-    const isProductInCart = cartProducts?.includes(this.state.product.id)
 
     return (
       <MainContainer>
@@ -128,7 +127,6 @@ class ProductPage extends Component {
             <button
               className={s.productParametersButtonAddToCart}
               onClick={this.onAddToCartClick}
-              disabled={isProductInCart}
             >
               add to cart
             </button>
@@ -149,8 +147,7 @@ class ProductPage extends Component {
 
 export default connect(
   state => ({
-    currency: selectCurrencyLabel(state),
-    cartProducts: selectCartProductsId(state)
+    currency: selectCurrencyLabel(state)
   }),
   {addProductAC})
 (withRouter(ProductPage));

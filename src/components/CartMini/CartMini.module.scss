@@ -138,6 +138,10 @@ a {
       gap: 0.5rem;
       flex-basis: 60%;
 
+      @media (max-width: toRem(900)) {
+        height: toRem(180);
+      }
+
       & span {
         font-size: toRem(16);
         line-height: 160%;

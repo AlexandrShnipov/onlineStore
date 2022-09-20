@@ -40,7 +40,6 @@ class CategoryPage extends Component {
         <CategoryContainer title={name}>
           {this.state.category?.products?.map(({brand, id, gallery, name, prices, inStock}) => {
             const price = prices.find(price => price.currency.label === this.props.currency)
-            const isAdded = cartProducts?.includes(id);
             return (
               <Card
                 key={id}
@@ -51,7 +50,6 @@ class CategoryPage extends Component {
                 price={price}
                 inStock={inStock}
                 addProductToCart={this.addProductToCart}
-                isAdded={isAdded}
               />
             )
           })}
@@ -111,7 +109,6 @@ class CategoryPage extends Component {
 
 export default connect(
   (state) => ({
-    cartProducts: selectCartProductsId(state),
     currency: selectCurrencyLabel(state)
   }),
   {addProductAC})(withRouter(CategoryPage))

@@ -10,6 +10,10 @@
   border-bottom: 1px solid $colorMedium;
   margin-bottom: toRem(32);
   color: $textColorMain;
+
+  @media (max-width: toRem(900)) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .price {
@@ -104,6 +108,11 @@
   position: relative;
   justify-self: end;
   padding-right: toRem(32);
+
+  @media (max-width: toRem(900)) {
+    justify-self: start;
+    height: toRem(320);
+  }
 
   &Buttons {
     display: flex;

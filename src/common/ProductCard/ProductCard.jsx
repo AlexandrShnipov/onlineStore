@@ -7,7 +7,7 @@ import cart from '../../images/cartWhite.png';
 class Card extends PureComponent {
 
   render() {
-    const {location, id, image, name, brand, price, isAdded, inStock} = this.props;
+    const {location, id, image, name, brand, price, inStock} = this.props;
     return (
       <div className={s.container}>
         <div className={s.wrapper}>
@@ -23,13 +23,12 @@ class Card extends PureComponent {
             <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
             <p className={s.cardPrice}><span>{price?.currency?.symbol}</span> {price?.amount}</p>
           </NavLink>
-          {!isAdded &&
           <button
             className={s.buttonAddInCart}
             onClick={this.onAddToCartClick}
           >
             <img src={cart} alt='cart images'/>
-          </button>}
+          </button>
         </div>
         {/*{*/}
         {/*  inStock &&*/}

@@ -33,9 +33,9 @@ class Cart extends Component {
                 attributes={product.attributes}
                 imageCartProduct={product.gallery}
                 amount={product.amount}
-                increaseProducts={this.increaseProductsNumber(product.id)}
-                decreaseProducts={this.decreaseProductsNumber(product.id)}
-                deleteProductToCart={this.deleteProductToCart(product.id)}
+                increaseProducts={this.increaseProductsNumber(product.uniqueId)}
+                decreaseProducts={this.decreaseProductsNumber(product.uniqueId)}
+                deleteProductToCart={this.deleteProductToCart(product.uniqueId)}
               />)}
 
               <div className={s.cartTotal}>
