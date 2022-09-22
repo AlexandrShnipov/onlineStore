@@ -1,5 +1,4 @@
 import cloneDeep from "lodash.clonedeep";
-import { v4 as uuidv4 } from 'uuid'
 
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 const INCREASE_PRODUCTS_NUMBER = 'INCREASE_PRODUCT';
@@ -21,7 +20,6 @@ const cartReducer = (state = initialState, action) => {
         ...attribute,
         items: attribute.items
           .filter((item, i) => typeof item.isChecked === 'undefined' ? i === 0 : item.isChecked)
-        // is it need?
           .map(item => (item.isChecked ? {...item} : {...item, isChecked: true}))
       }));
       const uniqueId = checkedAttributes.reduce((acc, item) => {
