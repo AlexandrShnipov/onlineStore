@@ -52,7 +52,7 @@ class CartItem extends Component {
       amount, styledCartMini, productParametersTitle,
       attributeNameTitle, counterBlockCartMini, cartSliderButtonsCartMini,
       attributeColorCartMiniWrap, attributeSizeCartMini,
-      cartSliderImagesWrapCartMini, currency, id, category
+      cartSliderImagesWrapCartMini, currency, id, category, handlerClickClosedMiniCart
     } = this.props;
     const {sliderIndex} = this.state
     const {
@@ -67,6 +67,7 @@ class CartItem extends Component {
             className={s.productParameters}>
             <NavLink
               className={`${s.productParametersTitle} ${productParametersTitle}`}
+              onClick={handlerClickClosedMiniCart}
               to={{pathname: `/${category}/${id}`}}
             >{brand}
               <span>{name}</span>

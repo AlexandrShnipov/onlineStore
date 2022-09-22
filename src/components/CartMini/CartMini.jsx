@@ -9,17 +9,17 @@ class CartMini extends Component {
 
   render() {
     const {
-      handleCartButtonClickForOpenMiniCart, cartProducts,
-      totalQuantity, currency, totalPrice, location
+      handlerCartButtonClickForOpenMiniCart, cartProducts,
+      totalQuantity, currency, totalPrice, location,handlerClickClosedMiniCart
     } = this.props;
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
     return (
       <>
-        <div className={s.modal} onClick={handleCartButtonClickForOpenMiniCart}/>
-          <div className={s.container}>
-            {cartProducts.length ? (
+        <div className={s.modal} onClick={handlerCartButtonClickForOpenMiniCart}/>
+        <div className={s.container}>
+          {cartProducts.length ? (
               <>
                 <div className={s.cartTitleBlock}>
                   <h2 className={s.cartTitle}>MyBag.&nbsp; </h2>
@@ -31,6 +31,7 @@ class CartMini extends Component {
                 <div>
                   {cartProducts.map((product, index) => <CartItem
                     key={index}
+                    handlerClickClosedMiniCart={handlerClickClosedMiniCart}
                     styledCartMini={s.styledCartMini}
                     productParametersTitle={s.productParametersTitle}
                     attributeNameTitle={s.attributeNameTitle}
@@ -60,15 +61,15 @@ class CartMini extends Component {
                   </div>
 
                   <div className={s.buttons}>
-                    <NavLink to={'/cart'} onClick={handleCartButtonClickForOpenMiniCart}>view bag</NavLink>
-                    <NavLink to={'/'} onClick={handleCartButtonClickForOpenMiniCart}>chek out</NavLink>
+                    <NavLink to={'/cart'} onClick={handlerCartButtonClickForOpenMiniCart}>view bag</NavLink>
+                    <NavLink to={'/'} onClick={handlerCartButtonClickForOpenMiniCart}>chek out</NavLink>
                   </div>
                 </div>
               </>
             )
-              : <p className={s.cartMiniText}>Your shopping cart is empty
-                &#128532;</p>}
-          </div>
+            : <p className={s.cartMiniText}>Your shopping cart is empty
+              &#128532;</p>}
+        </div>
         }
 
       </>

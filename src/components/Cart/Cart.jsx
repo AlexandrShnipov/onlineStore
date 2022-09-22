@@ -22,7 +22,8 @@ class Cart extends Component {
         <h1 className={s.cartTitle}>Cart</h1>
         {cartProducts.length ? (
             <>
-              {cartProducts.map(product => <CartItem
+              {cartProducts.map((product,index) => <CartItem
+                key={index}
                 category={product.category}
                 location={location}
                 id={product.id}

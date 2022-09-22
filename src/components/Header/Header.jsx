@@ -18,13 +18,13 @@ class Header extends Component {
     };
   }
 
-  handleCartButtonClickForOpenMiniCart = (e) => {
+  handlerCartButtonClickForOpenMiniCart = (e) => {
     this.setState({isCartMiniOpen: !this.state.isCartMiniOpen});
     e.stopPropagation()
-    console.log('click')
   }
 
-  handleHeaderClick = () => {
+  handlerClickClosedMiniCart = () => {
+    console.log('click')
     this.setState({isCartMiniOpen: this.state.isCartMiniOpen ? !this.state.isCartMiniOpen : null})
   }
 
@@ -32,10 +32,10 @@ class Header extends Component {
   render() {
     const {isCartMiniOpen} = this.state
     const {categories, cartProducts} = this.props;
-    const {handleHeaderClick, handleCartButtonClickForOpenMiniCart} = this;
+    const {handlerClickClosedMiniCart, handlerCartButtonClickForOpenMiniCart} = this;
 
     return <>
-      <header className={s.header} onClick={handleHeaderClick}>
+      <header className={s.header} onClick={handlerClickClosedMiniCart}>
         <MainContainer>
           <div className={s.headerWrap}>
             <div className={s.headerWrapContainer}>
@@ -47,7 +47,7 @@ class Header extends Component {
               <div className={s.headerSelectAndCartBlock}>
                 <Select/>
                 <div className={s.cartButtonWrap}>
-                  <button className={s.cartButton} onClick={handleCartButtonClickForOpenMiniCart}>
+                  <button className={s.cartButton} onClick={handlerCartButtonClickForOpenMiniCart}>
                     <img src={cart} alt=""/>
                     {
                       cartProducts.length > 0 &&
@@ -62,7 +62,8 @@ class Header extends Component {
       </header>
       {isCartMiniOpen && <CartMini
         isCartMiniOpen={isCartMiniOpen}
-        handleCartButtonClickForOpenMiniCart={handleCartButtonClickForOpenMiniCart}/>
+        handlerClickClosedMiniCart={handlerClickClosedMiniCart}
+        handlerCartButtonClickForOpenMiniCart={handlerCartButtonClickForOpenMiniCart}/>
       }
 
     </>
