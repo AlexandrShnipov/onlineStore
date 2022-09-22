@@ -66,6 +66,7 @@ class CategoryPage extends Component {
         category(input: { title: $title }) {
     name
     products {
+    category
       id
       name
       brand

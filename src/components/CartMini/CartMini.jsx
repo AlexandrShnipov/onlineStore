@@ -10,7 +10,7 @@ class CartMini extends Component {
   render() {
     const {
       handleCartButtonClickForOpenMiniCart, cartProducts,
-      totalQuantity, currency, totalPrice
+      totalQuantity, currency, totalPrice, location
     } = this.props;
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
@@ -38,6 +38,9 @@ class CartMini extends Component {
                     attributeColorCartMiniWrap={s.attributeColorCartMiniWrap}
                     attributeSizeCartMini={s.attributeSizeCartMini}
                     cartSliderImagesWrapCartMini={s.cartSliderImagesWrapCartMini}
+                    category={product.category}
+                    location={location}
+                    id={product.id}
                     brand={product.brand}
                     name={product.name}
                     price={product.price}

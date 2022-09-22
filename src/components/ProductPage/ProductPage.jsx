@@ -71,6 +71,60 @@ class ProductPage extends Component {
       .catch(err => console.log(err))
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const {location} = this.props;
+    const pathnameItems = location.pathname.split('/');
+    const id = pathnameItems[pathnameItems.length - 1]
+
+    if (prevProps.location !== location) {
+      const getProduct = gql`
+  query GetProduct($id: String!) {
+     product(id: $id) {
+    category
+    id
+    brand
+    name
+    description
+    gallery
+    inStock
+    attributes{
+      id
+      name
+      type
+      items{
+        id
+        displayValue
+        value
+      }
+    }
+    prices {
+      currency {
+        label
+        symbol
+      }
+      amount
+    }
+  }
+  }
+  `;
+      request('http://localhost:4000/', getProduct, {id})
+        .then((data) => {
+          console.log('duct', data);
+          const product = {
+            ...data.product,
+            attributes: data.product.attributes?.map(attribute => (
+              {
+                ...attribute,
+                items: attribute.items?.map((item, i) => ({...item, isChecked: i === 0}))
+              }
+            ))
+          }
+          this.setState({product})
+        })
+        .catch(err => console.log(err))
+    }
+  }
+
   toggleCheckedAttribute = (id, param) => {
     const {product} = this.state;
     const newAttributes = product.attributes.map(attribute => {

@@ -20,7 +20,7 @@ class CartItem extends Component {
   deleteProductToCart = () => this.props.deleteProductToCart();
 
   nextSlide = () => {
-   const {state:{sliderIndex}, props:{imageCartProduct}} = this;
+    const {state: {sliderIndex}, props: {imageCartProduct}} = this;
     if (sliderIndex !== imageCartProduct.length) {
       return (
         this.setState({sliderIndex: sliderIndex + 1})
@@ -50,24 +50,27 @@ class CartItem extends Component {
     const {
       brand, name, price, attributes, imageCartProduct,
       amount, styledCartMini, productParametersTitle,
-      attributeNameTitle, counterBlockCartMini,cartSliderButtonsCartMini,
-     attributeColorCartMiniWrap, attributeSizeCartMini,
-      cartSliderImagesWrapCartMini, currency, location, id, category
+      attributeNameTitle, counterBlockCartMini, cartSliderButtonsCartMini,
+      attributeColorCartMiniWrap, attributeSizeCartMini,
+      cartSliderImagesWrapCartMini, currency, id, category
     } = this.props;
     const {sliderIndex} = this.state
-    const {toggleCheckedAttribute, increaseProducts,
-      decreaseProducts,prevSlide, nextSlide, deleteProductToCart} = this
+    const {
+      toggleCheckedAttribute, increaseProducts,
+      decreaseProducts, prevSlide, nextSlide, deleteProductToCart
+    } = this
 
     return (
       <>
         <div className={`${s.container} ${styledCartMini}`}>
-          <NavLink
-            className={s.productParameters}
-            to={{pathname: `/${category}/${id}`}}
-          >
-            <h2 className={`${s.productParametersTitle} ${productParametersTitle}`}>{brand}
+          <div
+            className={s.productParameters}>
+            <NavLink
+              className={`${s.productParametersTitle} ${productParametersTitle}`}
+              to={{pathname: `/${category}/${id}`}}
+            >{brand}
               <span>{name}</span>
-            </h2>
+            </NavLink>
             <span className={`${s.price} ${s.productParametersPrice}`}>
               {`${currency} ${price}`}
             </span>
@@ -82,7 +85,7 @@ class CartItem extends Component {
                 onCheck={toggleCheckedAttribute}
               />)}
 
-          </NavLink>
+          </div>
 
           <div className={`${s.counterBlock} ${counterBlockCartMini}`}>
             <div className={s.counterBlockButtons}>

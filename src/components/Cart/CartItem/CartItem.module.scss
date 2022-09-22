@@ -25,16 +25,23 @@
 
 .productParameters {
   color: inherit;
+
   &Title {
     font-size: toRem(30);
     line-height: toRem(27);
     font-weight: 600;
     margin-bottom: toRem(20);
+    display: block;
+    color: inherit;
 
     & > span {
       font-weight: 400;
       display: block;
       padding-top: toRem(16);
+    }
+
+    &:hover{
+      color: $colorPrimary;
     }
   }
 
