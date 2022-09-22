@@ -1,13 +1,13 @@
 import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './ProductPage.module.scss';
-import {withRouter} from "../../hocs/withRouter";
 import {request, gql} from 'graphql-request'
-import {connect} from "react-redux";
-import {addProductAC} from "../../redux/cartReducer";
-import AttributeRender from "../AttributeRender/AttributeRender";
-import {selectCurrencyLabel} from "../../redux/catrSelectors";
-import Images from "./Images/Images";
+import {connect} from 'react-redux';
+import {addProductAC} from '../../redux/cartReducer';
+import AttributeRender from '../AttributeRender/AttributeRender';
+import {selectCurrencyLabel} from '../../redux/catrSelectors';
+import Images from './Images/Images';
+import {withRouter} from '../../hocs/withRouter';
 
 class ProductPage extends Component {
 
@@ -18,7 +18,7 @@ class ProductPage extends Component {
     };
   }
 
-  componentDidMount() {
+  getUpdateComponent = () => {
     const {location} = this.props;
     const pathnameItems = location.pathname.split('/');
     const id = pathnameItems[pathnameItems.length - 1]
@@ -55,7 +55,6 @@ class ProductPage extends Component {
   `;
     request('http://localhost:4000/', getProduct, {id})
       .then((data) => {
-       // console.log('duct', data);
         const product = {
           ...data.product,
           attributes: data.product.attributes?.map(attribute => (
@@ -68,59 +67,14 @@ class ProductPage extends Component {
         this.setState({product})
       })
       .catch(err => console.log(err))
-  }
+}
+
+componentDidMount() {
+  this.getUpdateComponent()
+}
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const {location} = this.props;
-    const pathnameItems = location.pathname.split('/');
-    const id = pathnameItems[pathnameItems.length - 1]
-
-    if (prevProps.location !== location) {
-      const getProduct = gql`
-  query GetProduct($id: String!) {
-     product(id: $id) {
-    category
-    id
-    brand
-    name
-    description
-    gallery
-    inStock
-    attributes{
-      id
-      name
-      type
-      items{
-        id
-        displayValue
-        value
-      }
-    }
-    prices {
-      currency {
-        label
-        symbol
-      }
-      amount
-    }
-  }
-  }
-  `;
-      request('http://localhost:4000/', getProduct, {id})
-        .then((data) => {
-           const product = {
-            ...data.product,
-            attributes: data.product.attributes?.map(attribute => (
-              {
-                ...attribute,
-                items: attribute.items?.map((item, i) => ({...item, isChecked: i === 0}))
-              }
-            ))
-          }
-          this.setState({product})
-        })
-        .catch(err => console.log(err))
-    }
+    this.getUpdateComponent()
   }
 
   toggleCheckedAttribute = (id, param) => {
@@ -171,7 +125,7 @@ class ProductPage extends Component {
                 onCheck={this.toggleCheckedAttribute}
               />)}
 
-            <div className={`${s.productParametersItem} ${s.productParametersPrice}`}>
+            <div className={s.productParametersPrice}>
               <h3>Price:</h3>
               <span>{`${isCheckedPrice?.currency?.symbol} ${isCheckedPrice?.amount}`}</span>
             </div>

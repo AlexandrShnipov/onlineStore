@@ -1,12 +1,12 @@
-import {Component} from "react";
-import MainContainer from "../../../common/MainContainer/MainContainer";
-import Card from "../../../common/ProductCard/ProductCard";
-import CategoryContainer from "../../../common/CategoryContainer/CategoryContainer";
+import {Component} from 'react';
+import MainContainer from '../../../common/MainContainer/MainContainer';
+import ProductCard from '../../../common/ProductCard/ProductCard';
+import CategoryContainer from '../../../common/CategoryContainer/CategoryContainer';
 import {gql, request} from 'graphql-request'
-import {withRouter} from "../../../hocs/withRouter";
-import {connect} from "react-redux";
-import {addProductAC} from "../../../redux/cartReducer";
-import {selectCurrencyLabel} from "../../../redux/catrSelectors";
+import {withRouter} from '../../../hocs/withRouter';
+import {connect} from 'react-redux';
+import {addProductAC} from '../../../redux/cartReducer';
+import {selectCurrencyLabel} from '../../../redux/catrSelectors';
 
 
 class CategoryPage extends Component {
@@ -30,8 +30,6 @@ class CategoryPage extends Component {
   }
 
   render() {
-    const {props: {cartProducts}} = this;
-    console.log('cartProducts', cartProducts)
     let name = this.state.category.name
     return (
       <MainContainer>
@@ -41,7 +39,7 @@ class CategoryPage extends Component {
           {this.state.category?.products?.map(({brand, id, gallery, name, prices, inStock}) => {
             const price = prices.find(price => price.currency.label === this.props.currency)
             return (
-              <Card
+              <ProductCard
                 key={id}
                 id={id}
                 image={gallery[0]}
@@ -95,7 +93,6 @@ class CategoryPage extends Component {
   `;
     request('http://localhost:4000/', getProducts, {title})
       .then((data) => {
-        console.log('category', data);
         this.setState({category: data.category})
       })
       .catch(err => console.log(err))

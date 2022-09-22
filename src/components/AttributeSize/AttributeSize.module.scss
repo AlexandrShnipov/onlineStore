@@ -1,5 +1,5 @@
-@import "../../styles/sass/abstracts/variables";
-@import "../../styles/sass/abstracts/function";
+@import '../../styles/sass/abstracts/variables';
+@import '../../styles/sass/abstracts/function';
 
 .attributeSize {
   font-family: Source Sans Pro;
@@ -12,6 +12,7 @@
   border: 1px solid $textColorMain;
   cursor: pointer;
 }
+
 .active {
   color: $textColorLight;
   background: $textColorMain;

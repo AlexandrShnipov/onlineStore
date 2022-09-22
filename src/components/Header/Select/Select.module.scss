@@ -1,8 +1,9 @@
-@import "src/styles/sass/abstracts/variables";
-@import "src/styles/sass/abstracts/function";
+@import 'src/styles/sass/abstracts/variables';
+@import 'src/styles/sass/abstracts/function';
 
 .select {
   width: toRem(60);
+  font-family: Raleway;
 
   &Btn {
     font-size: toRem(18);
@@ -24,8 +25,9 @@
   }
 
   &Item {
+    font-family: Raleway;
     font-size: toRem(18);
-    padding: toRem(5) toRem(10);
+    padding: toRem(10) toRem(15);
     transition: all .5s linear;
     cursor: pointer;
 

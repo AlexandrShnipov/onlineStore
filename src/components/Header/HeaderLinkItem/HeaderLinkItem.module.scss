@@ -1,15 +1,16 @@
-@import "src/styles/sass/abstracts/variables";
-@import "src/styles/sass/abstracts/function";
+@import 'src/styles/sass/abstracts/variables';
+@import 'src/styles/sass/abstracts/function';
 
 
-  .headerLink {
-    padding: 0 toRem(16) toRem(32) toRem(16);
-    text-transform: uppercase;
-    line-height: 120%;
-    font-weight: 600;
-    color: $textColorMain;
-    border-bottom: 2px solid transparent;
-  }
+.headerLink {
+  padding: 0 toRem(16) toRem(32) toRem(16);
+  text-transform: uppercase;
+  line-height: 120%;
+  font-weight: 600;
+  color: $textColorMain;
+  border-bottom: 2px solid transparent;
+  font-family: Raleway;
+}
 
 
 .active {

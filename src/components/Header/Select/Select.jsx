@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import s from './Select.module.scss';
-import {withRouter} from "../../../hocs/withRouter";
-import {gql, request} from "graphql-request";
-import {connect} from "react-redux";
-import {setCurrencyAC} from "../../../redux/cartReducer";
-import {selectCurrencyLabel} from "../../../redux/catrSelectors";
+import {withRouter} from '../../../hocs/withRouter';
+import {gql, request} from 'graphql-request';
+import {connect} from 'react-redux';
+import {setCurrencyAC} from '../../../redux/cartReducer';
+import {selectCurrencyLabel} from '../../../redux/catrSelectors';
 import arrow from '../../../images/arrowForSelect.png'
 
 class Select extends Component {

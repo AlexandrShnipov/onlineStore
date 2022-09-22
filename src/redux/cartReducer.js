@@ -1,4 +1,4 @@
-import cloneDeep from "lodash.clonedeep";
+import cloneDeep from 'lodash.clonedeep';
 
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 const INCREASE_PRODUCTS_NUMBER = 'INCREASE_PRODUCT';

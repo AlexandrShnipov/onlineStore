@@ -1,5 +1,5 @@
-import {PureComponent} from "react";
-import s from "./AttributeWrapper.module.scss";
+import {PureComponent} from 'react';
+import s from './AttributeWrapper.module.scss';
 
 class AttributeWrapper extends PureComponent {
   render() {

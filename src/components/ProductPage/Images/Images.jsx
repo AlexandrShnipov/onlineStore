@@ -1,9 +1,9 @@
 import {Component} from 'react';
-import React from "react";
+import React from 'react';
 import s from './Images.module.scss';
-import {connect} from "react-redux";
-import {addProductAC} from "../../../redux/cartReducer";
-import {selectCartProductsId, selectCurrencyLabel} from "../../../redux/catrSelectors";
+import {connect} from 'react-redux';
+import {addProductAC} from '../../../redux/cartReducer';
+import {selectCartProductsId, selectCurrencyLabel} from '../../../redux/catrSelectors';
 import buttonPrev from '../../../images/arrowPrev.png';
 import buttonNext from '../../../images/arrowNext.png';
 
@@ -64,13 +64,13 @@ class Images extends Component {
                 style={{transform: 'rotate(-90deg)'}}
                 onClick={this.prevSlide}
               >
-                <img src={buttonPrev} alt={buttonPrev}/>
+                <img src={buttonPrev} alt={'buttonPrev'}/>
               </button>
               <button
                 style={{transform: 'rotate(-90deg)'}}
                 onClick={this.nextSlide}
               >
-                <img src={buttonNext} alt={buttonNext}/>
+                <img src={buttonNext} alt={'buttonNext'}/>
               </button>
             </div>
 

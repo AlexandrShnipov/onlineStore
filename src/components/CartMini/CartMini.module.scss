@@ -1,5 +1,5 @@
-@import "src/styles/sass/abstracts/variables";
-@import "src/styles/sass/abstracts/function";
+@import 'src/styles/sass/abstracts/variables';
+@import 'src/styles/sass/abstracts/function';
 
 .modal {
   position: fixed;
@@ -25,12 +25,22 @@
   background: $textColorLight;
   color: $textColorMain;
   overflow-y: auto;
+  font-family: Raleway;
 }
 
 .cartTitleBlock {
   display: flex;
   align-items: center;
   margin-bottom: toRem(32);
+
+
+  & > .cartTitle{
+    font-family: Raleway;
+  }
+
+  & > span {
+    font-family: Raleway;
+  }
 }
 
 .cartTotal {
@@ -47,6 +57,7 @@
   }
 
   & > span {
+    font-family: Raleway;
     line-height: 160%;
     font-weight: 700;
     display: inline-block;
@@ -62,12 +73,14 @@
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
   text-transform: uppercase;
+  font-family: Raleway;
 
   & > a {
     display: grid;
     place-content: center;
     padding-top: toRem(13);
     padding-bottom: toRem(13);
+    font-family: inherit;
   }
 
   & > a:nth-child(1) {

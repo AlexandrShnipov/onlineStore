@@ -1,10 +1,10 @@
 import { PureComponent} from 'react';
 import s from './ProductCard.module.scss'
-import {NavLink} from "react-router-dom";
-import {withRouter} from "../../hocs/withRouter";
+import {NavLink} from 'react-router-dom';
+import {withRouter} from '../../hocs/withRouter';
 import cart from '../../images/cartWhite.png';
 
-class Card extends PureComponent {
+class ProductCard extends PureComponent {
 
   render() {
     const {location, id, image, name, brand, price, inStock} = this.props;
@@ -30,12 +30,12 @@ class Card extends PureComponent {
             <img src={cart} alt='cart images'/>
           </button>
         </div>
-        {/*{*/}
-        {/*  inStock &&*/}
-        {/*  <div className={s.stockBox}>*/}
-        {/*    <span>out of stock</span>*/}
-        {/*  </div>*/}
-        {/*}*/}
+        {
+          inStock &&
+          <div className={s.stockBox}>
+            <span>out of stock</span>
+          </div>
+        }
       </div>
     )
   }
@@ -45,4 +45,4 @@ class Card extends PureComponent {
   }
 }
 
-export default withRouter(Card)
+export default withRouter(ProductCard)

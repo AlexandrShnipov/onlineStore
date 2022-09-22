@@ -3,11 +3,11 @@ import s from './Header.module.scss';
 import logo from '../../images/logo.png';
 import cart from '../../images/cart.png'
 import MainContainer from '../../common/MainContainer/MainContainer';
-import HeaderLinkIItem from "./HeaderLinkItem/HeaderLinkIItem";
-import {withRouter} from "../../hocs/withRouter";
-import Select from "./Select/Select";
-import CartMini from "../CartMini/CartMini";
-import {connect} from "react-redux";
+import HeaderLinkIItem from './HeaderLinkItem/HeaderLinkIItem';
+import {withRouter} from '../../hocs/withRouter';
+import Select from './Select/Select';
+import CartMini from '../CartMini/CartMini';
+import {connect} from 'react-redux';
 
 class Header extends Component {
 
@@ -19,12 +19,11 @@ class Header extends Component {
   }
 
   handlerCartButtonClickForOpenMiniCart = (e) => {
-    this.setState({isCartMiniOpen: !this.state.isCartMiniOpen});
     e.stopPropagation()
+    this.setState({isCartMiniOpen: !this.state.isCartMiniOpen});
   }
 
   handlerClickClosedMiniCart = () => {
-    console.log('click')
     this.setState({isCartMiniOpen: this.state.isCartMiniOpen ? !this.state.isCartMiniOpen : null})
   }
 
@@ -43,12 +42,12 @@ class Header extends Component {
                 {categories.map((category, index) =>
                   <HeaderLinkIItem key={index} menuItem={category.name}/>)}
               </ul>
-              <img className={s.logo} src={logo} alt=""/>
+              <img className={s.logo} src={logo} alt={'logo'}/>
               <div className={s.headerSelectAndCartBlock}>
                 <Select/>
                 <div className={s.cartButtonWrap}>
                   <button className={s.cartButton} onClick={handlerCartButtonClickForOpenMiniCart}>
-                    <img src={cart} alt=""/>
+                    <img src={cart} alt={'cart'}/>
                     {
                       cartProducts.length > 0 &&
                       <span className={s.cartCount}>{cartProducts.length}</span>
@@ -60,12 +59,13 @@ class Header extends Component {
           </div>
         </MainContainer>
       </header>
-      {isCartMiniOpen && <CartMini
-        isCartMiniOpen={isCartMiniOpen}
-        handlerClickClosedMiniCart={handlerClickClosedMiniCart}
-        handlerCartButtonClickForOpenMiniCart={handlerCartButtonClickForOpenMiniCart}/>
-      }
-
+      {isCartMiniOpen && (
+        <CartMini
+          isCartMiniOpen={isCartMiniOpen}
+          handlerClickClosedMiniCart={handlerClickClosedMiniCart}
+          handlerCartButtonClickForOpenMiniCart={handlerCartButtonClickForOpenMiniCart}
+        />
+      )}
     </>
   }
 }

@@ -1,28 +1,27 @@
 import {Component} from 'react';
 import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './Cart.module.scss';
-import CartItem from "./CartItem/CartItem";
-import {connect} from "react-redux";
+import CartItem from './CartItem/CartItem';
+import {connect} from 'react-redux';
 import {
   decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC
-} from "../../redux/cartReducer";
-import {NavLink} from "react-router-dom";
-import {withRouter} from "../../hocs/withRouter";
+} from '../../redux/cartReducer';
+import {NavLink} from 'react-router-dom';
+import {withRouter} from '../../hocs/withRouter';
 
 class Cart extends Component {
 
   render() {
     const {cartProducts, totalQuantity, totalPrice, currency, location, id, category} = this.props;
-      const tax = 0.21
+    const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
-    console.log(cartProducts, id, category)
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
         {cartProducts.length ? (
             <>
-              {cartProducts.map((product,index) => <CartItem
+              {cartProducts.map((product, index) => <CartItem
                 key={index}
                 category={product.category}
                 location={location}
@@ -41,6 +40,7 @@ class Cart extends Component {
 
               <div className={s.cartTotal}>
                 <table className={s.cartTotalTable}>
+                  <tbody>
                   <tr>
                     <th>Tax 21%:</th>
                     <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
@@ -53,6 +53,7 @@ class Cart extends Component {
                     <th>Total:</th>
                     <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
                   </tr>
+                  </tbody>
                 </table>
                 <button>Order</button>
               </div>
