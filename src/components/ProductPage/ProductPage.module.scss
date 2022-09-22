@@ -1,5 +1,5 @@
-@import "../../styles/sass/abstracts/variables";
-@import "../../styles/sass/abstracts/function";
+@import '../../styles/sass/abstracts/variables';
+@import '../../styles/sass/abstracts/function';
 
 .container {
   display: grid;
@@ -15,12 +15,14 @@
 }
 
 .productParametersTitle {
+  font-family: Raleway;
   font-size: toRem(30);
   line-height: toRem(27);
   font-weight: 600;
   margin-bottom: toRem(43);
 
   & > span {
+    font-family: inherit;
     font-weight: 400;
     display: block;
     padding-top: toRem(16);
@@ -44,15 +46,24 @@
 
   &Price {
     margin-bottom: toRem(25);
+    font-size: toRem(18);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: toRem(8);
+    text-transform: uppercase;
+    font-family: Roboto;
 
     & > h3 {
       margin-bottom: toRem(16);
+      font-family: inherit;
     }
 
     & > span {
+
       font-size: toRem(24);
       line-height: toRem(18);
       font-weight: 700;
+      font-family: Raleway;
     }
   }
 
@@ -65,6 +76,7 @@
     max-width: toRem(292);
     width: 100%;
     margin-bottom: toRem(40);
+    font-family: Raleway;
 
     &:hover,
     &:active {
@@ -73,15 +85,15 @@
       border: 1px solid $textColorMain;
     }
 
-    &:disabled{
+    &:disabled {
       cursor: initial;
       background: $colorMedium;
       border: 1px solid transparent;
       color: $textColorLight;
-    };
+    }
   }
 
-  &Description {
+  &Description > p{
     font-family: Roboto;
     font-weight: 400;
     line-height: 160%;

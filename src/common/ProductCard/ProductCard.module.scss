@@ -1,5 +1,5 @@
-@import "../../styles/sass/abstracts/variables";
-@import "../../styles/sass/abstracts/function";
+@import '../../styles/sass/abstracts/variables';
+@import '../../styles/sass/abstracts/function';
 
 .container {
   position: relative;
@@ -19,6 +19,7 @@
   grid-template: 1fr auto auto / 1fr;
   font-size: toRem(18);
   line-height: 160%;
+  font-family: Raleway;
   color: $textColorMain;
   padding: toRem(16);
   transition: all .5s linear;
@@ -44,10 +45,16 @@
 
   &Title {
     font-weight: 300;
+    font-family: inherit;
+
+    &>span{
+      font-family: inherit;
+    }
   }
 
   &Price {
     font-weight: 500;
+    font-family: inherit;
   }
 }
 
@@ -90,6 +97,7 @@
     font-size: toRem(24);
     text-transform: uppercase;
     color: #8D8F9A;
+    font-family: Raleway;
   }
 }
 

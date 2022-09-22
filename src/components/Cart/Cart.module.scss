@@ -1,7 +1,8 @@
-@import "src/styles/sass/abstracts/variables";
-@import "src/styles/sass/abstracts/function";
+@import 'src/styles/sass/abstracts/variables';
+@import 'src/styles/sass/abstracts/function';
 
 .cartTitle {
+  font-family: Raleway;
   font-size: toRem(32);
   line-height: toRem(40);
   font-weight: 700;
@@ -14,27 +15,30 @@
 .cartTotal {
   margin-bottom: toRem(103);
   width: fit-content;
+  font-family: Raleway;
 
   &Table {
     border-spacing: toRem(10);
+    font-family: inherit;
 
-    & > tr > th,
-    & > tr > td {
+    & tr th,
+    & tr td {
       font-size: toRem(24);
       line-height: toRem(18);
       text-align: start;
+      font-family: Raleway;
     }
 
-    & > tr > th {
+    & tr th {
       font-weight: 400;
     }
 
-    & > tr > td {
+    & tr td {
       font-weight: 700;
     }
   }
 
-  & > button{
+  & button {
     width: 100%;
     background: $colorPrimary;
     border: 1px solid $colorPrimary;
@@ -45,11 +49,11 @@
     padding: toRem(13) toRem(115);
 
     &:hover,
-    &:active{
+    &:active {
       color: $colorPrimary;
       background-color: $textColorMain;
       border: 1px solid $textColorMain;
-    };
+    }
   }
 }
 
@@ -57,11 +61,11 @@ button {
   transition: all .5s linear;
 }
 
-.cartText{
+.cartText {
   font-size: toRem(32);
-  color:$textColorMain;
+  color: $textColorMain;
 
-  &>a{
+  & > a {
     color: $colorPrimary;
   }
 }

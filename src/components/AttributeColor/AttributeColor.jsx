@@ -1,5 +1,5 @@
-import {PureComponent} from "react";
-import s from "./AttributeColor.module.scss";
+import {PureComponent} from 'react';
+import s from './AttributeColor.module.scss';
 
 class AttributeColor extends PureComponent {
   render() {

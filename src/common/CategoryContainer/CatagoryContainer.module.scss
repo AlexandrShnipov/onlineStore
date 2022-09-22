@@ -1,11 +1,12 @@
-@import "src/styles/sass/abstracts/function";
-@import "src/styles/sass/abstracts/variables";
+@import 'src/styles/sass/abstracts/function';
+@import 'src/styles/sass/abstracts/variables';
 
 .container{
   padding-bottom: toRem(191);
 }
 
 .title{
+  font-family: Raleway;
   font-size: toRem(42);
   line-height: 160%;
   font-weight: 400;

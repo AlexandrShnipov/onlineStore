@@ -1,7 +1,7 @@
-import {PureComponent} from "react";
-import AttributeWrapper from "../AttributeWrapper/AttributeWrapper";
-import AttributeSize from "../AttributeSize/AttributeSize";
-import AttributeColor from "../AttributeColor/AttributeColor";
+import {PureComponent} from 'react';
+import AttributeWrapper from '../AttributeWrapper/AttributeWrapper';
+import AttributeSize from '../AttributeSize/AttributeSize';
+import AttributeColor from '../AttributeColor/AttributeColor';
 
 class AttributeRender extends PureComponent {
 

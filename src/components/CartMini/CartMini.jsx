@@ -1,16 +1,16 @@
 import {Component} from 'react';
 import s from './CartMini.module.scss';
-import {NavLink} from "react-router-dom";
-import CartItem from "../Cart/CartItem/CartItem";
-import {connect} from "react-redux";
-import {decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC} from "../../redux/cartReducer";
+import {NavLink} from 'react-router-dom';
+import CartItem from '../Cart/CartItem/CartItem';
+import {connect} from 'react-redux';
+import {decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC} from '../../redux/cartReducer';
 
 class CartMini extends Component {
 
   render() {
     const {
       handlerCartButtonClickForOpenMiniCart, cartProducts,
-      totalQuantity, currency, totalPrice, location,handlerClickClosedMiniCart
+      totalQuantity, currency, totalPrice, location, handlerClickClosedMiniCart
     } = this.props;
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
@@ -71,7 +71,6 @@ class CartMini extends Component {
               &#128532;</p>}
         </div>
         }
-
       </>
     )
   }
