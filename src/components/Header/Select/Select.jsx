@@ -31,7 +31,7 @@ class Select extends Component {
     request('http://localhost:4000/', getCurrencies)
       .then((data) => {
         const {currencies} = this.state
-        console.log('currencies', data);
+        //console.log('currencies', data);
         this.setState({
           currencies: data.currencies
         })
@@ -43,14 +43,6 @@ class Select extends Component {
   componentWillUnmount() {
     document.removeEventListener('click', this.onSelectToggle)
   }
-
-  //
-  // onChange = (event) => {
-  //   const {currencies} = this.state;
-  //   const selectedCurrency = currencies.find(cur => cur.label === event.target.value)
-  //   this.props.setCurrencyAC(selectedCurrency)
-  //   console.log(event.target.value)
-  // }
 
   getSelectedCurrency = (index, value) => () => {
     this.setState({
@@ -68,10 +60,8 @@ class Select extends Component {
     })
   }
 
-
   render() {
     const {state: {currencies}, props: {currency}} = this;
-    console.log(this.selectRef?.current)
 
     return (
       <>

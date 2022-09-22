@@ -6,7 +6,7 @@ import {gql, request} from 'graphql-request'
 import {withRouter} from "../../../hocs/withRouter";
 import {connect} from "react-redux";
 import {addProductAC} from "../../../redux/cartReducer";
-import {selectCartProductsId, selectCurrencyLabel} from "../../../redux/catrSelectors";
+import {selectCurrencyLabel} from "../../../redux/catrSelectors";
 
 
 class CategoryPage extends Component {

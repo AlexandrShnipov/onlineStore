@@ -6,7 +6,7 @@ import {request, gql} from 'graphql-request'
 import {connect} from "react-redux";
 import {addProductAC} from "../../redux/cartReducer";
 import AttributeRender from "../AttributeRender/AttributeRender";
-import {selectCartProductsId, selectCurrencyLabel} from "../../redux/catrSelectors";
+import {selectCurrencyLabel} from "../../redux/catrSelectors";
 import Images from "./Images/Images";
 
 class ProductPage extends Component {
@@ -22,7 +22,6 @@ class ProductPage extends Component {
     const {location} = this.props;
     const pathnameItems = location.pathname.split('/');
     const id = pathnameItems[pathnameItems.length - 1]
-    console.log(location)
 
     const getProduct = gql`
   query GetProduct($id: String!) {
@@ -56,7 +55,7 @@ class ProductPage extends Component {
   `;
     request('http://localhost:4000/', getProduct, {id})
       .then((data) => {
-        console.log('duct', data);
+       // console.log('duct', data);
         const product = {
           ...data.product,
           attributes: data.product.attributes?.map(attribute => (
@@ -109,8 +108,7 @@ class ProductPage extends Component {
   `;
       request('http://localhost:4000/', getProduct, {id})
         .then((data) => {
-          console.log('duct', data);
-          const product = {
+           const product = {
             ...data.product,
             attributes: data.product.attributes?.map(attribute => (
               {
@@ -148,7 +146,6 @@ class ProductPage extends Component {
 
   render() {
     const {gallery, name, brand, prices, description, attributes, id} = this.state.product ?? {};
-    const {cartProducts} = this.props;
     const price = prices?.find(price => price.currency.label === this.props.currency)
     const isCheckedPrice = price
 

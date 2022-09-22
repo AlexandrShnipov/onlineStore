@@ -45,8 +45,6 @@ class Images extends Component {
 
   render() {
     const {gallery, name} = this.props;
-    console.log(gallery)
-
     return (
       <>
         <div className={s.imgBlock}>
@@ -77,7 +75,7 @@ class Images extends Component {
             </div>
 
             }
-        </div>
+          </div>
           <div className={s.imgBlockBigImg}>
             <img src={gallery?.[this.state.mainImage] ?? ''} alt={name}/>
           </div>

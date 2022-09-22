@@ -29,7 +29,8 @@ class CartMini extends Component {
                 </span>
                 </div>
                 <div>
-                  {cartProducts.map(product => <CartItem
+                  {cartProducts.map((product, index) => <CartItem
+                    key={index}
                     styledCartMini={s.styledCartMini}
                     productParametersTitle={s.productParametersTitle}
                     attributeNameTitle={s.attributeNameTitle}
