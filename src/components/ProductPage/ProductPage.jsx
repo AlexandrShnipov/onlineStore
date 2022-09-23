@@ -67,14 +67,17 @@ class ProductPage extends Component {
         this.setState({product})
       })
       .catch(err => console.log(err))
-}
+  }
 
-componentDidMount() {
-  this.getUpdateComponent()
-}
+  componentDidMount() {
+    this.getUpdateComponent()
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.getUpdateComponent()
+    const { location } = this.props;
+    if (prevProps.location !== location) {
+      this.getUpdateComponent()
+    }
   }
 
   toggleCheckedAttribute = (id, param) => {
