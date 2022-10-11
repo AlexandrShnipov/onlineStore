@@ -12,12 +12,12 @@
   font-weight: 400;
   color: $textColorMain;
   margin-bottom: toRem(103);
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .cardsContainer{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(toRem(364), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(toRem(364), 1fr));
   grid-column-gap: toRem(40);
   grid-row-gap: toRem(103);
   overflow: hidden;
