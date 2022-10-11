@@ -98,9 +98,18 @@
     font-weight: 400;
     line-height: 160%;
   }
+
+  &Description ul {
+   padding-left: toRem(20);
+  }
+
+  &Description li {
+    list-style: initial;
+  }
 }
 
 button {
   transition: all .5s linear;
 }
+
 
