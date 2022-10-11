@@ -62,6 +62,11 @@ class AttributeRender extends PureComponent {
               />)}
           </AttributeWrapper>
         )
+      default: {
+        return (
+            ''
+        )
+      }
     }
   }
 }

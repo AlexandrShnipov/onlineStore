@@ -30,8 +30,7 @@ class Select extends Component {
 
     request('http://localhost:4000/', getCurrencies)
       .then((data) => {
-        const {currencies} = this.state
-        //console.log('currencies', data);
+
         this.setState({
           currencies: data.currencies
         })
@@ -61,7 +60,7 @@ class Select extends Component {
   }
 
   render() {
-    const {state: {currencies}, props: {currency}} = this;
+    const {currencies} = this.state;
 
     return (
       <>
