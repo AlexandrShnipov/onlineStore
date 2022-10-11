@@ -9,7 +9,6 @@ class ProductCard extends PureComponent {
     render() {
         const {location, id, image, name, brand, price, inStock} = this.props;
         const totalAmount = price?.amount.toFixed(2)
-        console.log(totalAmount)
         return (
             <div className={s.container}>
                 <div className={s.wrapper}>
