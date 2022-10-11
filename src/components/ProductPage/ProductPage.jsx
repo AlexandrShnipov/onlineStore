@@ -102,7 +102,7 @@ class ProductPage extends Component {
   }
 
   render() {
-    const {gallery, name, brand, prices, description, attributes, id} = this.state.product ?? {};
+    const {gallery, name, brand, prices, description, attributes, id, inStock} = this.state.product ?? {};
     const price = prices?.find(price => price.currency.label === this.props.currency)
     const isCheckedPrice = price
 
@@ -136,6 +136,7 @@ class ProductPage extends Component {
             <button
               className={s.productParametersButtonAddToCart}
               onClick={this.onAddToCartClick}
+              disabled={!inStock}
             >
               add to cart
             </button>
