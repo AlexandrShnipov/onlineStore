@@ -45,7 +45,7 @@ class CartMini extends Component {
                     id={product.id}
                     brand={product.brand}
                     name={product.name}
-                    price={product.price}
+                    price={product.price.toFixed(2)}
                     currency={currency.symbol}
                     attributes={product.attributes}
                     imageCartProduct={product.gallery}
