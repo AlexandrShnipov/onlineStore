@@ -3,7 +3,7 @@
 
 .select {
   width: toRem(60);
-  font-family: Raleway;
+  font-family: Raleway, sans-serif;
 
   &Btn {
     font-size: toRem(18);
@@ -20,12 +20,12 @@
   &Content {
     position: absolute;
     background-color: $textColorLight;
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
     width: 100%;
   }
 
   &Item {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: toRem(18);
     padding: toRem(10) toRem(15);
     transition: all .5s linear;

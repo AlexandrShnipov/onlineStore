@@ -2,7 +2,7 @@
 @import 'src/styles/sass/abstracts/function';
 
 .cartTitle {
-  font-family: Raleway;
+  font-family: Raleway, sans-serif;
   font-size: toRem(32);
   line-height: toRem(40);
   font-weight: 700;
@@ -15,7 +15,7 @@
 .cartTotal {
   margin-bottom: toRem(103);
   width: fit-content;
-  font-family: Raleway;
+  font-family: Raleway, sans-serif;
 
   &Table {
     border-spacing: toRem(10);
@@ -26,7 +26,7 @@
       font-size: toRem(24);
       line-height: toRem(18);
       text-align: start;
-      font-family: Raleway;
+      font-family: Raleway, sans-serif;
     }
 
     & tr th {
