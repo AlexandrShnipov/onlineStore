@@ -31,7 +31,7 @@ class ProductCard extends PureComponent {
           </button>
         </div>
         {
-          inStock &&
+          !inStock &&
           <div className={s.stockBox}>
             <span>out of stock</span>
           </div>
