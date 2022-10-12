@@ -25,7 +25,6 @@ class Select extends Component {
         if (currencyFromLocaleStorage) {
             this.props.setCurrencyAC(currency);
         }
-        console.log(localStorage.getItem('currency'))
         const getCurrencies = gql`
     {
       currencies{
@@ -37,7 +36,6 @@ class Select extends Component {
         request('http://localhost:4000/', getCurrencies)
             .then((data) => {
                 const index = data.currencies.findIndex(item => item.label === currency?.label);
-                console.log(index)
                 this.setState({
                     currencies: data.currencies,
                     selectedCurrency: index >= 0 ? index : 0
@@ -62,7 +60,6 @@ class Select extends Component {
 
         const {currencies} = this.state;
         const selectedCurrency = currencies.find(cur => cur.label === value)
-        console.log(this.state.localStorage)
         localStorage.setItem('currency', JSON.stringify(selectedCurrency))
         this.props.setCurrencyAC(selectedCurrency)
     }
@@ -70,7 +67,6 @@ class Select extends Component {
     inputHandlerClickForOpenDropdown = () => {
         this.setState({
             isActive: true
-
         })
     }
 
