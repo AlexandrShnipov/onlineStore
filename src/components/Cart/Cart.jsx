@@ -16,6 +16,7 @@ class Cart extends Component {
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
+
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
@@ -43,7 +44,7 @@ class Cart extends Component {
                   <tbody>
                   <tr>
                     <th>Tax 21%:</th>
-                    <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
+                    <td className={s.price}>{`${currency.symbol} ${taxAmount.toFixed(2)}`}</td>
                   </tr>
                   <tr>
                     <th>Quantity:</th>
@@ -51,7 +52,7 @@ class Cart extends Component {
                   </tr>
                   <tr>
                     <th>Total:</th>
-                    <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
+                    <td className={s.price}>{`${currency.symbol} ${totalAmount.toFixed(2)}`}</td>
                   </tr>
                   </tbody>
                 </table>

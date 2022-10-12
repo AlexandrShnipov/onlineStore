@@ -9,6 +9,7 @@ import {selectCurrencyLabel} from '../../redux/catrSelectors';
 import Images from './Images/Images';
 import {withRouter} from '../../hocs/withRouter';
 import parse from 'html-react-parser';
+import Preloader from "../../common/Preloader/Preloader";
 
 class ProductPage extends Component {
 
@@ -106,6 +107,10 @@ class ProductPage extends Component {
         const {gallery, name, brand, prices, description, attributes, id, inStock} = this.state.product ?? {};
         const price = prices?.find(price => price.currency.label === this.props.currency)
         const isCheckedPrice = price
+
+        if (!name) {
+            return <Preloader/>;
+        }
 
         return (
             <MainContainer>

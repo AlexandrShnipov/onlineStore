@@ -57,12 +57,12 @@ class CartMini extends Component {
 
                   <div className={s.cartTotal}>
                     <h5>Total</h5>
-                    <span>{`${currency.symbol} ${totalAmount}`}</span>
+                    <span>{`${currency.symbol} ${totalAmount.toFixed(2)}`}</span>
                   </div>
 
                   <div className={s.buttons}>
                     <NavLink to={'/cart'} onClick={handlerCartButtonClickForOpenMiniCart}>view bag</NavLink>
-                    <NavLink to={'/'} onClick={handlerCartButtonClickForOpenMiniCart}>chek out</NavLink>
+                    <NavLink to={'/'} onClick={handlerCartButtonClickForOpenMiniCart}>check out</NavLink>
                   </div>
                 </div>
               </>

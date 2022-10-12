@@ -2,13 +2,12 @@ import {Component} from 'react';
 import MainContainer from '../../../common/MainContainer/MainContainer';
 import ProductCard from '../../../common/ProductCard/ProductCard';
 import CategoryContainer from '../../../common/CategoryContainer/CategoryContainer';
-//import {request, gql} from 'graphql-request'
+import {request, gql} from 'graphql-request'
 import {withRouter} from '../../../hocs/withRouter';
 import {connect} from 'react-redux';
 import {addProductAC} from '../../../redux/cartReducer';
 import {selectCurrencyLabel} from '../../../redux/catrSelectors';
-import {gql} from "@apollo/client";
-import {request} from "graphql-request";
+import Preloader from "../../../common/Preloader/Preloader";
 
 
 class CategoryPage extends Component {
@@ -33,6 +32,11 @@ class CategoryPage extends Component {
 
   render() {
     let name = this.state.category.name
+
+    if (!this.state.category.name) {
+      return <Preloader/>;
+    }
+
     return (
       <MainContainer>
         <CategoryContainer title={name}>
