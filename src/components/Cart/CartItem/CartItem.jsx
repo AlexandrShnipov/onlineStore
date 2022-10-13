@@ -122,7 +122,6 @@ class CartItem extends Component {
               </div>}
             </div>
 
-
             <button
               className={s.buttonDeleteProduct}
               onClick={deleteProductToCart}>

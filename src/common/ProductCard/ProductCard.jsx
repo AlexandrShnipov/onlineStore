@@ -24,24 +24,28 @@ class ProductCard extends PureComponent {
                         <h2 className={s.cardTitle}>{brand}, <span>{name}</span></h2>
                         <p className={s.cardPrice}><span>{price?.currency?.symbol}</span> {totalAmount}</p>
                     </NavLink>
-                    <button
-                        className={s.buttonAddInCart}
-                        onClick={this.onAddToCartClick}
-                    >
-                        <img src={cart} alt='cart images'/>
-                    </button>
+                    {
+                        inStock &&
+                        <button
+                            className={s.buttonAddInCart}
+                            onClick={this.onAddToCartClick}
+                        >
+                            <img src={cart} alt='cart images'/>
+                        </button>
+                    }
+                    {
+                        !inStock &&
+                        <div
+                            className={s.stockBox}
+                            to={{
+                                pathname: `${location.pathname}/${id}`
+                            }}
+                        >
+                            <span>out of stock</span>
+                        </div>
+                    }
                 </div>
-                {
-                    !inStock &&
-                    <NavLink
-                        className={s.stockBox}
-                        to={{
-                            pathname: `${location.pathname}/${id}`
-                        }}
-                    >
-                        <span>out of stock</span>
-                    </NavLink>
-                }
+
             </div>
         )
     }
