@@ -35,14 +35,14 @@ class ProductCard extends PureComponent {
                     }
                     {
                         !inStock &&
-                        <div
+                        <NavLink
                             className={s.stockBox}
                             to={{
                                 pathname: `${location.pathname}/${id}`
                             }}
                         >
                             <span>out of stock</span>
-                        </div>
+                        </NavLink>
                     }
                 </div>
 
