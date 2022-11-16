@@ -16,7 +16,6 @@ class Cart extends Component {
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
-
     return (
       <MainContainer>
         <h1 className={s.cartTitle}>Cart</h1>
