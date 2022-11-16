@@ -49,7 +49,7 @@ class Header extends Component {
                   <button className={s.cartButton} onClick={handlerCartButtonClickForOpenMiniCart}>
                     <img src={cart} alt={'cart'}/>
                     {
-                      cartProducts.length > 0 &&
+                      cartProducts?.length > 0 &&
                       <span className={s.cartCount}>{cartProducts.length}</span>
                     }
                   </button>
