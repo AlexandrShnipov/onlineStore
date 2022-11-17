@@ -2,11 +2,12 @@ import {Component} from 'react';
 import MainContainer from '../../../common/MainContainer/MainContainer';
 import ProductCard from '../../../common/ProductCard/ProductCard';
 import CategoryContainer from '../../../common/CategoryContainer/CategoryContainer';
-import {gql, request} from 'graphql-request'
+import {request, gql} from 'graphql-request'
 import {withRouter} from '../../../hocs/withRouter';
 import {connect} from 'react-redux';
 import {addProductAC} from '../../../redux/cartReducer';
 import {selectCurrencyLabel} from '../../../redux/catrSelectors';
+import Preloader from "../../../common/Preloader/Preloader";
 
 
 class CategoryPage extends Component {
@@ -31,10 +32,13 @@ class CategoryPage extends Component {
 
   render() {
     let name = this.state.category.name
+
+    if (!this.state.category.name) {
+      return <Preloader/>;
+    }
+
     return (
       <MainContainer>
-
-
         <CategoryContainer title={name}>
           {this.state.category?.products?.map(({brand, id, gallery, name, prices, inStock}) => {
             const price = prices.find(price => price.currency.label === this.props.currency)
@@ -91,7 +95,7 @@ class CategoryPage extends Component {
   }
   }
   `;
-    request('http://localhost:4000/', getProducts, {title})
+      request('http://localhost:4000/', getProducts, {title})
       .then((data) => {
         this.setState({category: data.category})
       })

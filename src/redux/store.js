@@ -1,11 +1,19 @@
 import {combineReducers, compose, createStore} from 'redux'
 import cartReducer from './cartReducer';
+import {loadState, saveState} from '../utils/localstorage-utils';
 
-const reducers = combineReducers({
-  cart: cartReducer
+
+const rootReducers = combineReducers({
+  cart: cartReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers());
+export const store = createStore(rootReducers, loadState(), composeEnhancers());
 
-export default store;
+store.subscribe(()=> {
+  saveState({
+    cart: store.getState().cart
+  })
+})
+
+

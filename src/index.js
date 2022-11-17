@@ -4,29 +4,24 @@ import './index.css';
 import './styles/sass/base/reset.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {ApolloClient, InMemoryCache, ApolloProvider, gql} from '@apollo/client';
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import {Provider} from "react-redux";
-import store from "./redux/store";
+import {store} from "./redux/store";
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
-  cache: new InMemoryCache(),
+    uri: 'http://localhost:4000/',
+    cache: new InMemoryCache(),
 });
-//
-// const client = new ApolloClient({
-//   uri: 'https://flyby-gateway.herokuapp.com/',
-//   cache: new InMemoryCache(),
-// });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ApolloProvider client={client}>
-    <React.StrictMode>
-      <Provider store={store}>
-        <App/>
-      </Provider>
-    </React.StrictMode>
-  </ApolloProvider>
+    <ApolloProvider client={client}>
+        {/*<React.StrictMode>*/}
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        {/*</React.StrictMode>*/}
+    </ApolloProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

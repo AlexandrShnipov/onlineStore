@@ -12,7 +12,7 @@ import {withRouter} from '../../hocs/withRouter';
 class Cart extends Component {
 
   render() {
-    const {cartProducts, totalQuantity, totalPrice, currency, location, id, category} = this.props;
+    const {cartProducts, totalQuantity, totalPrice, currency, location} = this.props;
     const tax = 0.21
     const taxAmount = Math.round((totalPrice * tax) * 100) / 100
     const totalAmount = Math.round((taxAmount + totalPrice) * 100) / 100
@@ -28,7 +28,7 @@ class Cart extends Component {
                 id={product.id}
                 brand={product.brand}
                 name={product.name}
-                price={product.price}
+                price={product.price.toFixed(2)}
                 currency={currency.symbol}
                 attributes={product.attributes}
                 imageCartProduct={product.gallery}
@@ -43,7 +43,7 @@ class Cart extends Component {
                   <tbody>
                   <tr>
                     <th>Tax 21%:</th>
-                    <td className={s.price}>{`${currency.symbol} ${taxAmount}`}</td>
+                    <td className={s.price}>{`${currency.symbol} ${taxAmount.toFixed(2)}`}</td>
                   </tr>
                   <tr>
                     <th>Quantity:</th>
@@ -51,7 +51,7 @@ class Cart extends Component {
                   </tr>
                   <tr>
                     <th>Total:</th>
-                    <td className={s.price}>{`${currency.symbol} ${totalAmount}`}</td>
+                    <td className={s.price}>{`${currency.symbol} ${totalAmount.toFixed(2)}`}</td>
                   </tr>
                   </tbody>
                 </table>

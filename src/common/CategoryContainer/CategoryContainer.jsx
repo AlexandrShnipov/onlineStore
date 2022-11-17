@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import s from './CatagoryContainer.module.scss'
+import s from './CategoryContainer.module.scss'
 
 class CategoryContainer extends Component {
   render() {

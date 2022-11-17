@@ -1,15 +1,12 @@
 @import '../../styles/sass/abstracts/variables';
 @import '../../styles/sass/abstracts/function';
 
-.container {
-  position: relative;
-}
-
 .wrapper {
   position: relative;
+  transition: all 0.5s linear;
 
   &:hover {
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
   }
 }
 
@@ -19,7 +16,7 @@
   grid-template: 1fr auto auto / 1fr;
   font-size: toRem(18);
   line-height: 160%;
-  font-family: Raleway;
+  font-family: Raleway, sans-serif;
   color: $textColorMain;
   padding: toRem(16);
   transition: all .5s linear;
@@ -90,6 +87,10 @@
   place-content: center;
   z-index: 10;
 
+  &:hover {
+    box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
+  }
+
   & > span {
     display: inline-block;
     position: relative;
@@ -97,7 +98,7 @@
     font-size: toRem(24);
     text-transform: uppercase;
     color: #8D8F9A;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif
   }
 }
 

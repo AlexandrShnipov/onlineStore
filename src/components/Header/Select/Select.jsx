@@ -20,6 +20,11 @@ class Select extends Component {
 
   componentDidMount() {
     document.addEventListener('click', this.onSelectToggle)
+    const currencyFromLocaleStorage = localStorage.getItem('currency');
+    const currency = JSON.parse(currencyFromLocaleStorage);
+    if (currencyFromLocaleStorage) {
+      this.props.setCurrencyAC(currency);
+    }
     const getCurrencies = gql`
     {
       currencies{
@@ -30,12 +35,15 @@ class Select extends Component {
 
     request('http://localhost:4000/', getCurrencies)
       .then((data) => {
-        const {currencies} = this.state
-        //console.log('currencies', data);
+        const index = data.currencies.findIndex(item => item.label === currency?.label);
         this.setState({
-          currencies: data.currencies
+          currencies: data.currencies,
+          selectedCurrency: index >= 0 ? index : 0
         })
-        this.props.setCurrencyAC(data.currencies[0])
+        if (!currencyFromLocaleStorage) {
+          this.props.setCurrencyAC(data.currencies[0])
+        }
+
       })
       .catch(err => console.log(err))
   }
@@ -47,10 +55,12 @@ class Select extends Component {
   getSelectedCurrency = (index, value) => () => {
     this.setState({
       selectedCurrency: index,
-      isActive: false
+      isActive: false,
     })
+
     const {currencies} = this.state;
     const selectedCurrency = currencies.find(cur => cur.label === value)
+    localStorage.setItem('currency', JSON.stringify(selectedCurrency))
     this.props.setCurrencyAC(selectedCurrency)
   }
 
@@ -61,7 +71,7 @@ class Select extends Component {
   }
 
   render() {
-    const {state: {currencies}, props: {currency}} = this;
+    const {currencies} = this.state;
 
     return (
       <>
