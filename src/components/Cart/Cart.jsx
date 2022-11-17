@@ -3,9 +3,7 @@ import MainContainer from '../../common/MainContainer/MainContainer';
 import s from './Cart.module.scss';
 import CartItem from './CartItem/CartItem';
 import {connect} from 'react-redux';
-import {
-  decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC
-} from '../../redux/cartReducer';
+import {decreaseProductsNumberAC, deleteProductToCartAC, increaseProductsNumberAC} from '../../redux/cartReducer';
 import {NavLink} from 'react-router-dom';
 import {withRouter} from '../../hocs/withRouter';
 

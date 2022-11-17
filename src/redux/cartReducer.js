@@ -26,12 +26,13 @@ const cartReducer = (state = initialState, action) => {
         return `${acc}-${item.id}-${item.items[0].id}`
       }, `${action.payload.product.id}`);
       const productIsAdded = state.cartProducts.some(product => product.uniqueId === uniqueId);
+      const productItemPrice = action.payload.product.prices.find(price => price.currency.label === state.currency.label).amount;
       const newProduct = {
         ...action.payload.product,
         uniqueId,
         attributes: checkedAttributes,
         prices: cloneDeep(action.payload.product.prices),
-        price: action.payload.product.prices.find(price => price.currency.label === state.currency.label).amount,
+        price: productItemPrice,
         gallery: cloneDeep(action.payload.product.gallery),
         amount: 1
       };
@@ -41,12 +42,13 @@ const cartReducer = (state = initialState, action) => {
           : {...product})]
         : [...state.cartProducts, newProduct]
       const newTotalQuantity = state.totalQuantity + 1;
-      const netProductsPrice = newCartProducts.reduce((sum, product) => sum + product.price, 0);
+      const newProductsPrice = newCartProducts.reduce((sum, product) =>
+        sum + product.price * product.amount, 0);
       return {
         ...state,
         cartProducts: newCartProducts,
         totalQuantity: newTotalQuantity,
-        totalPrice: netProductsPrice
+        totalPrice: newProductsPrice
       }
     }
     case INCREASE_PRODUCTS_NUMBER: {
